@@ -1,0 +1,229 @@
+JAVA SYNTAX: 
+1. declaring int a; and int a = new int();
+2. when to use 
+    1. .length()  - used for finding length of string,                
+    2. .length - used for finding length of char array
+    3. .size() - ArrayList uses this.
+3. What does keyword do internally
+    1. static
+    2. finally
+    3. super 
+4. How garbage collection works
+5. what is default value for 
+    1. int
+    2. string
+    3. char
+    4. boolean - false
+6. what is the range of 
+    1. int
+    2. char
+    3. string
+    4. float
+    5. decimal
+    6. big decimal
+7. System.exit(0) - returns the information to the system that the program exit normally
+8. System.exit(1) - returns the information to the system that the program exit due to error(crashed)
+9. Type cast
+    1. string to char - str.charAt(0);
+    2. string to char[] - str.toCharArray();
+10. How does memory allocate (dynamic or not) for 
+    1. String :
+In Java usage and for what type of problems it is generally used:
+1. List - List<String> hi = new List<String() , hi.add("abc") , hi.size() , hi.get(0) , hi.remove(0) , hi.clear()
+		  Types: ArrayList, LinkedList, vector, stack
+
+2. hashMap - uses get, put, iterator or for loop for iterating
+http://javarevisited.blogspot.com/2011/12/how-to-traverse-or-loop-hashmap-in-java.html
+
+3. bit manipulation
+
+4. iterator - Iterator it = hi.iterator(), while(it.hasnext()), S.O.P(it.next());
+   comparator - 
+
+5. substring
+6. split
+
+7. set - Set setA = new HashSet() , setA.add(element) , 
+	     Types: EnumSet, HashSet, LinkedHashSet, TreeSet - SortedSet setA = new TreeSet(); or NavigationSet setA = new TreeSet() , SortedSet ss = setA.subSet("2","4") - 2 and 4 are values
+
+8. map 
+	i) is an interface - Map mapA = new HashMap() , mapA.put("key1", "element 1") , String element1 = (String) mapA.get("key1") , 
+	ii) iterator - Iterator iterator = mapA.keySet().iterator() , Iterator iterator = mapA.values() , while(iterator.hasNext(){ Object key   = iterator.next(); Object value = mapA.get(key) }
+	iii) Types: hashmap, treemap
+9. vector
+
+10. String Buffer, String builder and its supportive function
+	1.Why we go to String builder or buffer instead of String
+		i) String is immutable(String class does not have setter, so everytime you concatenate it will create new object where object is immutable, you cannot change the value object points to whereas reference is not i.e, you can change the object reference to new value) 
+		ii) so we need String builder or buffer so that it is mutable(has setter) hence you can change the existing value.
+	2. Difference between String builder and String Buffer
+		i)
+
+11. bitwise left shift and right shift
+12. recursion
+
+13. Queue - Queue queueA = new LinkedList() , Queue queueB = new PriorityQueue() , queueA.add("element 1") , Object firstElement = queueA.element() - to see the element without removing it from queue, Object firstElement = queueA.remove() 
+    Deque - Deque dequeA = new LinkedList() , Deque dequeB = new ArrayDeque() , dequeA.add("element 0") , Object firstElement = dequeA.remove() , Object firstElement = dequeA.removeFirst(), Object lastElement  = dequeA.removeLast();
+
+14. Stack - Stack stack = new Stack() , stack.push("1") , Object objTop = stack.peek() , Object obj3 = stack.pop() 
+
+15. ItemWrapper - to have a list with different datatype
+
+Basics of how the program is stored in and outputed
+how jam works
+
+sorting techniques
+searching techniques
+
+Go through projects in resume 
+
+
+MySQL:
+
+1. to list db: SHOW DATABASES;
+2. to create db: CREATE DATABASE mydb;
+3. to delete: DROP DATABASE mydb;
+4. Open database : USE mydb;
+
+After getting inside your database:
+1. to show tables in mydb: SHOW tables;
+2. to create table : CREATE TABLE mytable(id INT NOT NULL PRIMARY KEY, name VARCHAR(20),subject VARCHAR(30), course CHAR(10), signup_date DATE);
+3. to see description of table: DESCRIBE mytable;
+4. insert: INSERT INTO `mytable` (`id`,`name`,`subject`,`course`,`signup_date`) VALUES (NULL, "John", "algorithm","cse", '2012-04-11');
+5. to select all rows in table: SELECT * FROM mytable;
+6. to update table information: UPDATE `mytable` SET `name` = 'John' WHERE `mytable`.`course` ='cse';
+7. to update field in table: ALTER TABLE mytable ADD email VARCHAR(40);
+   to add column after specific field: ALTER TABLE mytable ADD email VARCHAR(40) AFTER name;
+   to drop a column in table: ALTER TABLE mytable DROP email;
+8. to delete a row: DELETE from mytable where name='John';
+
+OOPS:
+
+1. Abstract: 
+
+http://stackoverflow.com/questions/197893/why-an-abstract-class-implementing-an-interface-can-miss-the-declaration-impleme
+http://stackoverflow.com/questions/56867/interface-vs-base-class
+http://stackoverflow.com/questions/479142/when-to-use-an-interface-instead-of-an-abstract-class-and-vice-versa
+http://stackoverflow.com/questions/21537982/should-i-implement-all-methods-in-abstract-class
+
+   Abstract method: declared but no implementation
+   Abstract class: Incomplete class. It does not define all of its methods.
+   
+   when implementing abstract method - when the implementation is not known at that time and the derived class should implement it else the derived class is abstract.
+   
+   Can Abstract class be instantiated, why? - No, because when we create object we give permission to access it methods whereas one or more of its method is incomplete.
+   
+   difference between abstract and interface - 
+   In Interface all methods have no implementation, while in abstract class only one or few methods have no implementation.
+   If abstract class, then it need not implement all methods its interface methods. But its derived class has to implement all the methods of interface.
+  
+   When to use abstract class and interface - Use abstract clases and inheritance if you can make the statement "A is a B". Use interfaces if you can make the statement "A is capable of [doing] as", or also, abstract for what a class is, interface for what a class can do. For example, we can say a triangle is a polygon but it makes no sense to say a triangle is capable of being a polygon.
+
+2. Polymorphism:
+   Prag notes.
+3. Method Overloading: Two method having same method name
+4. Method Overriding: Method signature is same as base class but derived class will have its own implementation. Compiler calls the derived class since
+   it is considered that derived class will have more implementation.
+
+JAVA:
+
+1. What does static variable mean? 
+   It has the universal memory across object. 
+   The different objects created for same class shares same value for static variable.
+   What does static method mean? 
+
+2. Final:
+   class - cannot be inherited
+   variable - cannot be changed
+   method - cannot be overridden
+
+
+JAVA internal:
+1. How JVM works? 
+   java code is compiles into byte code(.class file). When we run it, Just-in-time compiler converts it into machine code and run it(Hence it takes more time than C or C++).
+2. RAM Memory management:
+
+http://stackoverflow.com/questions/23334018/how-to-delete-a-java-object-from-heap
+http://www.geeksforgeeks.org/g-fact-46/
+
+   Stack - stores the local variables. its scope in method or class.
+   Heap - stores the dynamically allocated variables or object(created using new). Java removes it. else you can make the object null.
+   Data Segment - stores the global variables and static variables. file scope.
+   Code Segment - has the code to execute. Scope is till program runs.
+
+Pragadheesh notes: 
+1. What is Abstraction:
+    - Abstraction is the concept of ignoring unnecessary details.
+    - Or other words, describing something in a simpler way by not concentrating on the intricate details and focusing only on necessary details.
+    - It can be thought as generalization.
+    - Say when you are meeting a random person, you would say that you are the guy in Black Shirt and Blue Jean.
+    - We can consider Interfaces as Abstraction.
+
+2. What is Encapsulation:
+    - Encapsulation is something like group similar things in a box.
+    - So someone else won't have access to the inside of the box. They can just use the box to do what they want.
+    - Changing the contents of the box won't affect the outsider. They will still be able to use the box.
+
+3. What is Polymorphism:
+    - Polymorphism is the ability of an object to decide what it should.
+    - Simple example would be to consider "Shapes" class. And the class has methods like Area and Cirumferance.
+    - We can have subclasses like Square, Rectangle.
+    - To find the area of all the shapes, we can just give Shapes.area(). Based on what shape it is, we will get the respective Area.
+
+4. Overriding:
+    - Concept of adding more details to a function in the derived class.
+    - It replaces the function in the base class.
+
+5. Overloading:
+    - It is concept of defining multiple methods based on the parameters passed.
+
+6. What is Inheritence:
+    - It is concept where a new class is derived from an existing class.
+    - This happens when we want to have a new Class that will make use of an existing class with some added details to it.
+    - Eg we have a Vehicle / Shapes class and we want to add Car / Square class.
+    - Inheritence should only be used if the sub class is BEHAVIORIALLY equal to the superclass.
+
+
+Sorting prag notes:
+1. Bubble Sort vs Selection Sort vs Insertion Sort
+    http://www.sorting-algorithms.com/selection-sort
+    Bubble Sort:
+        - Check pair of elements and swap them so that the largest gets bubbled to the end.
+        PROS:
+            If array is almost sorted OR once we have the array sorted, we can STOP there.
+
+        Bubble sort has many of the same properties as insertion sort, but has slightly higher overhead.
+        In the case of nearly sorted data, bubble sort takes O(n) time, but requires at least 2 passes through the data (whereas insertion sort requires something more like 1 pass). 
+
+    Insertion Sort:
+        - What we have at any given time is sorted.
+        PROS:
+            Online Sorting
+            Can you binary search for inserting into a position
+
+        Although it is one of the elementary sorting algorithms with O(n2) worst-case time,
+        insertion sort is the algorithm of choice either when the data is nearly sorted (because it is adaptive) or when the problem size is small (because it has low overhead).
+
+        For these reasons, and because it is also stable, insertion sort is often used as the recursive base case
+        (when the problem size is small) for higher overhead divide-and-conquer sorting algorithms, such as merge sort or quick sort. 
+
+
+    BUBBLE SORT vs INSERTION SORT
+        Bubble sort always takes one more pass over array to determine if it's sorted.
+        On the other hand, insertion sort not need this -- once last element inserted, algorithm guarantees that array is sorted.
+
+        Bubble sort does n comparisons on every pass.
+        Insertion sort does less than n comparisons -- once algorith finds position where to insert current element it stops making comparisons and takes next element.
+
+    Selection Sort:
+        Select Minimum element each time and put it at the front.
+        PROS:
+            - Never have to do MORE THAN "n" swaps.
+
+        From the comparions presented here, one might conclude that selection sort should never be used.
+        It does not adapt to the data in any way (notice that the four animations above run in lock step), so its runtime is always quadratic.
+
+
+
+
+
