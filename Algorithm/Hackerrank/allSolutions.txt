@@ -1,0 +1,189 @@
+// Friends Circle Solution 
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+import java.lang.*;
+
+public class solution {
+
+    public static void main(String[] args) {
+        
+        int tot;
+        int answer;
+        String temp; 
+        int j = 0; 
+        Scanner sc = new Scanner(System.in);
+        tot = sc.nextInt();
+        char[][] inp = new char[tot][tot];
+        for(int i=0; i<tot; i++) {
+                temp = sc.next();
+                while(j != tot){
+                    inp[i][j] = temp.charAt(j);
+                    j++;
+                }
+            j=0;
+        }
+        answer = friends(inp, tot);     
+        System.out.println(answer); 
+    }
+    
+    public static int friends(char[][] input, int tot) {
+       
+        Integer[] num = new Integer[tot];
+        Arrays.fill(num, 1);
+        for(int a=0; a<tot; a++) {
+            for(int b=1; b<tot; b++) { 
+             if(a!=b) {
+                char ch = Character.toUpperCase(input[a][b]);
+                if((ch == 'Y')) {
+                    if(num[a] == num[b]) {
+                        if(num[a] != 0) {
+                            num[b]--; 
+                        }
+                    }
+                    else if(num[a] > num[b]) {
+                        if(a>b) {
+                            num[a]--;
+                        }
+                    }
+                    else if(num[a] < num[b]) {
+                        if(b>a) {
+                           num[b]--; 
+                           }
+                    }
+            }
+        }
+    }
+    }
+        int count = 0;
+        for(int i=0; i<tot; i++) {
+//            System.out.println(num[i]);
+            if(num[i] > 0) {
+                count++;
+            }
+        }
+        return count;
+    }
+}
+
+//Code 25 Challenge
+//1. between two sets
+
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int m = in.nextInt();
+        int[] a = new int[n];
+        for(int a_i=0; a_i < n; a_i++){
+            a[a_i] = in.nextInt();
+        }
+        int[] b = new int[m];
+        for(int b_i=0; b_i < m; b_i++){
+            b[b_i] = in.nextInt();
+        }
+        
+        int[] limits = findLimits(a, b);
+        int result = searchLimits(a, b, limits);
+        System.out.println(result);
+    }
+    
+    //to search element with in limits, count and return
+    private static int searchLimits(int[] a, int[] b, int[] limits) {
+        
+        boolean boo_1;
+        boolean boo_2;
+        int counter = 0;
+        for (int i=limits[0]; i<=limits[1]; i++) {
+            
+            boo_1 = false;
+            boo_2 = false;
+            
+            boo_1 = findMultiple(i, a);
+            
+            if (boo_1 == true) {
+                boo_2 = findFactors(i, b);
+            }
+            
+            if(boo_2 == true) {
+                counter++;
+            }
+        }
+        return counter;
+    }
+    
+    private static boolean findMultiple(int a, int[] arr) {
+        
+        for(int i=0; i<arr.length; i++) {
+            if(a % arr[i] != 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    private static boolean findFactors(int a, int[] arr) {
+        
+        for(int i=0; i<arr.length; i++) {
+            if(arr[i] % a != 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    // to find the limits, find gcd and lcm
+    private static int[] findLimits(int[] a, int[] b) {
+        int[] result = {0, 0}; 
+        int gcd = 0;
+        gcd = findGCD(b);
+        
+        int lcm = 0;
+        lcm = findLCM(a);
+        
+        result[0] = lcm;
+        result[1] = gcd;
+        
+        return result;
+    }
+    
+    private static int findGCD(int[] arr) {
+        
+        int res = arr[0];
+        for(int i=1; i<arr.length; i++) {
+            res = gcd(res, arr[i]);
+        }     
+        return res;
+    }
+    
+    private static int findLCM(int[] arr) {
+        
+        int res = arr[0];
+        for(int i=1; i<arr.length; i++) {
+            res = (res * arr[i]) / gcd(res, arr[i]);
+        }
+        return res;
+    }
+    
+    private static int gcd(int first, int second) {
+        
+        if(first < second) {
+            return gcd(second, first);
+        }
+        if(first % second == 0) {
+            return second;
+        }
+        else {
+            return gcd(second, first % second);
+        }
+    }
+}
