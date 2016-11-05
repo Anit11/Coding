@@ -223,7 +223,49 @@ Sorting prag notes:
         From the comparions presented here, one might conclude that selection sort should never be used.
         It does not adapt to the data in any way (notice that the four animations above run in lock step), so its runtime is always quadratic.
 
+LINUX Commands
+1. cat
+    - Display entire file on shell
 
+2. touch
+    - Just creates empty file
+
+3. less
+    - View file page by page
+
+4. grep
+    - search file contents
+    Eg: grep -ir "foo" .
+    "i" - ignores case
+    "r" - recursive
+
+5. find
+    - search file names
+
+6. Pipe |
+    - Gives output of one command as input of next command
+    Eg: grep -ir "for" . | grep "map" > a.txt
+    Eg: grep -ir "for" . | grep "map" | more : To view page by page
+
+7. Redirection >
+    - Write output to a file
+    - Creates file if not present
+
+8. more
+    - Page by page view
+
+9. rmdir 
+    - Can only delete empty directories
+
+10. rm -rf
+    r - recursive
+    f - forcefully
+
+11. ls -alht
+    a - all files including hidden
+    l - list view
+    h - human readable size format
+    t - sort by time
 
 
 
