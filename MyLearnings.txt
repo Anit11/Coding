@@ -267,5 +267,35 @@ LINUX Commands
     h - human readable size format
     t - sort by time
 
+VIM Shortcuts
+    1. Split View
+        ctrl + w v : split vertically
+        ctrl + w s : split horizontally
+        ctrl + h : Go right pane
+        ctrl + l : Go left pane
+        ctrl + j : Go bottom pane
+        ctrl + k : Go top pane
+    
+    2. Scroll
+        ctrl + d : Half page down
+        ctrl + u : Half page up
+        ctrl + f : Full page down
+        ctrl + b : Full page up
 
+    % : Takes you to matching brace
+    ^ : First character of line
+    A : Takes you to INSERT mode at END of line
+    u : Undo
+    ctrl + r : redo
 
+    H : High / Head of screen
+    L : Low / Bottom of screen
+    M : Middle of screen
+
+    zt : Makes your current curson postion as top of the screen
+    zb : Makes your current curson postion as bottom of the screen
+
+    * : Finds current word after cursor position; Use 'n' and 'N' to go next and prev
+    # : Finds current word before cursor position; Use 'n' and 'N' to go next and prev 
+
+    / : To start searching. It has smart Case enabled
