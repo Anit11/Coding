@@ -297,5 +297,6 @@ VIM Shortcuts
 
     * : Finds current word after cursor position; Use 'n' and 'N' to go next and prev
     # : Finds current word before cursor position; Use 'n' and 'N' to go next and prev 
+    . : To repeat an action that is performed.
 
     / : To start searching. It has smart Case enabled

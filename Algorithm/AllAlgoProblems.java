@@ -14,7 +14,7 @@ public class AllAlgoProblems
     // Main
     // -----------------------------------------------------------------------------------------
     public static void main(String args[])
-    {
+    { /*
         // Problem 1. ReverseWord
         {
             System.out.println("\nProblem 1. Reverse the word in the String");
@@ -68,6 +68,7 @@ public class AllAlgoProblems
             printRepeat(b);
         }
 
+
         // Problem 6. Find all repeated words in a string
         {
             System.out.println("\nProblem 6. Find all repeated words in a string");
@@ -85,6 +86,29 @@ public class AllAlgoProblems
             }
         }
 
+        //Problem 8. Two-Sum pair, finding first pair
+        {
+            ArrayList<Integer> arrList = new ArrayList<> (Arrays.asList(4,1,3,-2,4,3,6,5,5,-1,3,10,2));
+            findaPair(arrList, 8);
+        }
+
+        //Problem 9. Two-Sum pair, finding all pairs
+        {
+            //ArrayList<Integer> arrList = new ArrayList<> (Arrays.asList(5,1,3,-2,4,3,6,5,5,-1,3,10,2));
+            //ArrayList<Integer> arrList = new ArrayList<> (Arrays.asList(5,5,5,3,3,3,5,5,3,3,5,3));
+            ArrayList<Integer> arrList = new ArrayList<> (Arrays.asList(3,3,3,3,5,5,5,5,5));
+            findallPair(arrList, 8);
+        }*/
+
+        //Problem 10. Two-Sum pair finding all possible pairs
+        {
+            //ArrayList<Integer> arrList = new ArrayList<> (Arrays.asList(2,3,4,5,1,7,6,4,2,6));
+            //ArrayList<Integer> arrList = new ArrayList<> (Arrays.asList(3,3,3,3,5,5,5,5,5));
+            ArrayList<Integer> arrList = new ArrayList<> (Arrays.asList(5,1,3,-2,4,3,6,5,5,-1,3,10,2));
+            find_all_possible_pairs(arrList, 8);
+        }
+
+        //Problem 11. Two-Sum pair finding all possible pairs
     }
     
     // -----------------------------------------------------------------------------------------
@@ -361,4 +385,101 @@ public class AllAlgoProblems
         }
         return arrList;
     }
+
+    // -----------------------------------------------------------------------------------------
+    // Problem 8. Two-Sum pair, finding first pair
+    // -----------------------------------------------------------------------------------------
+    public static void findaPair(ArrayList<Integer> aList, int num) {
+        
+        HashMap<Integer, Integer> hmap = new HashMap<> ();
+
+        for(int i=0; i<aList.size(); i++) {
+            if(hmap.containsKey(num - aList.get(i))) {
+                System.out.println(aList.get(i));
+                System.out.println(num - aList.get(i));
+                break;
+            }
+            else {
+                hmap.put(aList.get(i), 1);
+            }
+        }
+        
+    }
+
+    // -----------------------------------------------------------------------------------------
+    // Problem 9. Two-Sum pair, finding all pairs
+    // -----------------------------------------------------------------------------------------
+    public static void findallPair(ArrayList<Integer> aList, int tot) {
+        
+        HashMap<Integer, Integer> hmap = new HashMap<> ();
+        
+        for(int i=0; i<aList.size(); i++) {
+            if(!hmap.containsKey(tot - aList.get(i))) {
+                if(hmap.containsKey(aList.get(i))) {
+
+                    int temp_value = hmap.get(aList.get(i));
+                    hmap.put(aList.get(i), temp_value+1);
+
+                }
+                else {
+                    hmap.put(aList.get(i), 1);
+                }
+            }
+            else {
+                if(0 <  hmap.get(tot - aList.get(i))) {
+
+                    int value = hmap.get(tot - aList.get(i));
+                    hmap.put(tot - aList.get(i), value-1);
+
+                    System.out.println((tot - aList.get(i))+","+aList.get(i));
+                }
+                else {
+                    hmap.put(aList.get(i), 1);
+                }   
+            }
+        }
+    }
+
+    // -----------------------------------------------------------------------------------------
+    // Problem 10. Two-Sum pair, finding all possible pairs
+    // -----------------------------------------------------------------------------------------
+    public static void find_all_possible_pairs(ArrayList<Integer> aList, int tot) {
+        
+        HashMap<Integer, ArrayList<Integer>> hmap = new HashMap<> ();
+
+        for(int i=0; i<aList.size(); i++) {
+            
+            if(hmap.containsKey(tot - aList.get(i))) {
+                ArrayList<Integer> a_list = hmap.get(tot - aList.get(i));
+                for(int j=0; j<a_list.size(); j++) {
+                    System.out.println(aList.get(i)+","+(tot-aList.get(i)));
+                }
+                add_Element_Twosumpair(aList.get(i), i, hmap);
+            }
+            else {
+                add_Element_Twosumpair(aList.get(i), i, hmap);                
+            }
+        }
+    }
+
+    //Problem 10. Sub Methods
+    public static void add_Element_Twosumpair(int element, int index,  HashMap<Integer, ArrayList<Integer>> hmap) { 
+        if(hmap.containsKey(element)) {
+            //Learn:
+            //Adding new index to the existing arraylist present inside hashmap
+            //Accessing the hashmap values directly
+            (hmap.get(element)).add(index);
+        }
+        else {
+            ArrayList<Integer> a_list1 = new ArrayList<Integer>(Arrays.asList(index));
+            hmap.put(element, a_list1);
+        }
+    }
+
+    // -----------------------------------------------------------------------------------------
+    // Problem 11. Two-Sum pair, finding all pairs
+    // -----------------------------------------------------------------------------------------
+
+
 }
+
