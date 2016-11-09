@@ -98,7 +98,7 @@ public class AllAlgoProblems
             //ArrayList<Integer> arrList = new ArrayList<> (Arrays.asList(5,5,5,3,3,3,5,5,3,3,5,3));
             ArrayList<Integer> arrList = new ArrayList<> (Arrays.asList(3,3,3,3,5,5,5,5,5));
             findallPair(arrList, 8);
-        }*/
+        }
 
         //Problem 10. Two-Sum pair finding all possible pairs
         {
@@ -106,9 +106,14 @@ public class AllAlgoProblems
             //ArrayList<Integer> arrList = new ArrayList<> (Arrays.asList(3,3,3,3,5,5,5,5,5));
             ArrayList<Integer> arrList = new ArrayList<> (Arrays.asList(5,1,3,-2,4,3,6,5,5,-1,3,10,2));
             find_all_possible_pairs(arrList, 8);
-        }
+        }*/
 
-        //Problem 11. Two-Sum pair finding all possible pairs
+        //Problem 11. Merge two sorted arrays
+        {
+            ArrayList<Integer> arr1 = new ArrayList<Integer> (Arrays.asList(1, 5, 7));
+            ArrayList<Integer> arr2 = new ArrayList<Integer> (Arrays.asList(3, 6, 11, 12, 34));
+            Merge_SortedArrays(arr1, arr2);
+        }
     }
     
     // -----------------------------------------------------------------------------------------
@@ -477,9 +482,65 @@ public class AllAlgoProblems
     }
 
     // -----------------------------------------------------------------------------------------
-    // Problem 11. Two-Sum pair, finding all pairs
+    // Problem 11. Merge two sorted arrays
     // -----------------------------------------------------------------------------------------
+    public static void Merge_SortedArrays(ArrayList<Integer> arr1, ArrayList<Integer> arr2) {
 
+        ArrayList<Integer> arr3;
+        if(arr1.size() < arr2.size()) {
+            arr3 = Merge(arr1, arr2);
+        }
+        else {
+            arr3 = Merge(arr2, arr1);
+        }
+        for(int i=0; i<arr3.size(); i++) {
+            System.out.println(arr3.get(i));
+        }
+    }
 
+    static ArrayList<Integer> Merge(ArrayList<Integer> aList1, ArrayList<Integer> aList2) {
+        
+        ArrayList<Integer> aList3 = new ArrayList<> ();
+        int i = 0;
+        int j = 0;
+
+        while(i<aList1.size()) {
+            if(j == aList2.size()) {
+                break;
+            }
+            else {
+                if(aList1.get(i) < aList2.get(j)) {
+                    aList3.add(aList1.get(i));
+                    i++;
+                }
+                else {
+                    aList3.add(aList2.get(j));
+                    j++;
+                }
+            }
+        }
+
+        if(i == aList1.size()) {
+            if(j < aList2.size()) {
+                aList3 = add_remaining(aList3, j, aList2);
+            }
+        }
+        else if(j == aList2.size()) {
+            if(i < aList2.size()) {
+                aList3 = add_remaining(aList3, i, aList1);
+            }
+        }
+
+        return aList3;
+    }
+
+    public static ArrayList<Integer> add_remaining(ArrayList<Integer> b1, int i, ArrayList<Integer> a1) {
+        
+        for(i=i; i<a1.size(); i++) {
+            b1.add(a1.get(i));
+        }
+
+        return b1;
+    }
 }
 
