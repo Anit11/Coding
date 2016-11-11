@@ -11,4 +11,13 @@ public class addLink {
         return head;
 
     }
+
+    public num_node addNumLink(num_node head, int data) {
+        
+        num_node n = new num_node(data);
+        n.next = head;
+        head = n;
+
+        return head;
+    }
 }

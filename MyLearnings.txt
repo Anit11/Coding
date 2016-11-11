@@ -295,8 +295,21 @@ VIM Shortcuts
     zt : Makes your current curson postion as top of the screen
     zb : Makes your current curson postion as bottom of the screen
 
-    * : Finds current word after cursor position; Use 'n' and 'N' to go next and prev
-    # : Finds current word before cursor position; Use 'n' and 'N' to go next and prev 
     . : To repeat an action that is performed.
 
+    * : Finds current word after cursor position; Use 'n' and 'N' to go next and prev
+    # : Finds current word before cursor position; Use 'n' and 'N' to go next and prev 
     / : To start searching. It has smart Case enabled
+    ,/ : To clear highlighted search term
+    ' : to repeat the last find char
+
+    ,n : Open another file on the side pane in vim by showing a tree view
+
+    Doubts in Learning:
+    Can a final variable be redefined by the method that uses it? (Assume final variable is declared in the class and initialized inside method)
+    What happens when we declare with new eg: ArrayList<Integer> arr; and ArrayList<Integer> arr = new ArrayList<Integer> ();
+    what is binary search and binary search tree?
+    Can a return type be without access specifiers, return type?
+    http://stackoverflow.com/questions/214741/what-is-a-stackoverflowerror
+    How to do swap in arraylist without using Collection function?
+    what is difference between function overloading and function overriding

@@ -106,13 +106,31 @@ public class AllAlgoProblems
             //ArrayList<Integer> arrList = new ArrayList<> (Arrays.asList(3,3,3,3,5,5,5,5,5));
             ArrayList<Integer> arrList = new ArrayList<> (Arrays.asList(5,1,3,-2,4,3,6,5,5,-1,3,10,2));
             find_all_possible_pairs(arrList, 8);
-        }*/
+        }
 
         //Problem 11. Merge two sorted arrays
         {
             ArrayList<Integer> arr1 = new ArrayList<Integer> (Arrays.asList(1, 5, 7));
             ArrayList<Integer> arr2 = new ArrayList<Integer> (Arrays.asList(3, 6, 11, 12, 34));
             Merge_SortedArrays(arr1, arr2);
+        }
+
+        //Problem 12. Binary Search recursive method
+        {
+            //ArrayList<Integer> arr = new ArrayList<Integer> (Arrays.asList(2, 4, 5, 56, 57, 61, 64, 83, 97, 100));
+            ArrayList<Integer> arr = new ArrayList<Integer> (Arrays.asList(2));
+            binarySearch_recursive(arr, 0, arr.size() - 1, 2);
+        } */
+
+        //Problem 13. Partition array with pivot element
+        {
+            ArrayList<Integer> aList = new ArrayList<> (Arrays.asList(6,9,8,5,4,7,2,5,3,1));
+            ArrayList<Integer> result = pivotPartition(aList);
+            for(int i=0; i<aList.size(); i++) {
+                System.out.print(aList.get(i));
+                System.out.print(" ");
+            }
+            System.out.println();
         }
     }
     
@@ -200,7 +218,7 @@ public class AllAlgoProblems
     }
 
     // -----------------------------------------------------------------------------------------
-    // Problem 4. findElement
+    // Problem 4. Binary Search Iterative method
     // -----------------------------------------------------------------------------------------
     public static boolean getElement(ArrayList<Integer> aList, int num) {
         //System.out.println("1: getElement");
@@ -542,5 +560,65 @@ public class AllAlgoProblems
 
         return b1;
     }
+
+     // -----------------------------------------------------------------------------------------
+     //Problem 12. Binary Search recursive method
+     // -----------------------------------------------------------------------------------------
+     static void binarySearch_recursive(ArrayList<Integer> aList, int start, int end, int num) {
+         
+         System.out.println("St: " + start + "; End: " + end + "; Num: " + num);
+         if(start <= end) {
+             int mid = start + ((end - start) / 2);
+             if(aList.get(mid) == num) {
+                System.out.println("Yes");
+             }
+             else {
+                if(aList.get(mid) > num) {
+                    binarySearch_recursive(aList, start, mid-1, num);
+                }
+                else {
+                    binarySearch_recursive(aList, mid+1, end, num);
+                }
+             }
+         }
+         else {
+            System.out.println("No");
+         }
+     }
+
+     // -----------------------------------------------------------------------------------------
+     //Problem 13. Partition array with pivot element
+     // -----------------------------------------------------------------------------------------
+
+     static ArrayList<Integer> pivotPartition(ArrayList<Integer> aList) {
+        
+        int i = 1;
+        int j = aList.size() - 1;
+        int pivot = aList.get(0);
+        int pivot_index = 0;
+
+        while(i != aList.size() && j != 0) {
+
+            while(aList.get(i) < pivot && i < aList.size()) {
+               i++;
+            }
+
+            while(aList.get(j) > pivot && j > 0) {
+                j--;
+            }
+
+            if(i < j) {
+                Collections.swap(aList, i, j);
+                System.out.println("Swapping "+i+" and "+j);
+                }
+            }
+            i++;
+            j--;
+        }
+
+        return aList;
+     }
+
+
 }
 
