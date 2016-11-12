@@ -16,16 +16,26 @@ public class binaryTree {
         node head = new node('a');
         head.leaf1 = new node('b');
         head.leaf2 = new node('c');
-        /*head.leaf1.leaf1 = new node('d');
+        head.leaf1.leaf1 = new node('d');
         head.leaf1.leaf2 = new node('e');
-        */
-
+        head.leaf2.leaf1 = new node('f');
+        head.leaf2.leaf1.leaf2 = new node('g');
+        
+        
         System.out.println("The Inorder traversal is: ");
         inorderTraversal(head);
         System.out.println("The Preorder traversal is: ");
         preorderTraversal(head);
         System.out.println("The Postorder traversal is: ");
         postorderTraversal(head);
+
+        int count; 
+        count = count_node(head);
+        System.out.println("The count is :"+count);
+
+        int height;
+        height = find_height(head);
+        System.out.println("The height of the node is :"+height);
     }
 
     //left, root, right
@@ -56,5 +66,37 @@ public class binaryTree {
             postorderTraversal(head.leaf2);
             System.out.println(head.element);
         }
+    }
+
+    public static int count_node(node head) {
+        
+        if(head == null) {
+            return 0;
+        }
+        else { 
+            return 1 + count_node(head.leaf1) + count_node(head.leaf2);
+       }
+         
+    }
+
+
+    public static int find_height(node head) {
+        
+         if(head == null) {
+            return 0;
+         }
+         else if(head.leaf1 == null && head.leaf2 == null) {
+            return 1;
+         }
+         else {
+            int temp1 = find_height(head.leaf1);
+            int temp2 = find_height(head.leaf2);
+            if(temp1 > temp2) {
+                return 1 + temp1;
+            }
+            else {
+                return 1 + temp2;
+            }
+         }
     }
 }

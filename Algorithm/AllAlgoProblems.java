@@ -1,15 +1,11 @@
-import java.io.*;
+
 import java.util.*;
-
-
 public class AllAlgoProblems
 {
     // Problem 4. findElement
     static int counter = 0;
-
     // Problem 5. findRepeatingCharacter
     static char repeatedChar;
-
     // -----------------------------------------------------------------------------------------
     // Main
     // -----------------------------------------------------------------------------------------
@@ -22,7 +18,6 @@ public class AllAlgoProblems
             String result = ReverseSentence(sentence);
             System.out.println("The reversed string is: "+result);
         }
-
         // Problem 2. addDigit
         {
             System.out.println("\nProblem 2. Sum your digits");
@@ -30,12 +25,10 @@ public class AllAlgoProblems
             int result = sum(number);
             System.out.println("Answer is: "+result);
         }
-
         // Problem 3. BubbleSort
         {
             System.out.println("\nProblem 3. Bubble Sort");
             System.out.println("Enter the length: ");
-
             int[] arr = {5,3,2,4,1};
             bubble(arr);
             
@@ -45,37 +38,29 @@ public class AllAlgoProblems
                 System.out.println(arr[i]);
             }
         }
-
         // Problem 4. Binary Search
         {
             System.out.println("\nProblem 4. Binary Search");
-
             ArrayList<Integer> aList = new ArrayList<Integer>(Arrays.asList(1,2,4,6,7,8,9));
             int num = 8;
             int start = 0;
             int end = aList.size() - 1;
-
             boolean answer = getElementRecursive2(aList, num, start, end);
             printfinal(answer);
         }
-
         // Problem 5. findRepeatingCharacter
         {
             System.out.println("\nProblem 5. Binary Search");
             String word = "hello";
-
             Boolean b = findRepeatCharacter(word);
             printRepeat(b);
         }
-
-
         // Problem 6. Find all repeated words in a string
         {
             System.out.println("\nProblem 6. Find all repeated words in a string");
             String str = ".,!: I  . am Sloth,. I move slowly. I walk slowly. Sloth says Hello!)";
             findRepeatedWords(str);
         }
-
         // Problem 7. Find all repeated words in a string
         {
             String str = ".,!: I  . am Sloth,. I move slowly. I walk slowly. Sloth says Hello!! :) ";
@@ -85,13 +70,11 @@ public class AllAlgoProblems
                 System.out.println(st);
             }
         }
-
         //Problem 8. Two-Sum pair, finding first pair
         {
             ArrayList<Integer> arrList = new ArrayList<> (Arrays.asList(4,1,3,-2,4,3,6,5,5,-1,3,10,2));
             findaPair(arrList, 8);
         }
-
         //Problem 9. Two-Sum pair, finding all pairs
         {
             //ArrayList<Integer> arrList = new ArrayList<> (Arrays.asList(5,1,3,-2,4,3,6,5,5,-1,3,10,2));
@@ -99,7 +82,6 @@ public class AllAlgoProblems
             ArrayList<Integer> arrList = new ArrayList<> (Arrays.asList(3,3,3,3,5,5,5,5,5));
             findallPair(arrList, 8);
         }
-
         //Problem 10. Two-Sum pair finding all possible pairs
         {
             //ArrayList<Integer> arrList = new ArrayList<> (Arrays.asList(2,3,4,5,1,7,6,4,2,6));
@@ -107,21 +89,18 @@ public class AllAlgoProblems
             ArrayList<Integer> arrList = new ArrayList<> (Arrays.asList(5,1,3,-2,4,3,6,5,5,-1,3,10,2));
             find_all_possible_pairs(arrList, 8);
         }
-
         //Problem 11. Merge two sorted arrays
         {
             ArrayList<Integer> arr1 = new ArrayList<Integer> (Arrays.asList(1, 5, 7));
             ArrayList<Integer> arr2 = new ArrayList<Integer> (Arrays.asList(3, 6, 11, 12, 34));
             Merge_SortedArrays(arr1, arr2);
         }
-
         //Problem 12. Binary Search recursive method
         {
             //ArrayList<Integer> arr = new ArrayList<Integer> (Arrays.asList(2, 4, 5, 56, 57, 61, 64, 83, 97, 100));
             ArrayList<Integer> arr = new ArrayList<Integer> (Arrays.asList(2));
             binarySearch_recursive(arr, 0, arr.size() - 1, 2);
-        } */
-
+        } 
         //Problem 13. Partition array with pivot element
         {
             ArrayList<Integer> aList = new ArrayList<> (Arrays.asList(6,9,8,5,4,7,2,5,3,1));
@@ -131,6 +110,23 @@ public class AllAlgoProblems
                 System.out.print(" ");
             }
             System.out.println();
+        } 
+        //Problem 14. Finding Equilibrium index of an array
+        {
+            ArrayList<Integer> aList = new ArrayList<> (Arrays.asList(1,2,3,4,5,6,27,-3,-4,-5));
+            //ArrayList<Integer> aList = new ArrayList<> (Arrays.asList(-7, 1, 5, 2, -4,  3, 0));
+            int result_index = find_equilibriumIndex(aList);
+            if(result_index == -1) {
+                System.out.println("There is no equilibrium index in the array");
+            }
+            else {
+                System.out.println("The Equilibrium index is "+(result_index + 1)+" and the element in the index is "+aList.get(result_index));
+            }
+        }*/
+
+        //Problem 15. Find number of nodes in binary tree
+        {
+            
         }
     }
     
@@ -150,7 +146,6 @@ public class AllAlgoProblems
         
         int position = 0;
         StringBuilder sb = new StringBuilder();
-
         for(i=0; i<inputArr.length; i++)
         {
            if(inputArr[i] == ' ')
@@ -165,10 +160,8 @@ public class AllAlgoProblems
                position = i+1;
            }
         }
-
         return(String.valueOf(inputArr));
     }
-
     // -----------------------------------------------------------------------------------------
     // Problem 2. addDigit
     // -----------------------------------------------------------------------------------------
@@ -182,7 +175,6 @@ public class AllAlgoProblems
         else
             return input;
     }
-
     // -----------------------------------------------------------------------------------------
     // Problem 3. bubbleSort
     // -----------------------------------------------------------------------------------------
@@ -190,12 +182,10 @@ public class AllAlgoProblems
     {
         Boolean Counter = true;
         int pass = 0;
-
         while(Counter)
         {
             Counter = false;
             pass++;
-
             for(int i=1; i<arr.length; i++)
             {
                 if(arr[i-1] > arr[i])
@@ -205,10 +195,8 @@ public class AllAlgoProblems
                 }
             }
         }
-
         System.out.println("No of Pass: "+pass);
     }
-
     private static void bSwap(int[] arr, int a, int b)
     {
         int temp;
@@ -216,7 +204,6 @@ public class AllAlgoProblems
         arr[a] = arr[b];
         arr[b] = temp;
     }
-
     // -----------------------------------------------------------------------------------------
     // Problem 4. Binary Search Iterative method
     // -----------------------------------------------------------------------------------------
@@ -228,7 +215,6 @@ public class AllAlgoProblems
             int end = size - 1;
             int mid = size/2;
             int count = 0;
-
             do {
                 count++;
                 System.out.println("Loop: "+count);
@@ -247,14 +233,12 @@ public class AllAlgoProblems
         }
         return false;
     }
-
     public static void printfinal(boolean ans) {
         if(ans == false)
         {
             System.out.println("The number is not in the list");
         }
     }
-
     public static boolean getElementRecursive(ArrayList<Integer> aList, int num, int start, int end) {
         
         int mid;
@@ -280,10 +264,8 @@ public class AllAlgoProblems
                 return getElementRecursive(aList, num, start, end);
             }
         }
-
         return false;
     }
-
     public static boolean getElementRecursive2(ArrayList<Integer> aList, int num, int start, int end) {
         
         int mid;
@@ -301,15 +283,12 @@ public class AllAlgoProblems
                 return getElementRecursive2(aList, num, start, mid - 1);
             }
         }
-
         return false;
     }
-
     // -----------------------------------------------------------------------------------------
     // Problem 5. findRepeatingCharacter
     // -----------------------------------------------------------------------------------------
     public static boolean findRepeatCharacter(String str) {
-
         HashMap<Character, Integer> ham = new HashMap<> ();
         int count = 0;
         for(int i=0; i<str.length(); i++)
@@ -318,15 +297,12 @@ public class AllAlgoProblems
             if (ham.containsKey(repeatedChar)) {
                 return true;
             }
-
             else {
                ham.put(repeatedChar, ++count); 
             }
         }
-
         return false;
     }
-
     private static void printRepeat(Boolean bool) {
         
         if(bool == true) {
@@ -336,7 +312,6 @@ public class AllAlgoProblems
             System.out.println("All the characters in the word is unique");
         }
     }
-
     // -----------------------------------------------------------------------------------------
     // Problem 6. Find all repeated words in a string
     // -----------------------------------------------------------------------------------------
@@ -348,7 +323,6 @@ public class AllAlgoProblems
         int end = 0;
         boolean flag = true;
         String word;
-
         for(int i=0; i<str_size; i++) {
             //if(str.charAt(i) == '.' || str.charAt(i) == ',') {
             //}
@@ -378,7 +352,6 @@ public class AllAlgoProblems
             }
         }
     }
-
     // -----------------------------------------------------------------------------------------
     // Problem 7. Filtering Delimiter from a String
     // -----------------------------------------------------------------------------------------
@@ -387,11 +360,9 @@ public class AllAlgoProblems
         HashMap<Character, Integer> hmap = new HashMap<> ();
         ArrayList<String> arrList = new ArrayList<> ();
         int start = 0;
-
         for(int i=0; i<delim.length(); i++) {
             hmap.put(delim.charAt(i), 1);
         }
-
         for(int i=0; i<str.length(); i++) {
             if(hmap.containsKey(str.charAt(i))) {
                if(start != i) {
@@ -408,14 +379,12 @@ public class AllAlgoProblems
         }
         return arrList;
     }
-
     // -----------------------------------------------------------------------------------------
     // Problem 8. Two-Sum pair, finding first pair
     // -----------------------------------------------------------------------------------------
     public static void findaPair(ArrayList<Integer> aList, int num) {
         
         HashMap<Integer, Integer> hmap = new HashMap<> ();
-
         for(int i=0; i<aList.size(); i++) {
             if(hmap.containsKey(num - aList.get(i))) {
                 System.out.println(aList.get(i));
@@ -428,7 +397,6 @@ public class AllAlgoProblems
         }
         
     }
-
     // -----------------------------------------------------------------------------------------
     // Problem 9. Two-Sum pair, finding all pairs
     // -----------------------------------------------------------------------------------------
@@ -439,10 +407,8 @@ public class AllAlgoProblems
         for(int i=0; i<aList.size(); i++) {
             if(!hmap.containsKey(tot - aList.get(i))) {
                 if(hmap.containsKey(aList.get(i))) {
-
                     int temp_value = hmap.get(aList.get(i));
                     hmap.put(aList.get(i), temp_value+1);
-
                 }
                 else {
                     hmap.put(aList.get(i), 1);
@@ -450,10 +416,8 @@ public class AllAlgoProblems
             }
             else {
                 if(0 <  hmap.get(tot - aList.get(i))) {
-
                     int value = hmap.get(tot - aList.get(i));
                     hmap.put(tot - aList.get(i), value-1);
-
                     System.out.println((tot - aList.get(i))+","+aList.get(i));
                 }
                 else {
@@ -462,14 +426,12 @@ public class AllAlgoProblems
             }
         }
     }
-
     // -----------------------------------------------------------------------------------------
     // Problem 10. Two-Sum pair, finding all possible pairs
     // -----------------------------------------------------------------------------------------
     public static void find_all_possible_pairs(ArrayList<Integer> aList, int tot) {
         
         HashMap<Integer, ArrayList<Integer>> hmap = new HashMap<> ();
-
         for(int i=0; i<aList.size(); i++) {
             
             if(hmap.containsKey(tot - aList.get(i))) {
@@ -484,7 +446,6 @@ public class AllAlgoProblems
             }
         }
     }
-
     //Problem 10. Sub Methods
     public static void add_Element_Twosumpair(int element, int index,  HashMap<Integer, ArrayList<Integer>> hmap) { 
         if(hmap.containsKey(element)) {
@@ -498,12 +459,10 @@ public class AllAlgoProblems
             hmap.put(element, a_list1);
         }
     }
-
     // -----------------------------------------------------------------------------------------
     // Problem 11. Merge two sorted arrays
     // -----------------------------------------------------------------------------------------
     public static void Merge_SortedArrays(ArrayList<Integer> arr1, ArrayList<Integer> arr2) {
-
         ArrayList<Integer> arr3;
         if(arr1.size() < arr2.size()) {
             arr3 = Merge(arr1, arr2);
@@ -515,13 +474,11 @@ public class AllAlgoProblems
             System.out.println(arr3.get(i));
         }
     }
-
     static ArrayList<Integer> Merge(ArrayList<Integer> aList1, ArrayList<Integer> aList2) {
         
         ArrayList<Integer> aList3 = new ArrayList<> ();
         int i = 0;
         int j = 0;
-
         while(i<aList1.size()) {
             if(j == aList2.size()) {
                 break;
@@ -537,7 +494,6 @@ public class AllAlgoProblems
                 }
             }
         }
-
         if(i == aList1.size()) {
             if(j < aList2.size()) {
                 aList3 = add_remaining(aList3, j, aList2);
@@ -548,19 +504,15 @@ public class AllAlgoProblems
                 aList3 = add_remaining(aList3, i, aList1);
             }
         }
-
         return aList3;
     }
-
     public static ArrayList<Integer> add_remaining(ArrayList<Integer> b1, int i, ArrayList<Integer> a1) {
         
         for(i=i; i<a1.size(); i++) {
             b1.add(a1.get(i));
         }
-
         return b1;
     }
-
      // -----------------------------------------------------------------------------------------
      //Problem 12. Binary Search recursive method
      // -----------------------------------------------------------------------------------------
@@ -585,40 +537,51 @@ public class AllAlgoProblems
             System.out.println("No");
          }
      }
-
      // -----------------------------------------------------------------------------------------
      //Problem 13. Partition array with pivot element
      // -----------------------------------------------------------------------------------------
-
      static ArrayList<Integer> pivotPartition(ArrayList<Integer> aList) {
         
         int i = 1;
         int j = aList.size() - 1;
         int pivot = aList.get(0);
         int pivot_index = 0;
-
         while(i != aList.size() && j != 0) {
-
             while(aList.get(i) < pivot && i < aList.size()) {
                i++;
             }
-
             while(aList.get(j) > pivot && j > 0) {
                 j--;
             }
-
             if(i < j) {
                 Collections.swap(aList, i, j);
                 System.out.println("Swapping "+i+" and "+j);
-                }
             }
             i++;
             j--;
         }
-
         return aList;
      }
-
-
+     // -----------------------------------------------------------------------------------------
+     //Problem 14. Finding Equilibrium index of the array
+     // -----------------------------------------------------------------------------------------
+     static int find_equilibriumIndex(ArrayList<Integer> aList) {
+        
+        int left_total = 0;
+        int right_total = aList.get(aList.size()-1);
+        for(int i=0; i<aList.size() - 1; i++) {
+            left_total += aList.get(i);
+        }
+        for(int i=aList.size()-2; i>0; i--) {
+            left_total = left_total - aList.get(i);
+            if(left_total == right_total) {
+                return i;
+            }
+            else {
+                right_total += aList.get(i);
+                }
+        }
+        return -1;
+     }
 }
 
