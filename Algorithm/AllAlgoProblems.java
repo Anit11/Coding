@@ -122,12 +122,54 @@ public class AllAlgoProblems
             else {
                 System.out.println("The Equilibrium index is "+(result_index + 1)+" and the element in the index is "+aList.get(result_index));
             }
-        }*/
-
-        //Problem 15. Find number of nodes in binary tree
-        {
-            
         }
+
+        //Problem 15. Find kth smallest number in unsorted array
+        {
+            ArrayList<Integer> aList = new ArrayList<> (Arrays.asList(5, 3, 7, 4, 2, 1));
+            int result = find_kth_smallElement(aList, 3);
+            System.out.println("The kth smallest element is : "+result);
+        }
+
+        //Problem 16. Given two list. Find common elements in both list.
+        {
+            List<Integer> aList1 = new ArrayList<> (Arrays.asList(1, 3, 5, 2, 8, 6, 9));
+            List<Integer> aList2 = new ArrayList<> (Arrays.asList(2, 7, 4, 6));
+            //String result = find_commonElements(aList1, aList2);
+            String result = find_commonElementsSet(aList1, aList2);
+            for(int i=0; i<result.length(); i++) {
+                System.out.println(result.charAt(i));
+            }
+        }
+
+        //Problem 17. Convert string to signed int
+        {
+            String str = "-123";
+            int num = string_to_int(str);
+            System.out.println("The final number is : "+num);
+        } 
+
+         //Problem 18. Convert signed int to string
+         {
+            int num = -123;
+            String str = int_to_string(num);
+            System.out.println("The final string is : "+str);
+         }
+         */
+
+         //Problem 19. Find unique character in a string where all other characters are present exactly twice
+         {
+            String str = "helloohhe";
+            char ch = find_unique_character(str);
+            System.out.println("The unique character in the string is : "+ch);
+         }
+
+         //Problem 20. Delete the first given character from a String
+         {
+            String str = "This is my String";
+            str = delete_character(str, "iohm");
+            System.out.println("The new string is : "+str);
+         }
     }
     
     // -----------------------------------------------------------------------------------------
@@ -582,6 +624,178 @@ public class AllAlgoProblems
                 }
         }
         return -1;
+     }
+
+
+     // -----------------------------------------------------------------------------------------
+     //Problem 15. Find kth smallest number in unsorted array
+     // -----------------------------------------------------------------------------------------
+     public static int find_kth_smallElement(ArrayList<Integer> aList, int k) {
+        
+        PriorityQueue<Integer> pQueue = new PriorityQueue<> (Collections.reverseOrder());
+
+        for(int i=0; i<k; i++) {
+            pQueue.add(aList.get(i));
+        }
+         
+        for(int i=k; i<aList.size(); i++) {
+            if(pQueue.element() > aList.get(i)) {
+                pQueue.remove();
+                pQueue.add(aList.get(i));
+            }
+        }
+
+        return pQueue.element();
+     }
+
+
+     // -----------------------------------------------------------------------------------------
+     //Problem 16. Given two list. Find common elements in both list using HashMap
+     // -----------------------------------------------------------------------------------------
+
+     public static String find_commonElements(List<Integer> aList1, List<Integer> aList2) {
+        
+        HashMap<Integer, Integer> hmap = new HashMap<> ();
+
+        for(int i=0; i<aList1.size(); i++) {
+            hmap.put(aList1.get(i), 1);
+        }
+
+        String str1 = new String();
+        for(int i=0; i<aList2.size(); i++) {
+            if(hmap.containsKey(aList2.get(i))) {
+                str1 = str1+aList2.get(i);
+            }
+        }
+
+        return str1;
+     }
+
+     // -----------------------------------------------------------------------------------------
+     //Problem 16b. Given two list. Find common elements in both list using HashSet
+     // -----------------------------------------------------------------------------------------
+
+     public static String find_commonElementsSet(List<Integer> aList1, List<Integer> aList2) {
+        
+        System.out.println("Problem 16b. Using HashSet");
+        HashSet<Integer> hSet = new HashSet<> ();
+
+        for(int i=0; i<aList1.size(); i++) {
+            hSet.add(aList1.get(i));
+        }
+
+        String str1 = new String();
+        for(int i=0; i<aList2.size(); i++) {
+            if(hSet.contains(aList2.get(i))) {
+                str1 = str1+aList2.get(i);
+            }
+        }
+
+        return str1;
+     }
+
+     // -----------------------------------------------------------------------------------------
+     //Problem 17. Convert string to signed int
+     // Best peice of code. Amazing work. Love this piece of code.
+     // -----------------------------------------------------------------------------------------
+
+     public static int string_to_int(String str) {
+        
+        int number;
+        int multiplier;
+        number = 0;
+        multiplier = 1;
+
+        for(int i=str.length()-1; i>0;  i--) {
+           
+            /*char a = str.charAt(i);
+            number +=  Character.getNumericValue(a) * multiplier;*/
+            int num = str.charAt(i) - '0';
+            number += num * multiplier;
+            multiplier = multiplier * 10;
+        }
+
+        if(str.charAt(0) == '-') {
+            //changing positive number to negative number
+            number = -number;
+        }   
+        else {
+            char a = str.charAt(0);
+            number += Character.getNumericValue(a) * multiplier;
+        }
+
+        return number;
+     }
+
+     // -----------------------------------------------------------------------------------------
+     //Problem 18. Convert signed int to string
+     // Best peice of code. Amazing work. Love this piece of code.
+     // -----------------------------------------------------------------------------------------
+
+    public static String int_to_string(int number) {
+        
+        StringBuilder sb = new StringBuilder();
+        boolean boo = false;
+
+        if(number < 0) {
+            boo = true;
+            // changing negative number to positive number
+            number = -number; 
+        }
+        while(number > 0) {
+            sb.append(number % 10);
+            number = number / 10;
+        }
+        if(true == boo) {
+            sb.append('-');
+        }
+
+        sb.reverse();
+
+        String str = sb.toString();
+        return str;
+    }
+
+     // -----------------------------------------------------------------------------------------
+     //Problem 19. Find unique character in a string where all other characters are present exactly twice
+     // -----------------------------------------------------------------------------------------
+
+    public static char find_unique_character(String str) {
+        
+        char ans = str.charAt(0);
+
+        for(int i=1; i<str.length(); i++) {
+            
+            char a = str.charAt(i);
+            ans = (char)(ans ^ a);
+        }
+
+        return ans;
+    }
+
+     // -----------------------------------------------------------------------------------------
+     //Problem 20. Delete the first given character from a String
+     // -----------------------------------------------------------------------------------------
+     
+     public static String delete_character(String my_string, String remove) {
+        
+        HashMap<Character, Integer> hmap = new HashMap<>();
+        StringBuilder sb = new StringBuilder();
+
+        for(int i=0; i<remove.length(); i++) {
+            hmap.put(remove.charAt(i), 1);
+        }
+
+        for(int i=0; i<my_string.length(); i++) {
+            
+            if(!hmap.containsKey(my_string.charAt(i))) {
+                sb.append(my_string.charAt(i));
+            }
+        }
+
+        String result = sb.toString();
+        return result;
+        
      }
 }
 

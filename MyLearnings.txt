@@ -69,6 +69,13 @@ http://javarevisited.blogspot.com/2011/12/how-to-traverse-or-loop-hashmap-in-jav
 
 15. ItemWrapper - to have a list with different datatype
 
+16. Difference between string.concat(), and str1+str2 ?
+    string.concat() concats only when string is not null else it throws exception where as str1+str2 works even if str1 is empty(null). (StringBuilder uses .append(str) for concat)
+
+17. String Bufffer is suitable for multithread environment. If single thread, use String Builder, it is much faster.
+
+18. String Builder is more faster and consumes less memory as string + operator creates new String everytime we make modification to string
+
 Basics of how the program is stored in and outputed
 how jam works
 
@@ -223,6 +230,82 @@ Sorting prag notes:
         From the comparions presented here, one might conclude that selection sort should never be used.
         It does not adapt to the data in any way (notice that the four animations above run in lock step), so its runtime is always quadratic.
 
+    
+
+Data Structure and its operations
+
+1. HashMap
+    
+    HashMap<Integer, Integer> hmap = new HashMap<> ();
+    hmap.put(key, value);
+    hmap.get(key);
+    hmap.remove(key);
+    hmap.containsKey(key);
+    hmap.containsValue(value);
+
+2. HashSet
+
+    HashSet<Integer> hset = new HashSet<> ();
+    hset.add(value);
+    hset.remove(value);
+    hset.contains(value);
+    hset.size();
+
+3. PriorityQueue
+    
+    PriorityQueue<Integer> pQueue = PriorityQueue<> ();                               ---> min heap
+    PriorityQueue<Integer> pQueue = PriorityQueue<> (Collections.reverseOrder());     ---> max heap
+    pQueue.add(value);                                                                ---> to add value to heap
+    pQueue.remove();                                                                  ---> to delete root element
+    pQueue.element();                                                                 ---> to get root element
+
+4. Set ----- (Set contains no duplicate elements)
+    
+    Set<Integer> s1;
+    Set<Integer> s2;
+    Set<String> yourFriends = Sets.newHashSet(List of all elements);                  ---> Declare and Initialize more than 1 element in single line
+    Set<Integer> s3 = new HashSet<Integer> (s1);
+    s3.addAll(s2);                                                                    ---> Union of s1 and s2
+    s3.retainAll(s2);                                                                 ---> Intersection of s1 and s2
+
+5. Map
+
+6. StringBuilder
+    StringBuilder s = new StringBuilder();                                           --->creates a empty builder
+    s.append(str1);                                                                  ---> sb does ascii addition by itself when adding int to string builder
+    s.deleteCharAt(index);
+    s.insert(index, value);
+    s.reverse();                                                                     ---> reverse string builder
+    String result = s.toString();                                                    ---> StringBuilder to string
+
+
+7. Queue
+
+8. Stack
+
+9. String
+
+10. ArrayList
+
+11. Conversions
+    character to int - (int)character;                                       --->This returns ascii int value of character eg: (int)3; is 51
+    character to int values - Character.getNumericValue(char);               --->This returns integer char of char eg: Character.getNumericValue('3'); is 3
+    "     "       "      "  - int a = '3' - '0'; a = 3;                      --->The character 0 has ascii 49. So if we minus that it returns the actual number
+
+12. Character
+    my_char.toLowerCase();
+    my_char.toUpperCase();
+
+13. Integer
+
+    String to Integer - 
+    Integer to String - 
+    Integer to float, double - 
+    int to Integer and its difference?
+    char to String - 
+    String to char - string.charAt(index)
+
+
 LINUX Commands
 1. cat
     - Display entire file on shell
@@ -297,8 +380,10 @@ VIM Shortcuts
 
     . : To repeat an action that is performed.
 
-    * : Finds current word after cursor position; Use 'n' and 'N' to go next and prev
-    # : Finds current word before cursor position; Use 'n' and 'N' to go next and prev 
+    * : Finds current word after cursor position;
+        Use 'n' and 'N' to go next and prev
+    # : Finds current word before cursor position;
+        Use 'n' and 'N' to go next and prev 
     / : To start searching. It has smart Case enabled
     ,/ : To clear highlighted search term
     ' : to repeat the last find char
@@ -313,3 +398,22 @@ VIM Shortcuts
     http://stackoverflow.com/questions/214741/what-is-a-stackoverflowerror
     How to do swap in arraylist without using Collection function?
     what is difference between function overloading and function overriding
+    passing variable to a function means passing address or passing values in java?
+
+    DataStructures: Set, stack, queue, LinkedList, Map, tree, graph
+
+    How to use iterator
+    try catch throw complete explanation and use
+    red black tree and other common tree
+    bit manipulation
+    what is hash tree?
+    what is adjacency list
+    StringBuilder
+    Multithreading
+    threading
+    vector and arraylist diff
+    trie?
+    what does exactly ..void main(String args[]) do?
+    explain use of static again?
+
+
