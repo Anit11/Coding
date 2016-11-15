@@ -155,7 +155,6 @@ public class AllAlgoProblems
             String str = int_to_string(num);
             System.out.println("The final string is : "+str);
          }
-         */
 
          //Problem 19. Find unique character in a string where all other characters are present exactly twice
          {
@@ -169,6 +168,14 @@ public class AllAlgoProblems
             String str = "This is my String";
             str = delete_character(str, "iohm");
             System.out.println("The new string is : "+str);
+         }
+         */
+
+         //Problem 21. K- messed sorting
+         {
+            ArrayList<Integer> aList = new ArrayList<>(Arrays.asList(2, 6, 3, 12, 56, 8));
+            aList = k_messed_sort(aList, 4);
+            System.out.println(aList);
          }
     }
     
@@ -796,6 +803,34 @@ public class AllAlgoProblems
         String result = sb.toString();
         return result;
         
+     }
+
+     // -----------------------------------------------------------------------------------------
+     //Problem 21. K- messed sorting
+     // -----------------------------------------------------------------------------------------
+
+     public static ArrayList<Integer> k_messed_sort(ArrayList<Integer> aList, int k) {
+        
+        PriorityQueue<Integer> pq = new PriorityQueue<> (k);
+        int j = 0;
+
+        for(int i=0; i<k-1; i++) {
+            if(i < aList.size()) {
+                pq.add(aList.get(i));
+            }
+        }
+
+        for(int i=k-1; i<aList.size(); i++,j++) {
+            pq.add(aList.get(i));
+            aList.set(j, pq.remove());
+        }
+
+        while(!pq.isEmpty()) {
+            aList.set(j, pq.remove());
+            j++;
+        }
+
+        return aList;
      }
 }
 

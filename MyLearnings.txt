@@ -258,6 +258,7 @@ Data Structure and its operations
     pQueue.add(value);                                                                ---> to add value to heap
     pQueue.remove();                                                                  ---> to delete root element
     pQueue.element();                                                                 ---> to get root element
+    pQueue.isEmpty();                                                                 ---> returns true if collection is empty
 
 4. Set ----- (Set contains no duplicate elements)
     
@@ -286,15 +287,22 @@ Data Structure and its operations
 9. String
 
 10. ArrayList
+    aList.add(element);
+    aList.add(index, element);                                                       --->add the element to the index, if an element is already present it pushes the element and insert
+    aList.set(index, element);                                                       --->replaces the element in the particular index
+    for(int i: aList)                                                                --->In this for each loop, i is the element not index
 
 11. Conversions
     character to int - (int)character;                                       --->This returns ascii int value of character eg: (int)3; is 51
     character to int values - Character.getNumericValue(char);               --->This returns integer char of char eg: Character.getNumericValue('3'); is 3
     "     "       "      "  - int a = '3' - '0'; a = 3;                      --->The character 0 has ascii 49. So if we minus that it returns the actual number
 
+(Difference between char and character is that Charater is a object so many inbuilt operations can be made use of.)
 12. Character
     my_char.toLowerCase();
     my_char.toUpperCase();
+    my_char.isDigit();                                                       ---> Whether the char is a digit
+    my_char.toString();
 
 13. Integer
 
