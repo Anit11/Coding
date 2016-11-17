@@ -20,7 +20,7 @@ public class binarySearchTreeNum {
         node root = new node(10);
         root.left = new node(5);
         root.right = new node(15);
-        root.left.left = new node(2);
+        root.left.right = new node(2);
         root.right.right = new node(20);
 
         if(root != null) {
@@ -32,6 +32,10 @@ public class binarySearchTreeNum {
         else {
             System.out.println("There are no elements present in tree");
         }
+
+        // find path that sum up to a number
+        boolean a = search_the_path(root, 17, 0);
+        print_boolean(a, "Yes", "No");
     }
 
     public static int find_smallest(node root) {
@@ -54,4 +58,46 @@ public class binarySearchTreeNum {
         }
     }
 
+    public static void printTree(node root)
+    {
+        if (root == null)
+        {
+            return;
+        }
+
+        printTree(root.left);
+        System.out.println(root.data);
+        printTree(root.right);
+    }
+
+    public static boolean search_the_path(node root, int num, int total) {
+        
+
+        if(root == null) {
+            return false;
+        }
+        total = total + root.data;
+
+        if(root.left == null && root.right == null) {
+            if(total == num) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+        return (search_the_path(root.left, num, total) || search_the_path(root.right, num, total)); 
+       }
+
+       public static void print_boolean(boolean boo, String success, String failure) {
+       
+           if(boo) {
+               System.out.println(success);
+           }
+           else {
+               System.out.println(failure);
+           }
+       }
+    
 }

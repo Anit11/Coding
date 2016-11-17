@@ -13,6 +13,7 @@ class node {
 public class binaryTree {
 
     public static void main(String args[]) {
+        
         node head = new node('a');
         head.leaf1 = new node('b');
         head.leaf2 = new node('c');
@@ -36,6 +37,7 @@ public class binaryTree {
         int height;
         height = find_height(head);
         System.out.println("The height of the node is :"+height);
+        
     }
 
     //left, root, right
@@ -45,7 +47,7 @@ public class binaryTree {
             inorderTraversal(head.leaf1);
             System.out.println(head.element);
             inorderTraversal(head.leaf2);
-        }
+        
     }
 
     //root, left, right

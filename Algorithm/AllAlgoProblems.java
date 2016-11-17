@@ -169,13 +169,40 @@ public class AllAlgoProblems
             str = delete_character(str, "iohm");
             System.out.println("The new string is : "+str);
          }
-         */
 
          //Problem 21. K- messed sorting
          {
             ArrayList<Integer> aList = new ArrayList<>(Arrays.asList(2, 6, 3, 12, 56, 8));
-            aList = k_messed_sort(aList, 4);
+            aList = k_messed_sort(aList, 10);
             System.out.println(aList);
+         }
+
+         //Problem 22. Island Problem
+         {
+            int[][] arr = {
+                {0, 1, 0, 1, 0}, 
+                {0, 0, 1, 1, 1}, 
+                {1, 0, 0, 1, 0},
+                {0, 1, 1, 0, 0}, 
+                {1, 0, 1, 0, 1}
+              };
+            int n = find_island(arr);
+            System.out.println("The number of island is: "+n);
+         }
+         */
+
+         //Problem 23. Check Isomorphic for two strings
+         {
+            String str1 = "foo";
+            String str2 = "bar";
+            boolean boo = check_isomorphic(str1, str2);
+
+            if(boo == false) {
+                System.out.println("It is not Isomorphic");
+            }
+            else {
+                System.out.println("It is Isomorphic");
+            }
          }
     }
     
@@ -186,15 +213,25 @@ public class AllAlgoProblems
     {
         char[] inputArr = input.toCharArray();
         int i, j, k;
+
+        //reverse the entire string
         for(i=0, j=(input.length())-1; i<input.length()/2; i++,j--)
         {
+            /*
+            XOR Swap Example:
+            input[i] = input[i] ^ input[j];  --->o^h = some value
+            input[j] = input[i] ^ input[j];  --->(o^h) ^ h = h cancels h, therefore ans is o
+            input[i] = input[i] ^ input[j];  --->(o^h) ^ o = o cancels o, therefore ans is h 
+            */
+            //Typecasting to char as XOR operation changes the value to int
             inputArr[i] = (char)(inputArr[i]^inputArr[j]);
             inputArr[j] = (char)(inputArr[i]^inputArr[j]);
             inputArr[i] = (char)(inputArr[i]^inputArr[j]);
         }
         
         int position = 0;
-        StringBuilder sb = new StringBuilder();
+        
+        //reverse each word in reversed string
         for(i=0; i<inputArr.length; i++)
         {
            if(inputArr[i] == ' ')
@@ -211,6 +248,7 @@ public class AllAlgoProblems
         }
         return(String.valueOf(inputArr));
     }
+
     // -----------------------------------------------------------------------------------------
     // Problem 2. addDigit
     // -----------------------------------------------------------------------------------------
@@ -814,10 +852,12 @@ public class AllAlgoProblems
         PriorityQueue<Integer> pq = new PriorityQueue<> (k);
         int j = 0;
 
+        if(k > aList.size()) {
+            return null;
+        }
+
         for(int i=0; i<k-1; i++) {
-            if(i < aList.size()) {
-                pq.add(aList.get(i));
-            }
+            pq.add(aList.get(i));
         }
 
         for(int i=k-1; i<aList.size(); i++,j++) {
@@ -832,5 +872,46 @@ public class AllAlgoProblems
 
         return aList;
      }
+
+
+     // -----------------------------------------------------------------------------------------
+     //Problem 22. Island Problem
+     // -----------------------------------------------------------------------------------------
+
+     public static int find_island(int[][] arr) {
+        return 0; 
+     }
+
+     // -----------------------------------------------------------------------------------------
+     //Problem 23. Check isomorphic for two strings
+     // -----------------------------------------------------------------------------------------
+
+     public static boolean check_isomorphic(String str1, String str2) {
+        
+        if(str1.length() != str2.length()) {
+            return false;
+        }
+
+        HashMap<Character, Character> hmap = new HashMap<> ();
+        Set<Character> hset = new HashSet<> ();
+
+        for(int i=0; i<str1.length(); i++) {
+            
+            if(hmap.containsKey(str1.charAt(i))) {
+                if(hmap.get(str1.charAt(i)) != str2.charAt(i)) {
+                   return false; 
+                }
+            }
+            else if(hset.contains(str2.charAt(i))) {
+                return false;
+            }
+            else {
+                hmap.put(str1.charAt(i), str2.charAt(i));
+                hset.add(str2.charAt(i));
+            }
+         }
+
+         return true;
+        }
 }
 

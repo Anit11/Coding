@@ -230,6 +230,12 @@ Sorting prag notes:
         From the comparions presented here, one might conclude that selection sort should never be used.
         It does not adapt to the data in any way (notice that the four animations above run in lock step), so its runtime is always quadratic.
 
+    Quick Sort:
+        Take a pivot element. 
+        Run through 1 to n in array to rearrange in such a way that smaller elements are before pivot and the bigger elements are after pivot
+        In other words, after each iteration, the pivot will end up in its correct index. 
+        For finding an element in array, quick sort can be used as if you choose right pivot, the time complexity is somewhere equivalent to n.
+
     
 
 Data Structure and its operations
@@ -242,6 +248,7 @@ Data Structure and its operations
     hmap.remove(key);
     hmap.containsKey(key);
     hmap.containsValue(value);
+    hmap.size();
 
 2. HashSet
 
@@ -251,7 +258,7 @@ Data Structure and its operations
     hset.contains(value);
     hset.size();
 
-3. PriorityQueue
+3. PriorityQueue (If I know which element I want exactly in unsorted array, Use Heap. Quick sort is a competitor and proved to be better method, yet you can use heap)
     
     PriorityQueue<Integer> pQueue = PriorityQueue<> ();                               ---> min heap
     PriorityQueue<Integer> pQueue = PriorityQueue<> (Collections.reverseOrder());     ---> max heap
@@ -293,15 +300,27 @@ Data Structure and its operations
     for(int i: aList)                                                                --->In this for each loop, i is the element not index
 
 11. Conversions
-    character to int - (int)character;                                       --->This returns ascii int value of character eg: (int)3; is 51
-    character to int values - Character.getNumericValue(char);               --->This returns integer char of char eg: Character.getNumericValue('3'); is 3
-    "     "       "      "  - int a = '3' - '0'; a = 3;                      --->The character 0 has ascii 49. So if we minus that it returns the actual number
+    //TO INT
+    character to int                    - (int)character;                            --->This returns ascii int value of character eg: (int)3; is 51
+    character to int values             - Character.getNumericValue(char);           --->This returns integer char of char eg: Character.getNumericValue('3'); is 3
+    "     "       "      " with ascii   - int a = '3' - '0'; a = 3;                  --->The character 0 has ascii 49. So if we minus that it returns the actual number
+
+    //TO STRING
+    char to String                      - String.valueOf(char);
+    int to String                       - String.valueOf(int);
+    charArray to String                 - String string = new String(charArray);
+
+    //TO CHAR
+    int to character                    - (char)integer;
+    String to char                      - string.charAt(index)
+    String to char Array                - string.toCharArray();
+
 
 (Difference between char and character is that Charater is a object so many inbuilt operations can be made use of.)
 12. Character
     my_char.toLowerCase();
     my_char.toUpperCase();
-    my_char.isDigit();                                                       ---> Whether the char is a digit
+    my_char.isDigit();                                                              ---> Whether the char is a digit
     my_char.toString();
 
 13. Integer
@@ -310,9 +329,6 @@ Data Structure and its operations
     Integer to String - 
     Integer to float, double - 
     int to Integer and its difference?
-    char to String - 
-    String to char - string.charAt(index)
-
 
 LINUX Commands
 1. cat
