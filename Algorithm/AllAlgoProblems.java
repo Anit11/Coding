@@ -176,6 +176,7 @@ public class AllAlgoProblems
             aList = k_messed_sort(aList, 10);
             System.out.println(aList);
          }
+         i*/
 
          //Problem 22. Island Problem
          {
@@ -189,12 +190,12 @@ public class AllAlgoProblems
             int n = find_island(arr);
             System.out.println("The number of island is: "+n);
          }
-         */
+         
 
          //Problem 23. Check Isomorphic for two strings
          {
-            String str1 = "foo";
-            String str2 = "bar";
+            String str1 = "ab";
+            String str2 = "aa";
             boolean boo = check_isomorphic(str1, str2);
 
             if(boo == false) {
@@ -879,7 +880,38 @@ public class AllAlgoProblems
      // -----------------------------------------------------------------------------------------
 
      public static int find_island(int[][] arr) {
-        return 0; 
+        int island = 0;
+
+        for(int i=0; i<arr.length; i++) {
+            for(int j=0; j<arr[0].length; j++) {
+                if(arr[i][j] == 1) {
+                    arr = find_neighbor(arr, i, j);
+                    island++;
+                }
+            }
+        }
+        return island; 
+     }
+
+     public static int[][] find_neighbor(int[][] arr, int i, int j) {
+        
+        if(arr[i][j] == 1) {
+            arr[i][j] += 1;
+
+            if(i<arr.length-1) {
+               arr = find_neighbor(arr, i+1, j); 
+            }
+            if(j<arr[0].length-1) {
+               arr = find_neighbor(arr, i, j+1);
+            }
+            if(i>0) {
+               arr = find_neighbor(arr, i-1, j);
+            }
+            if(j>0) {
+               arr = find_neighbor(arr, i, j-1);
+            }
+        }
+        return arr;
      }
 
      // -----------------------------------------------------------------------------------------
