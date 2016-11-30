@@ -1,0 +1,31 @@
+What is Domain Name Service (DNS)?
+https://www.youtube.com/watch?v=72snZctFFtA
+
+DNS is the method of mapping domain names to its respective IP address. It is generally done through series of steps.
+
+How DNS works?
+
+Step 1: Request Information
+    - When the url is requested, say "www.example.com"
+    - The IP address could be configured in the computer or be stored in the cache as you have requested it already. If it is present in operating system or browser, the respective IP address is returned and the browser directs to that IP address.
+    - If not, the operating system is configured to ask Resolving Name Server which is configured in the operating system.
+
+Step 2: Check with Resolving Name Server
+    - When the Resolving Name Server is requested, it checks whether the IP address is already present in its CACHE. If it is, it returns the IP address.
+    - If not, Resolving Name Server knows where to find the ROOT Name Server. It gives the request the IP address of ROOT Name Server. Hence the request redirects to the ROOT Name Server.
+
+Step 3: Check with ROOT Name Server
+    - Once the request hits the ROOT Name Server, it checks the request and gives the IP address of its TLD Name Server. In our case, it is "com".
+    - Resolving Name Server puts the information in its cache and redirects to "com", a TLD Name Server.
+
+Step 4: Check with TLD Name Server
+    - The TLD Name Server with the help of Domain Register resolves the IP address of Authoritive Name Server i.e, example.com (where "example" is the Authority Name Service).
+    - How Domain Register works is, when the domain is purchased, registrar is told which authority name service to be used and it is registered in the Domain Registry.
+
+Step 5: Check with Authority Name Server 
+    - The Authority Name Server gives the IP address of "www.example.com" back to Resolving Name Server.
+    - The Resolving Name Server stores the IP address and Domain Name in its cache and gives it back to Operating System
+
+Step 6: Returns to Browser
+    - The IP address is returned back to browser from Operating System. 
+    - Thus, when browser types the URL, the IP address is fetched and the webpage is downloaded from the IP address.

@@ -176,7 +176,6 @@ public class AllAlgoProblems
             aList = k_messed_sort(aList, 10);
             System.out.println(aList);
          }
-         i*/
 
          //Problem 22. Island Problem
          {
@@ -205,7 +204,68 @@ public class AllAlgoProblems
                 System.out.println("It is Isomorphic");
             }
          }
-    }
+
+         //Problem 24. Median of stream of numbers
+         {
+           ArrayList<Integer> aList = new ArrayList<> (Arrays.asList(30, 25, 22, 5, 10, 20)); 
+           int result = find_median(aList);    
+           System.out.println(result);
+         }
+
+         //Problem 25. Find sub-array that gives maximum sum
+         {
+            ArrayList<Integer> aList = new ArrayList<> (Arrays.asList(4, 5, -14, 7, 1, 3, -9, 2, -1));
+            int sum = find_maxsum_subarray(aList);
+            System.out.println("Max Sum :"+sum);
+         }
+
+         //Problem 26. Find the Missing number in the array. Exactly one number is missing, and one number is duplicated twice.
+         {
+            ArrayList<Integer> aList = new ArrayList<> (Arrays.asList(10, 2, 3, 6, 4, 5, 8, 9, 1, 2));
+            int missing_num = find_missing_num(aList);
+            System.out.println("The number is : "+missing_num);
+         }
+
+         //Problem 27. Find Missing numbers in the array 1 to n.
+         {
+            ArrayList<Integer> aList = new ArrayList<> (Arrays.asList(10, 3, 6, 4, 5, 9, 1, 2));
+            find_missing_numbers(aList);
+         }
+
+         //Problem 28. Seperate even and odd numbers. Even first and odd second 
+         {
+            ArrayList<Integer> aList = new ArrayList<> (Arrays.asList(2, 3, 5, 4, 8, 2, 7, 10));
+            seperate_evenodd(aList);
+            for(int i : aList) {
+                System.out.print(i +",");
+            }
+         }
+
+         //Problem 29. Find number that adds up to a Sum
+         {
+            ArrayList<Integer> aList = new ArrayList<> (Arrays.asList(2, 8, 10, 2, 1, 5, 6, 7));
+            three_sum(aList, 54);
+         }
+
+         //Problem 30: Find number in rotated sorted array, without duplicates or less number of dupliactes
+         {
+            ArrayList<Integer> aList = new ArrayList<> (Arrays.asList(2, 2, 5, 6, 6, 7, 8, 10, 1, 2));
+            find_num_rotated_sortedarray(aList, 7);
+         }
+
+         //Problem 31. Find minimum number in rotated sorted array(with no duplicates) 
+         {
+            ArrayList<Integer> aList = new ArrayList<> (Arrays.asList(10, 11, 12, 34, 65, 90, -1, 0, 1, 2, 2, 2, 5, 6, 6, 7, 8));
+            find_min_rotated_sortedarray(aList);
+         }
+         */
+
+         //Problem 32. Sort an array of 0's, 1's, 2's
+         {
+            ArrayList<Integer> aList = new ArrayList<> (Arrays.asList(1, 0, 0, 1, 2, 2, 1, 0, 2, 0));
+            sort_zero_one_two(aList);
+         }
+   }
     
     // -----------------------------------------------------------------------------------------
     // Problem 1. ReverseWord
@@ -945,5 +1005,283 @@ public class AllAlgoProblems
 
          return true;
         }
-}
 
+     // -----------------------------------------------------------------------------------------
+     //Problem 24. Median of stream of numbers
+     // -----------------------------------------------------------------------------------------
+
+     public static int find_median(ArrayList<Integer> aList) {
+
+        int a = 9;
+        System.out.println(a/2);
+         int result;
+         if(aList.size() % 2 == 0) {
+            result = median(aList, 2);
+         }
+         else {
+            result = median(aList);
+         }
+         return result;   
+     }
+
+     public static int median(ArrayList<Integer> aList, int a) {
+        
+        PriorityQueue<Integer> pq = new PriorityQueue<> (Collections.reverseOrder());
+        for(int i=0; i<(aList.size()/2)+1; i++) {
+            pq.add(aList.get(i));
+        }
+        for(int i=aList.size()/2+2; i<aList.size(); i++) {
+            if(aList.get(i) <= pq.element()) {
+                pq.remove();
+                pq.add(aList.get(i));
+            }
+        }
+
+        a = pq.remove();
+        a += pq.remove();
+        a = a/2;
+
+        return a;
+     }
+
+     public static int median(ArrayList<Integer> aList) {
+        
+        PriorityQueue<Integer> pq = new PriorityQueue<> (Collections.reverseOrder());
+        for(int i=0; i<(aList.size()/2); i++) {
+            System.out.println("Adding "+aList.get(i));
+            pq.add(aList.get(i));
+        }
+        for(int i=aList.size()/2+1; i<aList.size(); i++) {
+            if(aList.get(i) <= pq.element()) {
+                pq.remove();
+                System.out.println("Adding "+aList.get(i));
+                pq.add(aList.get(i));
+            }
+        }
+        return pq.remove();
+     }
+
+
+     // -----------------------------------------------------------------------------------------
+     //Problem 25. Find sub-array that gives maximum sum
+     // -----------------------------------------------------------------------------------------
+
+     public static int find_maxsum_subarray(ArrayList<Integer> aList) {
+        
+        int total_max = 0;
+        int current_max = 0;
+        for(int i=0; i<aList.size(); i++) {
+            current_max = max(aList.get(i), current_max + aList.get(i));
+            total_max = max(total_max, current_max);
+        }
+        return total_max;
+    }
+
+    public static int max(int a, int b) {
+        
+        if(a > b) {
+            return a;
+        }
+        else {
+            return b;
+        }
+    }
+
+    // -----------------------------------------------------------------------------------------
+    //Problem 26. Find the Missing number in the array 1 to n. Exactly one number is missing, and one number is duplicated twice.
+    // -----------------------------------------------------------------------------------------
+
+    public static int find_missing_num(ArrayList<Integer> aList) {
+        
+        int total = 0;
+        int size = aList.size();
+        int actual_total = (size * (size+1)) / 2;
+        Set<Integer> set = new HashSet<> ();
+
+        for(int i=0; i<size; i++) {
+            if(!set.contains(aList.get(i))) {
+                set.add(aList.get(i));
+                total += aList.get(i);
+            }
+        }
+        
+        return actual_total - total;
+    }
+
+    // -----------------------------------------------------------------------------------------
+    //Problem 27. Find Missing numbers in the array 1 to n.
+    // -----------------------------------------------------------------------------------------
+
+    public static void find_missing_numbers(ArrayList<Integer> aList) {
+
+        int actual_size = aList.size() + 2;
+        Set<Integer> set = new HashSet<> ();
+
+        for(int i=1; i<=actual_size; i++) {
+           set.add(i); 
+        }
+
+        for(int i=0; i<aList.size(); i++) {
+            set.remove(aList.get(i));
+        }
+
+        System.out.println("The missing elements are : "+set);
+    }
+
+    // -----------------------------------------------------------------------------------------
+    //Problem 28. Seperate even and odd numbers. Even first and odd second 
+    // -----------------------------------------------------------------------------------------
+    public static void seperate_evenodd(ArrayList<Integer> aList) {
+        
+    }
+
+    public static void arraylist_swap(ArrayList<Integer> aList, int a, int b) {
+        
+        int temp = aList.get(a);
+        aList.add(a, aList.get(b));
+        aList.add(b, temp);
+    }
+
+    // -----------------------------------------------------------------------------------------
+    //Problem 29: Find three numbers in a array that will add to a given sum
+    // -----------------------------------------------------------------------------------------
+    public static void three_sum(ArrayList<Integer> aList, int given_sum) {
+        
+        Collections.sort(aList);
+        
+        for(int i=0; i<aList.size()-2; i++) {
+            int a = aList.get(i);
+            for(int j=i+1, k=aList.size()-1; j<k; ) {
+                int b = aList.get(j);
+                int c = aList.get(k);
+
+                if(a+b+c == given_sum) {
+                    System.out.println("a :"+a+" b :"+b+" c :"+c);
+                    return;
+                }
+                else if(a+b+c > given_sum) {
+                    k--;
+                }
+                else {
+                    j++;
+                }
+            }
+        }
+        System.out.println("There are no elements present in the array that add up to the given sum");
+    }
+
+    // -----------------------------------------------------------------------------------------
+    //Problem 30: Find number in rotated sorted array
+    // -----------------------------------------------------------------------------------------
+    public static void find_num_rotated_sortedarray(ArrayList<Integer> aList, int given_num) {
+        
+        int middle = aList.size()/2;
+        int start = 0;
+        int end = aList.size()-1;
+
+
+        if(aList.get(start) < aList.get(middle)) {
+            if(aList.get(start) <= given_num && aList.get(middle) >= given_num) {
+                binarysearch_findnum(start, middle, aList, given_num);
+            }
+            else {
+                binarysearch_findnum(middle, end, aList,  given_num);
+            }
+        }
+        else {
+            if(aList.get(middle) <= given_num && aList.get(end) >= given_num) {
+                binarysearch_findnum(middle, end, aList, given_num);
+            }
+            else {
+                binarysearch_findnum(start, middle, aList, given_num);
+            }
+        }
+    }
+
+    public static void binarysearch_findnum(int start, int end, ArrayList<Integer> aList, int given_num) {
+        
+        int middle = start + (end - start) / 2;
+        
+        if(start <= end) {
+            if(aList.get(middle) == given_num) {
+                System.out.println("In index: "+middle);
+                return; 
+            }
+            else if(aList.get(middle) > given_num) {
+                if(aList.get(start) <= given_num) {
+                    binarysearch_findnum(start, middle-1, aList, given_num);
+                }
+                else {
+                    binarysearch_findnum(middle+1, end, aList, given_num);
+                }
+            }
+            else {
+                if(aList.get(end) >= given_num) {
+                    binarysearch_findnum(middle+1, end, aList, given_num);
+                }
+                else {
+                    binarysearch_findnum(start, middle-1, aList, given_num);
+                }
+            }
+        }
+
+        return;
+    }
+
+
+
+    // -----------------------------------------------------------------------------------------
+    //Problem 31. Find minimum number in rotated sorted array(with no duplicates) 
+    // -----------------------------------------------------------------------------------------
+
+    public static void find_min_rotated_sortedarray(ArrayList<Integer> aList) {
+
+        int start = 0; 
+        int end = aList.size()-1;
+        int middle = start + (end - start) / 2;
+        int smallest;
+
+        if(aList.get(start) < aList.get(end)) {
+            System.out.println("The minimum element is :"+aList.get(start));
+        }
+        else {
+           if(aList.get(middle) > aList.get(end)) {
+               smallest = aList.get(end);
+               binarysearch_findmin(aList, middle+1, end, smallest);
+           }
+           else {
+               smallest = aList.get(middle);
+               binarysearch_findmin(aList, start, middle-1, smallest);
+           }
+        }
+    }
+
+    public static void binarysearch_findmin(ArrayList<Integer> aList, int start, int end, int small) {
+        
+        if(start <= end) {
+            int mid = start + (end - start) / 2;
+
+            if(aList.get(mid) < small) {
+                small = aList.get(mid);
+            }
+
+            if(aList.get(mid) <= aList.get(end)) {
+                binarysearch_findmin(aList, start, mid-1, small);
+            }
+            else {
+                binarysearch_findmin(aList, mid+1, end, small);
+            }
+        }
+        else {
+            System.out.println("The smallest element is :"+small);
+        }
+    }
+
+    // -----------------------------------------------------------------------------------------
+    //Problem 32. Sort an array of 0's, 1's, 2's
+    // -----------------------------------------------------------------------------------------
+
+    public static void sort_zero_one_two(ArrayList<Integer> aList) {
+        
+    }
+}

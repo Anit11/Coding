@@ -195,6 +195,7 @@ Sorting prag notes:
 1. Bubble Sort vs Selection Sort vs Insertion Sort
     http://www.sorting-algorithms.com/selection-sort
     Bubble Sort:
+	https://en.wikipedia.org/wiki/Bubble_sort
         - Check pair of elements and swap them so that the largest gets bubbled to the end.
         PROS:
             If array is almost sorted OR once we have the array sorted, we can STOP there.
@@ -203,6 +204,7 @@ Sorting prag notes:
         In the case of nearly sorted data, bubble sort takes O(n) time, but requires at least 2 passes through the data (whereas insertion sort requires something more like 1 pass). 
 
     Insertion Sort:
+	https://en.wikipedia.org/wiki/Insertion_sort
         - What we have at any given time is sorted.
         PROS:
             Online Sorting
@@ -223,6 +225,7 @@ Sorting prag notes:
         Insertion sort does less than n comparisons -- once algorith finds position where to insert current element it stops making comparisons and takes next element.
 
     Selection Sort:
+	https://en.wikipedia.org/wiki/Selection_sort
         Select Minimum element each time and put it at the front.
         PROS:
             - Never have to do MORE THAN "n" swaps.
@@ -236,6 +239,7 @@ Sorting prag notes:
         In other words, after each iteration, the pivot will end up in its correct index. 
         For finding an element in array, quick sort can be used as if you choose right pivot, the time complexity is somewhere equivalent to n.
 
+------------------------------------------------------------------------------------------------------------------------------------------------
     
 
 Data Structure and its operations
@@ -299,6 +303,11 @@ Data Structure and its operations
     aList.set(index, element);                                                       --->replaces the element in the particular index
     for(int i: aList)                                                                --->In this for each loop, i is the element not index
 
+11. Array (for any primitive)
+	Arrays.sort(string or int)														 --->sort array of any primitive type
+	Arrays.equals(string1, string2)                 								 --->checks the equality of any two primitive in a array
+	Arrays.deepEquals(string1, string2)												 --->checks the equality of two 2d matrix of any two primitive
+
 11. Conversions
     //TO INT
     character to int                    - (int)character;                            --->This returns ascii int value of character eg: (int)3; is 51
@@ -329,6 +338,15 @@ Data Structure and its operations
     Integer to String - 
     Integer to float, double - 
     int to Integer and its difference?
+
+--------------------------------------------------------------------------------------------------------------
+
+Understanding Basics
+
+1. difference between for loop and Iterator?
+http://stackoverflow.com/questions/22267919/iterator-vs-for
+
+	
 
 LINUX Commands
 1. cat
@@ -374,6 +392,7 @@ LINUX Commands
     h - human readable size format
     t - sort by time
 
+-----------------------------------------------------------------------------------------
 VIM Shortcuts
     1. Split View
         ctrl + w v : split vertically
@@ -438,6 +457,7 @@ VIM Shortcuts
     vector and arraylist diff
     trie?
     what does exactly ..void main(String args[]) do?
-    explain use of static again?
+	radix sort?
+	diff between for loop and iterator?
 
 
