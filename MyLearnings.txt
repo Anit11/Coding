@@ -144,6 +144,57 @@ JAVA:
    variable - cannot be changed
    method - cannot be overridden
 
+3. Different kinds of block in class
+	Initialization block : will be inbetween { and }, and it will be executed everytime instance of the class is called. It is executed before constructor by the call by "super" keyword in constructor. All initialization method are written in the order it is written. Example, 
+
+	class Dog {
+		// begin instance initialization block
+		{
+			System.out.println("Dog's Instance Init Block");
+		}
+		// end instance initialization block
+	 
+		public Dog() {
+			System.out.println("Dog's constructor"); // a super constructor is called before executing the constructor commands.
+		}
+	}
+	Output: Dog's Instance Init Block
+			Dogs Constructor
+	
+	Static block : will be executed only one when the class is loaded for the first time. It executes before the any other block in class (even before initialization block). All static methods are executed in the order it is written. 
+	class Bird {
+		static {
+			System.out.println("Bird's Static Init Block #1");
+		}
+	 
+		public Bird() {
+			System.out.println("I'm a bird");
+		}
+	 
+		{
+			System.out.println("Bird's Instance Init Block #1");
+		}
+	 
+		public void fly() {
+			System.out.println("I'm flying");
+		}
+	 
+		{
+			System.out.println("Bird's Instance Init Block #2");
+		}
+	 
+		static {
+			System.out.println("Bird's Static Init Block #2");
+		}
+	}	
+	
+	Output: (when the object is initialized or class is loaded for the first time) 
+		Bird's Static Init Block #1                       //when the class is loaded for the first time, order is maintained
+		Bird's Static Init Block #2						  //when the class is loaded for the first time
+		Bird's Instance Init Block #1					  //whenever the object is initialized
+		Bird's Instance Init Block #2					  //whenever the object is initialized
+		I'm a bird	
+
 
 JAVA internal:
 1. How JVM works? 
@@ -238,6 +289,8 @@ Sorting prag notes:
         Run through 1 to n in array to rearrange in such a way that smaller elements are before pivot and the bigger elements are after pivot
         In other words, after each iteration, the pivot will end up in its correct index. 
         For finding an element in array, quick sort can be used as if you choose right pivot, the time complexity is somewhere equivalent to n.
+
+	
 
 ------------------------------------------------------------------------------------------------------------------------------------------------
     
@@ -442,6 +495,17 @@ VIM Shortcuts
     How to do swap in arraylist without using Collection function?
     what is difference between function overloading and function overriding
     passing variable to a function means passing address or passing values in java?
+	how to use min and max value of a floating or double point number?
+	Which is better? Declaring variable inside loop or outside?
+	when is memory allocated in java? Compile time or run time
+	What happens when I do? i=i+1; i+=1; i++;
+	how to declare max and min value when is needed?
+	How are ascii values assigned and distributed
+	How to declare class that accepts any value
+	public, private, protected, default
+	super, final
+	Can we write class inside class?
+	how to write comparator
 
     DataStructures: Set, stack, queue, LinkedList, Map, tree, graph
 
@@ -459,5 +523,6 @@ VIM Shortcuts
     what does exactly ..void main(String args[]) do?
 	radix sort?
 	diff between for loop and iterator?
+	
 
 

@@ -1,5 +1,37 @@
-
 import java.util.*;
+
+//Class for Stack Implementation - LinkedList
+class node {
+   int data;
+   node next;
+
+   public node(int data) {
+        this.data = data;
+   }
+}
+
+//Class for k nearest point
+class point {
+    int x_axis;
+    int y_axis;
+
+    public point(int x, int y) {
+        x_axis = x;
+        y_axis = y;
+    }
+}
+
+class cluster {
+    HashMap<point, Double> hmap_distance = new HashMap<> ();
+    int x1;
+    int y1;
+
+    public void my_cluster(int x, int y) {
+       hmap_distance.put(new point(x,y), Math.sqrt((x-x1) / (y-y1)));
+    }
+}
+
+
 public class AllAlgoProblems
 {
     // Problem 4. findElement
@@ -258,14 +290,48 @@ public class AllAlgoProblems
             ArrayList<Integer> aList = new ArrayList<> (Arrays.asList(10, 11, 12, 34, 65, 90, -1, 0, 1, 2, 2, 2, 5, 6, 6, 7, 8));
             find_min_rotated_sortedarray(aList);
          }
-         */
 
          //Problem 32. Sort an array of 0's, 1's, 2's
          {
             ArrayList<Integer> aList = new ArrayList<> (Arrays.asList(1, 0, 0, 1, 2, 2, 1, 0, 2, 0));
             sort_zero_one_two(aList);
          }
+
+         //Problem 33. Given list of sorted distinct numbers. Find number with same index.
+         {
+            ArrayList<Integer> aList = new ArrayList<> (Arrays.asList(-1, 1, 4, 6, 7));
+            findSameIndex(aList);
+         }
+
+         //Problem 34. Stack Implementation
+         {
+            node head = null; 
+            head = node_push(8, head);
+            head = node_push(2, head);
+            head = node_push(5, head);
+            head = node_pop(head);
+            head = node_pop(head);
+         }
+
+         */
+         //Problem 35. Stack Implementation with ArrayList
+
+         //Problem 36. find k-nearest stars
+        {
+            cluster c = new cluster();
+            c.x1 = 2;
+            c.y1 = 3;
+            c.my_cluster(2,2);
+            c.my_cluster(1,4);
+            c.my_cluster(8,7);
+            c.my_cluster(2,9);
+            c.my_cluster(63,10);
+            c.my_cluster(7,7);
+            k_nearestCluster(c, 5);
+
+        }
    }
+
     
     // -----------------------------------------------------------------------------------------
     // Problem 1. ReverseWord
@@ -1282,6 +1348,116 @@ public class AllAlgoProblems
     // -----------------------------------------------------------------------------------------
 
     public static void sort_zero_one_two(ArrayList<Integer> aList) {
+
+        for(int zero=0, one=1, two=aList.size()-1; zero<aList.size() && one<aList.size() && two>=0; ) {
+            
+           // do(aList.get(zero) != 0) {
+                if(aList.get(zero) == 1) {
+                    Collections.swap(aList, zero, one);
+                }
+                else if(aList.get(zero) == 2) {
+                    Collections.swap(aList, zero, two);
+                    two--;
+                }
+            
+            zero++;
+            while(aList.get(one) != 1) {
+               if(aList.get(one) == 2) {
+                   Collections.swap(aList, one, two);
+                   two--;
+               }
+           }
+           one++;
+           
+        }
+        for(int i : aList) {
+            System.out.println(i);
+        }
         
+    }
+
+
+    // -----------------------------------------------------------------------------------------
+    //Problem 33. Given list of sorted distinct numbers. Find number with same index.
+    // -----------------------------------------------------------------------------------------
+
+    public static void findSameIndex(ArrayList<Integer> aList) {
+        
+        if(aList.size() == 0) {
+            System.out.println("There are no elements in the list");
+        }
+
+        int start = 0;
+        int end = aList.size() - 1; 
+        boolean boo = false;
+
+        while(start <= end) {
+           int mid = start + ((end - start) / 2); 
+            if(aList.get(mid) == mid) {
+                System.out.println("The index and the element matched at :"+mid);
+                boo = true;
+                break;
+            }
+            else if(aList.get(mid) < mid) {
+                start = mid + 1;
+            }
+            else {
+                end = mid - 1;
+            }
+        }
+
+        if(boo == false) {
+            System.out.println("There are no elements present in the array that has number same as index");
+        }
+
+    }
+   
+    // -----------------------------------------------------------------------------------------
+    //Problem 34. Stack Implementation
+    // -----------------------------------------------------------------------------------------
+
+    public static node node_push(int given_no, node head) {
+        
+        if(head == null) {
+            head = new node(given_no);
+            System.out.println("The element is inserted, the new head is "+head.data);
+        }
+        else {
+            node new_node = new node(given_no);
+            new_node.next = head;
+            head = new_node;
+            System.out.println("The element is inserted, the new head is "+head.data);
+        }
+        return head;
+   }
+
+   public static node node_pop(node head) {
+    
+        if(head == null) {
+            System.out.println("The stack is empty");
+        }
+        else {
+            System.out.println("The node "+head.data+" is popped");
+            head = head.next;
+        }
+        return head;
+   }
+
+    //
+    
+    public static void k_nearestCluster(cluster c, int k) {
+        
+        PriorityQueue<Double> pq = new PriorityQueue<>(k);
+
+        for(double i : c.hmap_distance.keySet()) {
+            //System.out.println(i);
+            pq.add(i);
+        }
+
+        for(int i=0; i<k; i++) {
+            double my_k = pq.remove();
+            point p = c.hmap_distance.get(my_k);
+            System.out.println(p.x_axis+", "+p.y_axis);
+        }
     }
 }
