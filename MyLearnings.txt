@@ -306,6 +306,7 @@ Data Structure and its operations
     hmap.containsKey(key);
     hmap.containsValue(value);
     hmap.size();
+    for(int i : hmap.keySet()) { }                                                    --->to walk through when keys are not known
 
 2. HashSet
 
