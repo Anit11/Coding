@@ -209,6 +209,9 @@ http://www.geeksforgeeks.org/g-fact-46/
    Data Segment - stores the global variables and static variables. file scope.
    Code Segment - has the code to execute. Scope is till program runs.
 
+3. Synchronization:
+It allows only one thread to execute the method at a time. Others has to wait. Vector implements Synchronization.
+
 Pragadheesh notes: 
 1. What is Abstraction:
     - Abstraction is the concept of ignoring unnecessary details.
@@ -297,6 +300,24 @@ Sorting prag notes:
 
 Data Structure and its operations
 
+0. ArrayList
+
+    ArrayList<Integer> aList - new ArrayList<>();
+    aList.add(element);
+    aList.add(index, element);                                                       --->add the element to the index, if an element is already present it pushes the element and insert
+    aList.set(index, element);                                                       --->replaces the element in the particular index
+    aList.isEmpty();                                                                 --->Is my array list empty
+    Collections.min(aList);
+    Collection.max(aList);
+    Collections.replaceAll(List<T> list, T old_val, T new_val);
+    Collections.reverse(List);
+    Collections.reverseOrder();                                                      ---> returns comparator that works in reverse order
+    Collections.rotate(List l, int distance)
+    Collections.shuffle(List)
+    Collections.swap(List, i, j)
+    Collections.fill(list, T object)
+    for(int i: aList)                                                                --->In this for each loop, i is the element not index
+
 1. HashMap
     
     HashMap<Integer, Integer> hmap = new HashMap<> ();
@@ -325,6 +346,7 @@ Data Structure and its operations
     pQueue.element();                                                                 ---> to get root element
     pQueue.isEmpty();                                                                 ---> returns true if collection is empty
 
+
 4. Set ----- (Set contains no duplicate elements)
     
     Set<Integer> s1;
@@ -336,26 +358,47 @@ Data Structure and its operations
 
 5. Map
 
-6. StringBuilder
+6. StringBuffer and stringBuilder has almost same syntax. It is just that,
+   StringBuilder :  stringBuilder is better than stringBuffer as it is faster. But it has no synchronization so it is not safe with multithreads. In such case, stringBuffer is used.
     StringBuilder s = new StringBuilder();                                           --->creates a empty builder
-    s.append(str1);                                                                  ---> sb does ascii addition by itself when adding int to string builder
+    s.append(str1);                                                                  ---> append the string representation of any data type
     s.deleteCharAt(index);
-    s.insert(index, value);
+    s.delete(startIndex, endIndex);                                                  
+    s.insert(index, string or char);                                                 --->  insert the char or string starting from the given index
+    s.setCharAt(index, char);                                                        ---> specified index is set to the character
+    s.indexOf(string)                                                                ---> return the first occurance of the substring within the string
+    s.indexOf(string, fromIndex)                                                     ---> return the index of the substring starting from the fromIndex
     s.reverse();                                                                     ---> reverse string builder
+    s.replace(start, end, string);                                                   ---> replace the substring between the start and end index to the given string
+    s.length();                                                                      ---> return the length char inside builder
+    s.capacity();                                                                    ---> returns the current capacity of the builder
+    s.charAt(index);                                                                 ---> returns the character value in the sequence
+    s.substring(start, end);                                                         ---> returns the new string with the substring
     String result = s.toString();                                                    ---> StringBuilder to string
+
+
 
 
 7. Queue
 
-8. Stack
+8. Stack (extends vector class so some of vector methods can be used here)
+	Stack s = new Stack();
+	s.push('a'); | s.push(2); | s.push("abc");										 --->push either a char, string or int(no need to specify the type
+	s.pop();																		 --->pop the top element
+	s.peek();																		 --->returns the top element without popping from stack
+	s.search('a') | s.search(2); | s.search("abc");									 --->search and return the index of the element(counts from top), if element not present it returns -1
+	s.size(); 																		 --->returns the current size of the stack
+	s.capacity();																	 --->returns the capacity of the stack, which grows in size of 10 when element is pushed
 
 9. String
+    string1.compareTo(string2);
+    string1.compareToIgnoreCase(string2);
+    string1.concat(string2);                                                         --->append second string to the end of first string
+    string1.contains(CharSequence);
 
-10. ArrayList
-    aList.add(element);
-    aList.add(index, element);                                                       --->add the element to the index, if an element is already present it pushes the element and insert
-    aList.set(index, element);                                                       --->replaces the element in the particular index
-    for(int i: aList)                                                                --->In this for each loop, i is the element not index
+10. Float   - java.lang.Float
+    Float.compare(f1, f2)                                                            --->returns less than 0 if f1 is less than f2, greater than 0 if f1 is greater than f2, 0 if equal
+    
 
 11. Array (for any primitive)
 	Arrays.sort(string or int)														 --->sort array of any primitive type
@@ -379,7 +422,7 @@ Data Structure and its operations
     String to char Array                - string.toCharArray();
 
 
-(Difference between char and character is that Charater is a object so many inbuilt operations can be made use of.)
+    (Difference between char and character is that Charater is a object so many inbuilt operations can be made use of.)
 12. Character
     my_char.toLowerCase();
     my_char.toUpperCase();
@@ -393,12 +436,33 @@ Data Structure and its operations
     Integer to float, double - 
     int to Integer and its difference?
 
+14. Math
+    Math.random() * 50 + 1;                                                          ---> returns a double value. If you want int, typecast it. Math.random gives a value between 0 and 0.999.
+	Min + (int)(Math.random() * ((Max - Min) + 1))									 ---> returns value between min and max
 --------------------------------------------------------------------------------------------------------------
 
 Understanding Basics
 
 1. difference between for loop and Iterator?
 http://stackoverflow.com/questions/22267919/iterator-vs-for
+
+2. What is boxing and Autoboxing?
+Boxing is converting primitive types to corresponding object. Example is int to INTEGER object. 
+List<Integer> li = new ArrayList<>();
+for (int i = 1; i < 50; i += 2)
+    li.add(i);																		 ---> adding int as Integer object to list
+If boxing is done automatically, it is called autoboxing
+
+UnBoxing is reverse of that.
+public static int sumEven(List<Integer> li) {
+    int sum = 0;
+    for (Integer i: li)
+        if (i % 2 == 0)                       										 ---> Integer i is calculated for its modulo with 2
+            sum += i;
+        return sum;
+}
+
+3.Difference between HashTable and HashMap?
 
 	
 
@@ -489,14 +553,35 @@ VIM Shortcuts
 
     Doubts in Learning:
     Can a final variable be redefined by the method that uses it? (Assume final variable is declared in the class and initialized inside method)
+    Why final?  - to create a value as constant. 
+        Types: 
+        1. COMPILE TIME constant. create primitive data type with keyword final and initialize it before accessing it. 
+                                  Value is assigned at compile time, it pre-load the value while compiling so at run time it will be easy.
+                                  eg: final int a=5, int c = b+a, it writes it as c = b+5 after compilation), 
+                                  Class variable declared as final should be initialized no matter if you are using it are not
+                                  (In general default value will be assigned to class variable, but in case of final, the default value cannot be initialized so it need to be assigned)
+        2. RUN TIME constant(value assigned in runtime) - class variable can be initialized inside constructor.
+                                                        - when the object is called, it passes the value and initialize the final class variable.
+                                                        - method variable can be initialized at run time. It just has to be initialized before accessing it.
+        3. If class is final, I cannot inherit the class
+        4. If method is final, I cannot override the method, i.e, the method cannot be rewritten by the child class when the parent class is inherited.
+    why static? - all member of class can access to the same copy. It means it is shared across different object with the same value.
+                - should not access static variable with object. It can be accessed by static methods only.
+    
     What happens when we declare with new eg: ArrayList<Integer> arr; and ArrayList<Integer> arr = new ArrayList<Integer> ();
-    what is binary search and binary search tree?
-    Can a return type be without access specifiers, return type?
+	If you create ArrayList arr, it just creates a reference arr that can point to a Integer arrayList in future. The new keyword creates the memory for the arr reference where you can store the values in future.
+	
     http://stackoverflow.com/questions/214741/what-is-a-stackoverflowerror
+	Stack memory is used to store local variables and parameters. When an recursive is called continuously, the stack stores the local variables and parameters of every recursive call which sometime may overflow stack. This is why you get the stack overflow error while the base case is not written or while running a recursive call that need to store large data.
+	
     How to do swap in arraylist without using Collection function?
+	Using set function, arrList.set(index, value) will replace the value that was originally present
+
     what is difference between function overloading and function overriding
     passing variable to a function means passing address or passing values in java?
-	how to use min and max value of a floating or double point number?
+	how to find min and max value of a floating or double point number?
+	The min and max value is identified by float.compare(f1, f2). It returns -1 when f1 is smaller, 0 if f1 and f2 are equal, 1 if f2 is greater than f1
+
 	Which is better? Declaring variable inside loop or outside?
 	when is memory allocated in java? Compile time or run time
 	What happens when I do? i=i+1; i+=1; i++;
@@ -507,6 +592,20 @@ VIM Shortcuts
 	super, final
 	Can we write class inside class?
 	how to write comparator
+    how to convert hexadecimal to binary
+    Study conversion of number system
+    question on tree, see binary search tree file
+    what is an object?
+	what is double hashing? why is it required.
+	where brute force concept can be applied
+	when to use backtracking, divide and conquer
+	when to use all datastructures. like circular buffer, adjacently list
+
+	where are local variables stores while the program runs
+	how are local variables and value to it is assigned and stored
+	The assignment of variable will happen during compile time or run time
+	what compiler does java use 
+	
 
     DataStructures: Set, stack, queue, LinkedList, Map, tree, graph
 
@@ -525,5 +624,13 @@ VIM Shortcuts
 	radix sort?
 	diff between for loop and iterator?
 	
+
+Prag teaching: 
+
+1. Number system: Base
+    Binary - 2 (0, 1) - represented as 0b
+    Decimal - 10 (0-9)
+    Octal - 8 (0-7) - represented as 
+    Hexadecimal - 16 (0-9, a-f) - represented as 0x
 
 

@@ -166,6 +166,10 @@ public class AllAlgoProblems
         //Problem 16. Given two list. Find common elements in both list.
         {
             List<Integer> aList1 = new ArrayList<> (Arrays.asList(1, 3, 5, 2, 8, 6, 9));
+
+            public static void asd()
+            {
+                he
             List<Integer> aList2 = new ArrayList<> (Arrays.asList(2, 7, 4, 6));
             //String result = find_commonElements(aList1, aList2);
             String result = find_commonElementsSet(aList1, aList2);
@@ -313,7 +317,6 @@ public class AllAlgoProblems
             head = node_pop(head);
          }
 
-         */
          //Problem 35. Stack Implementation with ArrayList
 
          //Problem 36. find k-nearest stars
@@ -329,7 +332,76 @@ public class AllAlgoProblems
             c.my_cluster(7,7);
             k_nearestCluster(c, 5);
 
+        }   
+     */
+
+        //Cracking coding interview
+        //Problem 37.
+        //Problem 1.2
+        //reverse a C-Style string
+        {
+            reverseString("hello I am good\0");
         }
+
+        //Problem 1.3
+        //Problem 38.
+        //remove duplicates character in a string
+        {
+            removeDuplicates("array");
+        }
+
+        //Problem 1.4
+        //Problem 39.
+        //find if the two string has anagram
+        {
+            findAnagram("sing the song", "shjhssong the sings");
+        }
+
+        /*
+        //REDO
+        {
+            ArrayList<Integer> list1 = new ArrayList<>(Arrays.asList(2,3,4,5,6));
+            ArrayList<Integer> list2 = new ArrayList<>(Arrays.asList(4,5,6,7,8));
+            int result = kHighest(list1, list2, 9);
+            System.out.println(result);
+        }
+        */
+
+        //Problem 40.
+        //Given Array of positive integers, a number is duplicated, find the dupplicated in O(n) time and O(1) space
+        //the elements in the array is not greater than the size of the array
+        {
+            ArrayList<Integer> aList = new ArrayList<> (Arrays.asList(1,3,2,1,4));
+            int result = findFirstDuplicate(aList);
+            if(result != -1) {
+                System.out.println(result);
+            }
+        }
+
+		//Problem 41.
+		//Print unique digits in the integer
+		{
+			printUniqueDigits(-1210);
+		}
+
+        //find majority Element in the given list, dynamic procedure is followed here
+		{
+			int res = findMajorityElement(new ArrayList<Integer> (Arrays.asList(2,2,2,2,3,3,3,3,2)));
+			System.out.println("The result is"+res);
+		}
+
+        //find the median in stream of numbers using heap datastructure
+		{
+			findMedian(new ArrayList<Integer> (Arrays.asList(2,6,4,5,7,8,1,3,9)));
+		}	
+
+        //check if array is unique or not using Bit Manipulation
+        //Only 32 bits are in a integer, so this method works only for number upto 32
+        {
+           ArrayList<Integer> aList = new ArrayList<>(Arrays.asList(1,233847178,8));
+           findUniqueBitManipulation(aList);
+        }
+
    }
 
     
@@ -1443,12 +1515,14 @@ public class AllAlgoProblems
         return head;
    }
 
-    //
+    // -----------------------------------------------------------------------------------------
+    //Problem 35. find k nearest cluster in the group
+    // -----------------------------------------------------------------------------------------
     
     public static void k_nearestCluster(cluster c, int k) {
         
         PriorityQueue<Double> pq = new PriorityQueue<>(k);
-
+/*
         for(double i : c.hmap_distance.keySet()) {
             //System.out.println(i);
             pq.add(i);
@@ -1459,5 +1533,308 @@ public class AllAlgoProblems
             point p = c.hmap_distance.get(my_k);
             System.out.println(p.x_axis+", "+p.y_axis);
         }
+*/
     }
-}
+
+    // -----------------------------------------------------------------------------------------
+    //Cracking coding interview
+    //Problem 1.2
+    //reverse a C-Style string
+    // -----------------------------------------------------------------------------------------
+
+    public static void reverseString(String str) {
+        
+        char[] ch = str.toCharArray();
+        //ch[1] = '\u0000';
+        int i = 0, j = str.length()-1;
+        for(; i<j; i++,j--) {
+            ch = swap_char(ch, i, j);
+        }
+
+        System.out.println("The string after reverse is :"+String.valueOf(ch));
+    }
+
+    public static char[] swap_char(char[] arr, int i, int j) {
+        
+        char temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+        return arr;
+    }
+
+
+    // -----------------------------------------------------------------------------------------
+    //Problem 1.3
+    //remove duplicates in string without using buffer
+    // -----------------------------------------------------------------------------------------
+
+    public static void removeDuplicates(String str) {
+        
+        for(int i=str.length()-1; i>=0; i--) {
+            for(int j=i-1; j>=0; j--) {
+                if(str.charAt(i) == str.charAt(j)) {
+                   str = str.replace(str.charAt(i), '\0') + str.charAt(i); 
+                }   
+            }
+        }
+        System.out.println("The string is "+str);
+    }
+
+
+    // -----------------------------------------------------------------------------------------
+    //Problem 1.4
+    //find anagram
+    // -----------------------------------------------------------------------------------------
+
+    public static void findAnagram(String str1, String str2) {
+        
+        HashMap<Character, Integer> hmap = new HashMap<>();
+
+        for(int i=0; i<str1.length(); i++) {
+            if(hmap.containsKey(str1.charAt(i))) {
+                hmap.put(str1.charAt(i), hmap.get(str1.charAt(i)) + 1);
+            }
+            else {
+                hmap.put(str1.charAt(i), 1);
+            }
+        }
+
+        for(int i=0; i<str2.length(); i++) {
+            if(hmap.containsKey(str2.charAt(i))) {
+                if(hmap.get(str2.charAt(i)) != 0) {
+                    hmap.put(str2.charAt(i), hmap.get(str2.charAt(i))-1);
+                }
+                else {
+                    System.out.println("The string1 is not anagram of string2");
+                    return;
+                }
+            }
+            else {
+                System.out.println("The string1 is not anagram of string2");
+                return;
+            }
+        }
+        System.out.println("The string1 is anagram of string2");
+    }
+
+    // -----------------------------------------------------------------------------------------
+    // Given two sorted list, find kth largest number
+    // assuming the elements in the array is positive
+    //redo
+    // -----------------------------------------------------------------------------------------
+
+    public static int kHighest(ArrayList<Integer> aList1, ArrayList<Integer> aList2, int k) {
+        
+        int x = 0;
+        int y = 0;
+
+        if(k > aList1.size() + aList2.size() || k < 1) {
+            System.out.println("check your inputs");
+            return -1;
+        }
+
+        while(x+y < k-1) {
+            if(x < aList1.size() && y < aList2.size()) {
+                if(aList1.get(x) < aList2.get(y)) {
+                    x++;
+                }
+                else {
+                    y++;
+                }
+            }   
+        }
+
+        char full = 'z';
+        if(x == aList1.size()) {
+            x--;
+            full = 'x';
+        }
+        else if(y == aList2.size()) {
+            y--;
+            full = 'y';
+        }
+
+        System.out.println("x value after while loop is "+x);
+        System.out.println("y value after while loop is "+y);
+
+        if(x+y == k-1) {
+            System.out.println("Entered = array");
+            if(x<aList1.size() && y<aList2.size()) {
+                if(aList1.get(x) < aList2.get(y)) {
+                    return aList1.get(x);
+                }
+                else {
+                    return aList2.get(y);
+                }
+            }
+        }
+        else if(full == 'x') {
+            System.out.println("Entered y array");
+            while(x+y < k) {
+               y++; 
+            }
+            return aList2.get(y);
+        }
+        else {
+            System.out.println("Entered x array");
+            while(x+y < k) {
+                x++;
+            }
+        }
+
+            return aList1.get(x);
+    }
+    
+
+    //Problem 40.
+    //Given Array of positive integers, a number is duplicated, find the dupplicated in O(n) time and O(1) space
+    //the elements in the array is not greater than the size of the array
+    public static int findFirstDuplicate(ArrayList<Integer> aList) {
+            
+        int arrSize = aList.size()-1;
+
+        for(int i=0; i<aList.size(); i++) {
+            
+            if(aList.get(Math.abs(aList.get(i))) > 0) {
+                    
+                aList.set(Math.abs(aList.get(i)), -aList.get(Math.abs(aList.get(i))));
+
+            }   
+            else {
+                return Math.abs(aList.get(i));
+            }   
+        }   
+        return -1;
+    }   
+
+    //Problem 41. 
+    //Given an int, print the number with no repeating digits
+
+    public static void printUniqueDigits(int input) {
+		
+		HashSet<Integer> hSet  = new HashSet<>();
+
+		int p = 0;
+		int num = 0;
+
+		while(input  != 0) {
+			int mod = input % 10;
+			input = input / 10;
+				if(! hSet.contains(mod)) {
+					num += mod * Math.pow(10, p);
+					hSet.add(mod);
+					p++;
+				}
+		} 
+
+		System.out.println(num);
+    }
+
+
+		//Problem 42.
+		//Given an array, find the majority element in the list 
+		
+    public static int findMajorityElement (ArrayList<Integer> aList) {
+			
+		int prev = aList.get(0);
+		int repeat = 0;
+		int temp = aList.get(0);
+			
+			for(int i=1; i<aList.size(); i++) {
+				if(aList.get(i) == prev) {
+					repeat++;
+				}
+				else {
+					if(repeat == 0) {
+						prev = aList.get(i);
+							repeat = 0;		
+					}
+					else {
+						repeat--;
+						temp = aList.get(i);
+					}
+				}
+			}
+			return prev;
+    }
+
+        //Problem 43.
+        //Given an stream of numbers as an array, find the median of stream of number
+        
+		public static void findMedian(ArrayList<Integer> aList) {
+			
+			if(aList.isEmpty()) {
+				System.out.println("The list is empty");
+			}
+
+			PriorityQueue<Integer> smallQueue = new PriorityQueue<> (Collections.reverseOrder());
+			PriorityQueue<Integer> bigQueue = new PriorityQueue<> ();
+
+			smallQueue.add(aList.get(0));
+
+			for(int i=1; i<aList.size(); i++) {
+				if(aList.get(i) < smallQueue.element()) {
+					smallQueue.add(aList.get(i));
+				}
+				else {
+					bigQueue.add(aList.get(i));
+				}
+
+				if(Math.abs(smallQueue.size() - bigQueue.size()) == 2) {
+					if(smallQueue.size() > bigQueue.size()) {
+						int element = smallQueue.remove();
+						bigQueue.add(element);
+					}
+					else {
+						int element = bigQueue.remove();
+						smallQueue.add(element);
+					}
+				}
+				printMedian(smallQueue, bigQueue);
+			}
+		}
+
+		public static void printMedian(PriorityQueue<Integer> smallQueue, PriorityQueue<Integer> bigQueue) {
+			
+			if(Math.abs(smallQueue.size() - bigQueue.size()) == 1) {
+				if(bigQueue.size() > smallQueue.size()) {
+					System.out.println(bigQueue.element());
+				}
+				else {
+					System.out.println(smallQueue.element());
+				}
+			}
+			else if(smallQueue.size() == bigQueue.size()) {
+				int res = (smallQueue.element() + bigQueue.element() ) / 2;
+				System.out.println(res);
+			}
+			
+		}
+
+        //check if array is unique or not using Bit Manipulation
+        //Only 32 bits are in a integer, so this method works only for number upto 16
+        //We can use long, yet the number ranges from -32 to 32, and 1 bit for sign
+
+        public static void findUniqueBitManipulation(ArrayList<Integer> aList) {
+
+		int k = 0;
+
+		for(int i=0; i<aList.size(); i++) {
+		    int j = 1;
+		    j = j<<aList.get(i);
+            System.out.println("The j value is "+j);
+		    int and = j & k;
+		    if(and == 0) {
+		        k = k | j;
+		    }
+		    else {
+		        System.out.println("The given array is not unique");
+		        return;
+		    }
+		}
+		System.out.println("Unique");
+		
+	}
+
+    
+}  

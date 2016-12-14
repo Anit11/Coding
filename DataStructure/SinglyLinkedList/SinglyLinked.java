@@ -55,7 +55,11 @@ public class SinglyLinked {
 
         head1 = a_link.addNumLink(head1, 2);
         head1 = a_link.addNumLink(head1, 1);
+        head1 = a_link.addNumLink(head1, 5);
+        head1 = a_link.addNumLink(head1, 6);
+        head1 = a_link.addNumLink(head1, 7);
 
+/*
         System.out.println("Element before insert");
         l_link.listNumLink(head1);
         System.out.println("Inserting element 3");
@@ -74,6 +78,10 @@ public class SinglyLinked {
         else {
             System.out.println("There is loop in the linkedlist");
         }
+*/
+
+        num_node res = nth_last_element(head1, 1);
+        System.out.println(res.data);
         
     }
 
@@ -151,7 +159,6 @@ public class SinglyLinked {
     }
 
     public static num_node sortedInsert(num_node head, num_node newNode) {
-    
         
         num_node temp = head;
         num_node prev = head;
@@ -224,5 +231,27 @@ public class SinglyLinked {
         temp.next = head;
         return temp;
     }
+
+    public static num_node nth_last_element(num_node head, int n) {
+        
+        num_node temp = head;
+
+        for(int i = 0; i<n; i++) {
+            if(temp != null) {
+                temp = temp.next;
+                continue;
+            }
+            System.out.println("There are less than "+n+" elements");
+        }
+        
+        while(temp.next != null) {
+            temp = temp.next;
+            head = head.next;
+        }
+
+        return head;
+    }
+
+
 }
 
