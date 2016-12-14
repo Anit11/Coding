@@ -384,17 +384,20 @@ public class AllAlgoProblems
 			printUniqueDigits(-1210);
 		}
 
+        //Problem 42.
         //find majority Element in the given list, dynamic procedure is followed here
 		{
 			int res = findMajorityElement(new ArrayList<Integer> (Arrays.asList(2,2,2,2,3,3,3,3,2)));
 			System.out.println("The result is"+res);
 		}
 
+        //Problem 43.
         //find the median in stream of numbers using heap datastructure
 		{
 			findMedian(new ArrayList<Integer> (Arrays.asList(2,6,4,5,7,8,1,3,9)));
 		}	
 
+        //Problem 44.
         //check if array is unique or not using Bit Manipulation
         //Only 32 bits are in a integer, so this method works only for number upto 32
         {
@@ -402,7 +405,21 @@ public class AllAlgoProblems
            findUniqueBitManipulation(aList);
         }
 
-   }
+        //Problem 45.
+        //Print the matrix in diagonal order
+        
+        {
+            int[][] matrix = new int[5][5];
+                
+            for(int i=0; i<matrix.length; i++){
+                for(int j=0; j<matrix[0].length; j++) {
+                    matrix[i][j] = i;
+                }
+            }
+            printDiagonally(matrix);
+        } 
+                
+           }
 
     
     // -----------------------------------------------------------------------------------------
@@ -1817,24 +1834,48 @@ public class AllAlgoProblems
 
         public static void findUniqueBitManipulation(ArrayList<Integer> aList) {
 
-		int k = 0;
+            int k = 0;
 
-		for(int i=0; i<aList.size(); i++) {
-		    int j = 1;
-		    j = j<<aList.get(i);
-            System.out.println("The j value is "+j);
-		    int and = j & k;
-		    if(and == 0) {
-		        k = k | j;
-		    }
-		    else {
-		        System.out.println("The given array is not unique");
-		        return;
-		    }
-		}
-		System.out.println("Unique");
+            for(int i=0; i<aList.size(); i++) {
+                int j = 1;
+                j = j<<aList.get(i);
+                System.out.println("The j value is "+j);
+                int and = j & k;
+                if(and == 0) {
+                    k = k | j;
+                }
+                else {
+                    System.out.println("The given array is not unique");
+                    return;
+                }
+            }
+            System.out.println("Unique");
 		
-	}
+        }
 
-    
+        //Problem 45.
+        //Print matrix diagonally
+        public static void printDiagonally(int[][] matrix) {
+
+            for(int i=0; i<matrix.length; i++) {
+                for(int j=0, k=i; j<=i; j++,k--) {
+                    if(j<0) {
+                        break;
+                    }
+                    System.out.print(matrix[k][j]);
+                }
+                System.out.println();
+            }
+            
+            for(int j=1; j<matrix[0].length; j++) {
+                for(int i=matrix.length-1, k=j; k<=matrix[0].length; i--,k++) {
+                    if(k>=matrix[0].length) {
+                        break;
+                    }
+                    System.out.print(matrix[i][k]);
+                }
+                System.out.println();
+            }
+                        
+        }
 }  
