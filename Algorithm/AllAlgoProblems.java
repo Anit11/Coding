@@ -31,6 +31,18 @@ class cluster {
     }
 }
 
+//Problem 46.
+//return all unique pairs of integers that add up to sum
+//Class to create type pair to return set of integers
+class Pair {
+	int _a;
+	int _b;
+	public Pair(int a, int b) {
+		_a = a;
+		_b = b;
+    }
+}
+
 
 public class AllAlgoProblems
 {
@@ -334,6 +346,7 @@ public class AllAlgoProblems
 
         }   
      */
+     /*
 
         //Cracking coding interview
         //Problem 37.
@@ -357,7 +370,6 @@ public class AllAlgoProblems
             findAnagram("sing the song", "shjhssong the sings");
         }
 
-        /*
         //REDO
         {
             ArrayList<Integer> list1 = new ArrayList<>(Arrays.asList(2,3,4,5,6));
@@ -365,7 +377,6 @@ public class AllAlgoProblems
             int result = kHighest(list1, list2, 9);
             System.out.println(result);
         }
-        */
 
         //Problem 40.
         //Given Array of positive integers, a number is duplicated, find the dupplicated in O(n) time and O(1) space
@@ -418,8 +429,70 @@ public class AllAlgoProblems
             }
             printDiagonally(matrix);
         } 
-                
-           }
+        
+        //Problem 46.
+        //return all unique pairs of integers that would add up to sum
+        //Adding a pair class to return result
+        {
+			ArrayList<Integer> aList = new ArrayList<Integer>(Arrays.asList(100, 25, 25, 50, 10, 10, 75, 150, 140, 140));
+			ArrayList<Pair> result = findUniquePair(aList, 150);
+			for(int i=0; i<result.size(); i++) {
+				System.out.println(result.get(i)._a+" "+result.get(i)._b);
+			}
+        }
+
+		//Problem 47.
+		//Sudoku Solver
+		{
+			int[][] input = new int[9][9];
+			//for(int i=0; i<input.length; i++) {
+				//for(int j=0; j<input[0].length; j++) {
+				   // if(i == j) {
+						//input[i][j] = 2;
+					//}
+				//}
+			//}
+			input[0][0] = 5;
+			input[0][1] = 3;
+			input[0][2] = 8;
+			boolean boo = checkSudoku(input, 0, 8);
+			if(boo == true) {
+				System.out.println("Yes");
+			}
+			else {
+				System.out.println("No");
+			}
+	
+		}
+*/
+        {
+            TreeNode root = new TreeNode(50);
+            root._left = new TreeNode(25);
+            root._right = new TreeNode(75);
+            root._left._left = new TreeNode(12);
+            root._left._right = new TreeNode(37);
+            root._right._left = new TreeNode(67);
+            root._right._right = new TreeNode(100);
+            root._left._left._left = new TreeNode(6);
+            root._left._left._right = new TreeNode(18);
+            root._left._right._left = new TreeNode(30);
+            root._left._right._right = new TreeNode(40);
+
+            System.out.println(findSuccessor(root._left._left._right));
+        }
+
+    }
+static class TreeNode {
+    int _data;
+    TreeNode _left;
+    TreeNode _right;
+    TreeNode _parent;
+
+    public TreeNode(int data) {
+       _data = data;
+    }   
+}
+
 
     
     // -----------------------------------------------------------------------------------------
@@ -1877,5 +1950,121 @@ public class AllAlgoProblems
                 System.out.println();
             }
                         
+        }
+
+        //Problem 46.
+        //return all unique pairs of integers that would add up to sum
+        //Adding a pair class to return result
+
+        public static ArrayList<Pair> findUniquePair(ArrayList<Integer> aList, int k) 
+        {
+            HashSet<Integer> hSet = new HashSet<>();
+            ArrayList<Pair> result = new ArrayList<>();
+
+            for(int i=0; i<aList.size(); i++) 
+            {
+                if(hSet.contains(k - aList.get(i)))
+                {	
+                    if(!hSet.contains(aList.get(i)))
+                    {
+                        result.add(new Pair(aList.get(i), k-aList.get(i)));
+                    }	
+                }
+                if(!hSet.contains(aList.get(i))) 
+                {
+                    hSet.add(aList.get(i));
+                }
+            }
+            return result;
+        }
+		
+		//Problem 47.
+		//Sudoku Solver
+
+		public static boolean checkSudoku(int[][] matrix, int stIndex, int eIndex) {
+	   
+			ArrayList<Integer> listOfPossible = new ArrayList<>();
+			for(int i=stIndex; i<matrix.length; i++){
+				for(int j=eIndex; j<matrix[0].length; j++){
+					if(matrix[i][j] == 0) {
+						listOfPossible = findListPossible(matrix, i, j);
+						if(listOfPossible.isEmpty()) {
+							return false;
+						}
+						
+						for(int k=0; k<listOfPossible.size(); k++) {
+							matrix[stIndex][eIndex] = listOfPossible.get(k);
+							return checkSudoku(matrix, i+1, j+1);
+						}	   
+					}
+				}
+			}
+			return true;
+		}
+
+		public static ArrayList<Integer> findListPossible(int[][] matrix, int i, int j) {
+	   
+			HashSet<Integer> numPresent = new HashSet<>();
+			ArrayList<Integer> result = new ArrayList<>();
+	   
+			for(int x=i, y=0; y<matrix.length; y++) {
+				if(matrix[x][y] != 0) {
+					//System.out.println("1.check"+x);
+					numPresent.add(matrix[x][y]);
+				}
+			}
+	   
+			for(int y=j, x=0; x<matrix.length; x++) {
+				if(matrix[x][y] != 0) {
+					//System.out.println("2.check"+y);
+					numPresent.add(matrix[x][y]);
+				}
+			}
+	   
+			int row = i - (i % 3);
+			int col = j - (j % 3);
+	   
+			for(int x=row; x<=row+2; x++) {
+				for(int y=col; y<=col+2; y++) {
+					if(matrix[x][y] != 0) {
+						//System.out.println("3.check"+x+""+y);
+						numPresent.add(matrix[x][y]);
+					}
+				}
+			}
+			for(int z=0; z<9; z++){
+				if(!numPresent.contains(i)) {
+					result.add(z);
+				}
+			}
+			/*for(int list : result) {
+				System.out.println(list);
+			}
+			*/
+			return result;
+		}
+
+		//Find the successor of the node, ---given the node---
+        public static int findSuccessor(TreeNode givenNode) {
+            
+            if(givenNode._right == null) {
+                return givenNode._right._data;
+            }
+            else {
+                return findParentSuccessor(givenNode._parent, givenNode._data);
+            }
+        }
+
+        public static int findParentSuccessor(TreeNode node, int targetData) {
+            
+            if(node != null) {
+                if(node._data > targetData) {
+                    return node._data;
+                }   
+            }
+            if(node._parent != null) {
+                findParentSuccessor(node._parent, targetData);
+            }
+            return -1;
         }
 }  

@@ -356,7 +356,14 @@ Data Structure and its operations
     s3.addAll(s2);                                                                    ---> Union of s1 and s2
     s3.retainAll(s2);                                                                 ---> Intersection of s1 and s2
 
-5. Map
+5.BitSet bs = new BitSet();
+    bs.get(index);
+    bs.set(index, value)
+    bs.clear(index)
+    bs.and(BitSet obj);
+    bs.or(BitSet obj);
+    bs.xor(BitSet obj);
+    bs.equals(obj);
 
 6. StringBuffer and stringBuilder has almost same syntax. It is just that,
    StringBuilder :  stringBuilder is better than stringBuffer as it is faster. But it has no synchronization so it is not safe with multithreads. In such case, stringBuffer is used.
@@ -605,6 +612,24 @@ VIM Shortcuts
 	how are local variables and value to it is assigned and stored
 	The assignment of variable will happen during compile time or run time
 	what compiler does java use 
+    What is difference between abstraction and encapsulation?
+    Can I have nested class? what is the use of it?
+    Find square root of number
+    what does ~ operator do?
+    what does >>> operator do?
+    what does instanceOf operatoor do?
+    what does ternery operator do? "? :"
+    what is the syntax for finding minimum  and maximum value using int, Integer, long, Long, float, Float, double, Double
+    How to sort strings in lexographical order
+    what all classes use .valueOf() (see Byte, Integer, Long, Float, Double)
+    See useful methods in float double.
+    what is assertion?
+    how to convert lowercase to uppercase(character, string)
+    overview of generics
+    what does enum do? overview 
+    what is the difference between error and exception
+    existing function for FLOAT TO INTEGER, INTEGER TO FLOAT
+    why do people want to convert int or any datatype to byte array? what is the use of it.
 	
 
     DataStructures: Set, stack, queue, LinkedList, Map, tree, graph
