@@ -464,7 +464,6 @@ public class AllAlgoProblems
 			}
 	
 		}
-*/
         {
             TreeNode root = new TreeNode(50);
             root._left = new TreeNode(25);
@@ -479,6 +478,13 @@ public class AllAlgoProblems
             root._left._right._right = new TreeNode(40);
 
             System.out.println(findSuccessor(root._left._left._right));
+        }
+
+*/
+        //Problem 49.
+        //Find the subset of the array
+        {
+            printSubset(new ArrayList<Integer>(Arrays.asList(1,2,3,4)));
         }
 
     }
@@ -2044,10 +2050,11 @@ static class TreeNode {
 			return result;
 		}
 
+        //Problem 48.
 		//Find the successor of the node, ---given the node---
         public static int findSuccessor(TreeNode givenNode) {
             
-            if(givenNode._right == null) {
+            if(givenNode._right != null) {
                 return givenNode._right._data;
             }
             else {
@@ -2066,5 +2073,22 @@ static class TreeNode {
                 findParentSuccessor(node._parent, targetData);
             }
             return -1;
+        }
+
+        //Problem 49.
+        //Find the subset of the array
+
+        public static void printSubset(ArrayList<Integer> aList) {
+            
+            for(int i=0; i<Math.pow(2, aList.size()); i++) {
+                for(int j=0; j<Math.log(i)/Math.log(2)+1; j++) {
+                    int k = 1 << j;
+                    k = k & i;
+                    if(k != 0) {
+                        System.out.print(aList.get(j));
+                    }
+                }
+                System.out.println();
+            }
         }
 }  

@@ -245,6 +245,8 @@ Pragadheesh notes:
     - Inheritence should only be used if the sub class is BEHAVIORIALLY equal to the superclass.
 
 
+
+
 Sorting prag notes:
 1. Bubble Sort vs Selection Sort vs Insertion Sort
     http://www.sorting-algorithms.com/selection-sort
@@ -382,9 +384,6 @@ Data Structure and its operations
     s.charAt(index);                                                                 ---> returns the character value in the sequence
     s.substring(start, end);                                                         ---> returns the new string with the substring
     String result = s.toString();                                                    ---> StringBuilder to string
-
-
-
 
 7. Queue
 
@@ -658,4 +657,6 @@ Prag teaching:
     Octal - 8 (0-7) - represented as 
     Hexadecimal - 16 (0-9, a-f) - represented as 0x
 
+2. Internal Fragmentation:
+    OS divides the memory into fixed size blocks. If the
 
