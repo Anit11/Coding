@@ -43,6 +43,39 @@ class Pair {
     }
 }
 
+//Problem 52.
+//Permutation of words in phone number
+class PhoneNumber {
+    HashMap<Integer,String> phoneMap = new HashMap<>();
+    
+    PhoneNumber() {
+        phoneMap.put(0, "");
+        phoneMap.put(1, "");
+        phoneMap.put(2, "abc");
+        phoneMap.put(3, "def");
+        phoneMap.put(4, "ghi");
+        phoneMap.put(5, "jkl");
+        phoneMap.put(6, "mno");
+        phoneMap.put(7, "pqrs");
+        phoneMap.put(8, "tuv");
+        phoneMap.put(9, "wxyz");
+    }
+}
+
+//Problem 54.
+//Given the array of numbers, starting position and ending position, calculate and print the addition from the starting point to the ending point 
+
+class CreateSum {
+    int[] _arr; 
+
+    CreateSum(int[] arr) {
+       _arr = new int[arr.length];
+       _arr[0] = arr[0];
+       for(int i=1; i<arr.length; i++) {
+            _arr[i] = arr[i] +  _arr[i-1];
+       }
+    }
+
 
 public class AllAlgoProblems
 {
@@ -178,10 +211,6 @@ public class AllAlgoProblems
         //Problem 16. Given two list. Find common elements in both list.
         {
             List<Integer> aList1 = new ArrayList<> (Arrays.asList(1, 3, 5, 2, 8, 6, 9));
-
-            public static void asd()
-            {
-                he
             List<Integer> aList2 = new ArrayList<> (Arrays.asList(2, 7, 4, 6));
             //String result = find_commonElements(aList1, aList2);
             String result = find_commonElementsSet(aList1, aList2);
@@ -487,17 +516,54 @@ public class AllAlgoProblems
             printSubset(new ArrayList<Integer>(Arrays.asList(1,2,3,4)));
         }
 
-    }
-static class TreeNode {
-    int _data;
-    TreeNode _left;
-    TreeNode _right;
-    TreeNode _parent;
+        //Problem 50.
 
-    public TreeNode(int data) {
-       _data = data;
-    }   
-}
+        //Problem 51.
+        //given an sorted array and a number, return the index with first occurance of that number
+        {
+            ArrayList<Integer> aList = new ArrayList<>(Arrays.asList(0,1,1,1,1,2,2,3,3,3,4,4,5));
+            int answer = findFirstOccurance(aList, 1);
+            System.out.println("The answer is "+answer);
+        }
+
+        //Problem 52.
+        //Given the phone number, print all the permutaion of string for the phone number
+
+        //Problem 53.
+        //Given the list of numbers, find the longest consecutive numbers 
+        {
+            //int[] arr = new int[10];
+            //arr = {2,3,4,1,2,3,4,1,1,2};
+            int[] arr = {2,3,4,1,2,3,4,1,1,2};
+            findLongestConsecutive(arr);
+        }
+
+        //Problem 54.
+        //Given the array of numbers, starting position and ending position, calculate and print the addition from the starting point to the ending point 
+        {
+            int[] arr = new int[] {2,3,4,1,2,3,4,1,1,2};
+            printSum(arr, 2, 8);
+        }
+
+        //Problem 55.
+        //Given an array with unique numbers, print the wave form of the number
+        {
+            int[] arr = new int[] {20, 40, 50, 60, 10, 30, 90};
+            waveForm(arr);
+        }
+    }
+
+
+    static class TreeNode {
+        int _data;
+        TreeNode _left;
+        TreeNode _right;
+        TreeNode _parent;
+
+        public TreeNode(int data) {
+           _data = data;
+        }   
+    }
 
 
     
@@ -1544,7 +1610,6 @@ static class TreeNode {
         
     }
 
-
     // -----------------------------------------------------------------------------------------
     //Problem 33. Given list of sorted distinct numbers. Find number with same index.
     // -----------------------------------------------------------------------------------------
@@ -2078,7 +2143,7 @@ static class TreeNode {
         //Problem 49.
         //Find the subset of the array
 
-        public static void printSubset(ArrayList<Integer> aList) {
+        static void printSubset(ArrayList<Integer> aList) {
             
             for(int i=0; i<Math.pow(2, aList.size()); i++) {
                 for(int j=0; j<Math.log(i)/Math.log(2)+1; j++) {
@@ -2091,4 +2156,177 @@ static class TreeNode {
                 System.out.println();
             }
         }
-}  
+
+        //Problem 50.
+        //Given two list, find the number that is not present in both the list
+        //Add code
+
+        //Problem 51.
+        //given an array and a number, find the first occurance of the number
+
+        static int findFirstOccurance(ArrayList<Integer> aList, int num) {
+            
+            if(aList == null || aList.isEmpty()) {
+                return -1;
+            }
+
+            int start = 0; 
+            int end = aList.size()-1;
+            
+            while(start <= end) {
+                int mid = start + (end - start)/2;
+                if(aList.get(mid) == num) {
+                    if(mid == 0 || aList.get(mid-1) != num) {
+                        return mid;
+                    }
+                    else {
+                        end = mid - 1;
+                    }
+                }   
+                else if(aList.get(mid) < num) {
+                    start = mid + 1;
+                }
+                else if(aList.get(mid) > num) {
+                    end = mid - 1;
+                }
+            }
+
+            return -1;
+        }   
+
+        //Problem 52.
+        //Given the phone number, print all the permutaion of string for the phone number
+        static void printPermutation(String phoneNumber) {
+            
+            if(phoneNumber == null || phoneNumber.length() == 0) {
+                return;
+            }
+            else {
+                ArrayList<Character> result = new ArrayList<>();
+                doPermutation(phoneNumber, 0, result);
+            }
+        }
+
+        static void doPermutation(String phoneNo, int position, ArrayList<Character> result) {
+            
+            if(phoneNo.length() == position) {
+                System.out.println(result.toString());
+                return;
+            }
+            
+            int digit = Character.getNumericValue(phoneNo.charAt(position));
+            PhoneNumber obj = new PhoneNumber();
+
+            for(int j=0; j<obj.phoneMap.get(digit).length(); j++) {
+                String value = obj.phoneMap.get(digit);
+                char c = value.charAt(j);
+                result.add(new Character(c));
+                doPermutation(phoneNo, position+1, result);
+                result.remove(result.size()-1);
+            }
+        }
+    
+        //Problem 53.
+        //Given the list of numbers, find the longest consecutive numbers 
+        static void findLongestConsecutive(int[] array) {
+
+            if(array.length == 0 || array.length == 1) {
+                return;
+            }
+
+            int permI = 0;
+            int permJ = 0;
+            int count = 0;
+            int tempI = 0;
+            int tempJ = 0;
+
+            for(int i=0, j=1; j<array.length; i++, j++) {
+                if(array[j]-array[i] == 1) {
+                    if(tempI == 0) {
+                        tempI = i;
+                        tempJ = j;
+                    }
+                    else {
+                        tempJ++;
+                    }
+                    count--;
+                }
+                else if(tempI != 0 && count <= 0) {
+                        permI = tempI;
+                        permJ = tempJ;
+                        count = permJ - permI;
+                        tempI = 0;
+                        tempJ = 0;
+                }
+            }
+
+            System.out.println("The starting index of consecutive numbers :"+permI);
+            System.out.println("The ending index of consecutive numbers :"+permJ);
+    }
+
+
+        //Problem 54.
+        //Given the array of numbers, starting position and ending position, calculate and print the addition from the starting point to the ending point 
+        static void printSum(int[] arr, int start, int end) {
+            CreateSum obj = new CreateSum(arr);
+
+            int stValue = obj._arr[start-1];
+            int endValue = obj._arr[end];
+
+            int result = endValue - stValue;
+            System.out.println("The sum is "+result);
+        }    
+
+        //Problem 55.
+        //Given an array with unique numbers, print the wave form of the number
+        static void waveForm(int[] arr) {
+            
+            for(int i=0; i<arr.length-1; i++) {
+                if(arr[i] > arr[i+1]) {
+                    int temp = arr[i]; 
+                    arr[i] = arr[i+1];
+                    arr[i+1] = temp;
+                }
+                i++;
+                if(arr[i] < arr[i+1]) {
+                    int temp = arr[i]; 
+                    arr[i] = arr[i+1];
+                    arr[i+1] = temp;
+                }
+            }
+            for(int i=0; i<arr.length; i++) {
+                System.out.print(arr[i]+" , ");
+            }
+            System.out.println();
+        }
+        
+        //Problem 56. Given the sorted array, find just bigger to a element k, k can or cannot be present in the array
+        static int justBigger(int[] arr, int k) {
+            
+            if(arr.length == 0 || arr[end] <= k) {
+                return -1;
+            }
+            
+            int start = 0;
+            int end = arr.length - 1;
+            
+            while(start <= end) {
+                mid = start + (start-end) / 2;
+
+                if(arr[mid] > k) {
+                    if(arr[mid-1] <= k) {
+                        return mid;
+                    }
+                    end = mid - 1;
+                }
+                else if(arr[mid] <= k) {
+                    if(arr[mid+1] > k) {
+                        return mid+1;
+                    }
+                    start = mid + 1;
+                }
+            }
+        }
+}
+
+

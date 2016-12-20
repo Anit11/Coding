@@ -401,6 +401,8 @@ Data Structure and its operations
     string1.compareToIgnoreCase(string2);
     string1.concat(string2);                                                         --->append second string to the end of first string
     string1.contains(CharSequence);
+    Character.toLowerCase(str.charAt(i));                                            --->convert a character in a string to lowercase
+    string.split("-");                                                               --->returns the string[] array
 
 10. Float   - java.lang.Float
     Float.compare(f1, f2)                                                            --->returns less than 0 if f1 is less than f2, greater than 0 if f1 is greater than f2, 0 if equal
@@ -416,6 +418,7 @@ Data Structure and its operations
     character to int                    - (int)character;                            --->This returns ascii int value of character eg: (int)3; is 51
     character to int values             - Character.getNumericValue(char);           --->This returns integer char of char eg: Character.getNumericValue('3'); is 3
     "     "       "      " with ascii   - int a = '3' - '0'; a = 3;                  --->The character 0 has ascii 49. So if we minus that it returns the actual number
+    String to integer                   - Integer.parseInt(str);                     --->If the string does not hold 'number' inside it, it throws number format exception
 
     //TO STRING
     char to String                      - String.valueOf(char);
@@ -424,7 +427,8 @@ Data Structure and its operations
 
     //TO CHAR
     int to character                    - (char)integer;
-    String to char                      - string.charAt(index)
+    single digit int to some char       - (char) (int - '0');                        ---> convert the single digit int to appropriate character. Missing typecast would say lossy conversion
+    String to char                      - string.charAt(index);
     String to char Array                - string.toCharArray();
 
 

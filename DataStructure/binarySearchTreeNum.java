@@ -23,11 +23,12 @@ public class binarySearchTreeNum {
         root.left = new node(5);
         root.right = new node(15);
         root.left.left= new node(2);
-        root.left.right = new node(3);
+        root.left.left.right = new node(3);
         root.right.right = new node(20);
         // what happens when root.right.right is again initialized. Will it old value get replaced
         root.right.right.right = new node(50);
 
+/*
         if(root != null) {
             int smallest = find_smallest(root);
             int biggest = find_biggest(root);
@@ -55,7 +56,14 @@ public class binarySearchTreeNum {
         //find shallow depth
         int shallowDepth = findShallowDepth(root);
         System.out.println("The shallow depth of the given tree is : "+shallowDepth);
+*/
 
+        int nodeCount = countNodesInRange(root, 1, 10);
+        System.out.println(nodeCount);
+        boolean ans = isSame(root, root.left);
+        System.out.println(ans);
+        int bigger = justBigger(root, 0);
+        System.out.println(bigger);
     }
 
     public static int find_smallest(node root) {
@@ -255,5 +263,77 @@ public class binarySearchTreeNum {
 
             return max (subtree_in_range(root.left, start, end), subtree_in_range(root.right, start, end));
         }
+
+        //given the tree, return the number of nodes in the subtree in which all the node elements are with in the range
+        //Interview Question
+        static int countNodesInRange(node root, int stRange, int endRange) {
+            
+            if(root == null ) {
+                return 0;
+            }
+            else if(root.data > stRange && root.data < endRange) {
+                int max = find_biggest(root);
+                int min = find_smallest(root);
+
+                if(min > stRange && max <endRange) {
+                        return find_node_count(root);
+                }
+                else {
+                    return max(countNodesInRange(root.left, stRange, endRange), countNodesInRange(root.right, stRange, endRange));
+                }
+            }
+            else if(root.data < stRange) {
+                return countNodesInRange(root.right, stRange, endRange);
+            }
+            return countNodesInRange(root.left, stRange, endRange);
+        }   
+
+        //given the root of two trees, tell if two trees are same or not
+        static boolean isSame(node aRoot, node bRoot) {
+            
+            if(aRoot == null && bRoot == null) {
+                return true;
+            }
+            else if((aRoot == null && bRoot != null) || (aRoot != null && bRoot == null)) {
+                return false;
+            }
+            else {
+                if(aRoot.data != bRoot.data) {
+                    return false;
+                }
+                else {
+                    return isSame(aRoot.left, bRoot.left) && isSame(aRoot.right, bRoot.right);
+                }
+            }
+        }
+
+        //given the root of a tree, check if the tree is binary search or not
+        
+
+
+
+
+        //given the root of the tree. return the just bigger number in the binary search tree
+        static int justBigger(node root, int k) {
+            
+            if(root == null) {
+                return -1;
+            }
+            
+            int temp = -1;
+            while(root != null) {
+                if(root.data <= k) {
+                    root = root.right;
+                }
+                else if(root.data > k) {
+                    temp = root.data;    
+                    root = root.left;
+                }
+            }
+            return temp;
+        }
+        
+
+
 
 }
