@@ -1,6 +1,61 @@
 import java.util.*;
 
+//Problem 1. ReverseWord
+//Problem 2. addDigit
+//Problem 3. BubbleSort
+//Problem 4. Binary Search
+//Problem 5. findRepeatingCharacter
+//Problem 6. Find all repeated words in a string
+//Problem 7. Find all repeated words in a string
+//Problem 8. Two-Sum pair, finding first pair
+//Problem 9. Two-Sum pair, finding all pairs
+//Problem 10. Two-Sum pair finding all possible pairs
+//Problem 11. Merge two sorted arrays
+//Problem 12. Binary Search recursive method
+//Problem 13. Partition array with pivot element
+//Problem 14. Finding Equilibrium index of an array
+//Problem 15. Find kth smallest number in unsorted array
+//Problem 16. Given two list. Find common elements in both list.
+//Problem 17. Convert string to signed int
+//Problem 18. Convert signed int to string
+//Problem 19. Find unique character in a string where all other characters are present exactly twice
+//Problem 20. Delete the first given character from a String
+//Problem 21. K- messed sorting
+//Problem 22. Island Problem
+//Problem 23. Check Isomorphic for two strings
+//Problem 24. Median of stream of numbers
+//Problem 25. Find sub-array that gives maximum sum
+//Problem 26. Find the Missing number in the array 1 to n. Exactly one number is missing, and one number is duplicated twice.
+//Problem 27. Find Missing numbers in the array 1 to n.
+//Problem 28. Seperate even and odd numbers. Even first and odd second 
+//Problem 29: Find three numbers in a array that will add to a given sum
+//Problem 30: Find number in rotated sorted array
+//Problem 31. Find minimum number in rotated sorted array(with no duplicates) 
+//Problem 32. Sort an array of 0's, 1's, 2's
+//Problem 33. Given list of sorted distinct numbers. Find number with same index.
+//Problem 34. Stack Implementation
+//Problem 35. find k nearest cluster in the group
+//reverse a C-Style string
+//remove duplicates in string without using buffer
+//find anagram
+// Given two sorted list, find kth largest number
+//Given Array of positive integers, a number is duplicated, find the dupplicated in O(n) time and O(1) space
+//Given an int, print the number with no repeating digits
+//Given an array, find the majority element in the list 
+//Given an stream of numbers as an array, find the median of stream of number
+//check if array is unique or not using Bit Manipulation
+//Print matrix diagonally
+//return all unique pairs of integers that would add up to sum
+//Sudoku Solver
+//Find the successor of the node, ---given the node---
+//Find the subset of the array
+//given an array and a number, find the first occurance of the number
+//Given the list of numbers, find the longest consecutive numbers 
+//Given the array of numbers, starting position and ending position, calculate and print the addition from the starting point to the ending point 
+//Given an array with unique numbers, print the wave form of the number
+//Problem 56. Given the sorted array, find just bigger to a element k, k can or cannot be present in the array
 //Class for Stack Implementation - LinkedList
+
 class node {
    int data;
    node next;
@@ -132,12 +187,14 @@ public class AllAlgoProblems
             Boolean b = findRepeatCharacter(word);
             printRepeat(b);
         }
+
         // Problem 6. Find all repeated words in a string
         {
             System.out.println("\nProblem 6. Find all repeated words in a string");
             String str = ".,!: I  . am Sloth,. I move slowly. I walk slowly. Sloth says Hello!)";
             findRepeatedWords(str);
         }
+
         // Problem 7. Find all repeated words in a string
         {
             String str = ".,!: I  . am Sloth,. I move slowly. I walk slowly. Sloth says Hello!! :) ";
@@ -147,11 +204,13 @@ public class AllAlgoProblems
                 System.out.println(st);
             }
         }
+
         //Problem 8. Two-Sum pair, finding first pair
         {
             ArrayList<Integer> arrList = new ArrayList<> (Arrays.asList(4,1,3,-2,4,3,6,5,5,-1,3,10,2));
             findaPair(arrList, 8);
         }
+
         //Problem 9. Two-Sum pair, finding all pairs
         {
             //ArrayList<Integer> arrList = new ArrayList<> (Arrays.asList(5,1,3,-2,4,3,6,5,5,-1,3,10,2));
@@ -159,6 +218,7 @@ public class AllAlgoProblems
             ArrayList<Integer> arrList = new ArrayList<> (Arrays.asList(3,3,3,3,5,5,5,5,5));
             findallPair(arrList, 8);
         }
+
         //Problem 10. Two-Sum pair finding all possible pairs
         {
             //ArrayList<Integer> arrList = new ArrayList<> (Arrays.asList(2,3,4,5,1,7,6,4,2,6));
@@ -166,6 +226,7 @@ public class AllAlgoProblems
             ArrayList<Integer> arrList = new ArrayList<> (Arrays.asList(5,1,3,-2,4,3,6,5,5,-1,3,10,2));
             find_all_possible_pairs(arrList, 8);
         }
+
         //Problem 11. Merge two sorted arrays
         {
             ArrayList<Integer> arr1 = new ArrayList<Integer> (Arrays.asList(1, 5, 7));
@@ -1035,6 +1096,7 @@ public class AllAlgoProblems
 
      // -----------------------------------------------------------------------------------------
      //Problem 15. Find kth smallest number in unsorted array
+     //Error: This is kth largest number in the array
      // -----------------------------------------------------------------------------------------
      public static int find_kth_smallElement(ArrayList<Integer> aList, int k) {
         
@@ -1135,7 +1197,6 @@ public class AllAlgoProblems
 
      // -----------------------------------------------------------------------------------------
      //Problem 18. Convert signed int to string
-     // Best peice of code. Amazing work. Love this piece of code.
      // -----------------------------------------------------------------------------------------
 
     public static String int_to_string(int number) {
@@ -1180,7 +1241,7 @@ public class AllAlgoProblems
     }
 
      // -----------------------------------------------------------------------------------------
-     //Problem 20. Delete the first given character from a String
+     //Problem 20. Delete the first given characters from a String
      // -----------------------------------------------------------------------------------------
      
      public static String delete_character(String my_string, String remove) {

@@ -85,6 +85,7 @@ public class SinglyLinked {
         
     }
 
+    //1. Count the node in the list
     private static int countList(node head) {
         
         node temp = head;

@@ -66,6 +66,7 @@ public class binarySearchTreeNum {
         System.out.println(bigger);
     }
 
+    //1. find smallest number, given the root
     public static int find_smallest(node root) {
         
         if(null == root.left) {
@@ -76,6 +77,7 @@ public class binarySearchTreeNum {
         }
     }
     
+    //2. find biggest number, given the root
     public static int find_biggest(node root) {
         
         if(null == root.right) {
@@ -85,7 +87,8 @@ public class binarySearchTreeNum {
             return find_biggest(root.right);
         }
     }
-
+    
+    //3. Print the tree
     public static void printTree(node root)
     {
         if (root == null)
@@ -98,6 +101,7 @@ public class binarySearchTreeNum {
         printTree(root.right);
     }
 
+    //4.given root and number, find the path whose elements add up to a sum
     public static boolean search_the_path(node root, int num, int total) {
         
 
@@ -128,6 +132,7 @@ public class binarySearchTreeNum {
            }
        }
 
+       //5. Count the number of nodes
        public static int find_node_count(node root) {
         
             if(root == null) {
@@ -137,6 +142,7 @@ public class binarySearchTreeNum {
             return 1 + find_node_count(root.left) + find_node_count(root.right);
        }
 
+       //6. Find the depth of the tree
        public static int find_depth(node root) {
         
             if(root == null) {
@@ -155,7 +161,7 @@ public class binarySearchTreeNum {
             return a;
        }
 
-       //print the tree in increasing order
+       //7. print the tree in increasing order
        public static void print_ascending_tree(node root) {
             
             if(root == null) {
@@ -167,6 +173,7 @@ public class binarySearchTreeNum {
             print_ascending_tree(root.right);
         }
 
+        //8. Postorder traversal
         public static void print_postorder(node root) {
             
             if(root == null) {
@@ -178,6 +185,7 @@ public class binarySearchTreeNum {
             System.out.println(root.data);
         }
 
+        //9. Preorder traversal
         public static void print_preorder(node root) {
             
             if(root == null) {
@@ -190,6 +198,7 @@ public class binarySearchTreeNum {
         }
             
     
+        //10. Given the array, find the path as given list
         public static void print_path(node root, ArrayList<Integer> aList) {
             
             if(root == null) {
@@ -209,6 +218,7 @@ public class binarySearchTreeNum {
             aList.remove(aList.size()-1);
         }
 
+        //11. Create the mirror of binary tree
         public static void mirror(node root) {
             
             if(root == null) {
@@ -241,6 +251,7 @@ public class binarySearchTreeNum {
             
         }
 
+        //12. give root and range, find the subtree in the array containing elements within the range
         public static int subtree_in_range(node root, int start, int end) {
             
             if(root == null) {
@@ -264,7 +275,7 @@ public class binarySearchTreeNum {
             return max (subtree_in_range(root.left, start, end), subtree_in_range(root.right, start, end));
         }
 
-        //given the tree, return the number of nodes in the subtree in which all the node elements are with in the range
+        //13. given the root and range, return the number of nodes in the subtree in the range
         //Interview Question
         static int countNodesInRange(node root, int stRange, int endRange) {
             
@@ -288,7 +299,7 @@ public class binarySearchTreeNum {
             return countNodesInRange(root.left, stRange, endRange);
         }   
 
-        //given the root of two trees, tell if two trees are same or not
+        //14. given the root of two trees, tell if two trees are same or not
         static boolean isSame(node aRoot, node bRoot) {
             
             if(aRoot == null && bRoot == null) {
@@ -313,7 +324,7 @@ public class binarySearchTreeNum {
 
 
 
-        //given the root of the tree. return the just bigger number in the binary search tree
+        //15. given the root of the tree. return the just bigger number in the binary search tree
         static int justBigger(node root, int k) {
             
             if(root == null) {

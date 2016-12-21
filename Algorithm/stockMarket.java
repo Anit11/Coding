@@ -29,7 +29,6 @@ class Stock {
         else {
             _hmap.put(stockName, stockCount);
         }
-
     }
 
     public void printStock() {
