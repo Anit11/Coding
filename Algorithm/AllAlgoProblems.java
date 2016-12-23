@@ -570,7 +570,6 @@ public class AllAlgoProblems
             System.out.println(findSuccessor(root._left._left._right));
         }
 
-*/
         //Problem 49.
         //Find the subset of the array
         {
@@ -611,6 +610,13 @@ public class AllAlgoProblems
         {
             int[] arr = new int[] {20, 40, 50, 60, 10, 30, 90};
             waveForm(arr);
+        }
+
+*/
+        //Problem 57. 
+        {
+            int number  = zipNumbers(12345, 678);
+            System.out.println(number);
         }
     }
 
@@ -2388,6 +2394,95 @@ public class AllAlgoProblems
                 }
             }
         }
+
+        //Problem 57. Given two numbers, zip it. If it exceeds 100000000 return -1 
+        static int zipNumbers(int a, int b) {
+            
+            int result = 0;
+
+            while (a > 0 || b > 0) {
+
+                int digits;
+                int division;
+                int num;
+
+                if(a > 0) {
+                    digits = Math.log(a) / Math.log(10) + 1;
+                    division = 1;
+                    for(int i=0; i<digits; i++) {
+                        division = division * 10;
+                    }
+                    num = a / division;
+                    a = a - division;
+                    System.out.println("a: "+a);
+
+                    result = (result * 10) + num;
+                }
+
+                if (b > 0) {
+                    digits = Math.log(b) / Math.log(10) + 1;
+                    division = 1;
+                    for(int i=0; i<digits; i++) {
+                        division = division * 10;
+                    }
+                    num = b / division;
+                    b = b - division;
+                    System.out.println("b: "+b);
+
+                    result = (result * 10) + num;
+ 
+                }
+            }
+
+            return result;
+        }   
+
+        //Problem 58. Find minimum number of flights needed
+		/* 
+		class Codechef
+		{
+			public static void main (String[] args) throws java.lang.Exception
+			{
+				// your code goes here
+				int arr[] = new int[] {900, 940, 950, 1100, 1500, 1800};
+				int dep[] = new int[] {910, 1200, 1120, 1130, 1900, 2000};
+				int flights = 6;
+				int result = findMinGates(arr, dep, flights);
+				System.out.println(result);
+			}
+		*/
+		
+		static int findMinGates(int[] arrivals, int[] departures, int flights) {
+        
+			int entry = 0;
+			int exit = 0;
+			int result = 0;
+			int noOfGates = 0;
+			PriorityQueue<Integer> heap = new PriorityQueue<>(flights);
+			
+			for(int i=0; i<flights; i++) {
+				heap.add(departures[i]);
+			}
+			
+			while(entry < flights) {
+				
+				if(arrivals[entry] < heap.element()) {
+					System.out.println("arrivals: "+arrivals[entry]);
+					System.out.println("arrivals: "+heap.element());
+					noOfGates++;
+					entry++;
+					if(result < noOfGates) {
+						System.out.println("No of Gates: "+result);
+						result = noOfGates;
+					}
+				}
+				else {
+					heap.remove();
+					noOfGates--;
+				}
+			}
+			return result;
+		}
 }
 
 
