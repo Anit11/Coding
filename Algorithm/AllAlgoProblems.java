@@ -130,7 +130,7 @@ class CreateSum {
             _arr[i] = arr[i] +  _arr[i-1];
        }
     }
-
+}
 
 public class AllAlgoProblems
 {
@@ -1669,8 +1669,8 @@ public class AllAlgoProblems
                }
            }
            one++;
-           
         }
+
         for(int i : aList) {
             System.out.println(i);
         }
@@ -1959,8 +1959,8 @@ public class AllAlgoProblems
     }
 
 
-		//Problem 42.
-		//Given an array, find the majority element in the list 
+    //Problem 42.
+    //Given an array, find the majority element in the list 
 		
     public static int findMajorityElement (ArrayList<Integer> aList) {
 			
@@ -1986,503 +1986,579 @@ public class AllAlgoProblems
 			return prev;
     }
 
-        //Problem 43.
-        //Given an stream of numbers as an array, find the median of stream of number
+    //Problem 43.
+    //Given an stream of numbers as an array, find the median of stream of number
+    
+    public static void findMedian(ArrayList<Integer> aList) {
         
-		public static void findMedian(ArrayList<Integer> aList) {
-			
-			if(aList.isEmpty()) {
-				System.out.println("The list is empty");
-			}
+        if(aList.isEmpty()) {
+            System.out.println("The list is empty");
+        }
 
-			PriorityQueue<Integer> smallQueue = new PriorityQueue<> (Collections.reverseOrder());
-			PriorityQueue<Integer> bigQueue = new PriorityQueue<> ();
+        PriorityQueue<Integer> smallQueue = new PriorityQueue<> (Collections.reverseOrder());
+        PriorityQueue<Integer> bigQueue = new PriorityQueue<> ();
 
-			smallQueue.add(aList.get(0));
+        smallQueue.add(aList.get(0));
 
-			for(int i=1; i<aList.size(); i++) {
-				if(aList.get(i) < smallQueue.element()) {
-					smallQueue.add(aList.get(i));
-				}
-				else {
-					bigQueue.add(aList.get(i));
-				}
+        for(int i=1; i<aList.size(); i++) {
+            if(aList.get(i) < smallQueue.element()) {
+                smallQueue.add(aList.get(i));
+            }
+            else {
+                bigQueue.add(aList.get(i));
+            }
 
-				if(Math.abs(smallQueue.size() - bigQueue.size()) == 2) {
-					if(smallQueue.size() > bigQueue.size()) {
-						int element = smallQueue.remove();
-						bigQueue.add(element);
-					}
-					else {
-						int element = bigQueue.remove();
-						smallQueue.add(element);
-					}
-				}
-				printMedian(smallQueue, bigQueue);
-			}
-		}
-
-		public static void printMedian(PriorityQueue<Integer> smallQueue, PriorityQueue<Integer> bigQueue) {
-			
-			if(Math.abs(smallQueue.size() - bigQueue.size()) == 1) {
-				if(bigQueue.size() > smallQueue.size()) {
-					System.out.println(bigQueue.element());
-				}
-				else {
-					System.out.println(smallQueue.element());
-				}
-			}
-			else if(smallQueue.size() == bigQueue.size()) {
-				int res = (smallQueue.element() + bigQueue.element() ) / 2;
-				System.out.println(res);
-			}
-			
-		}
-
-        //check if array is unique or not using Bit Manipulation
-        //Only 32 bits are in a integer, so this method works only for number upto 16
-        //We can use long, yet the number ranges from -32 to 32, and 1 bit for sign
-
-        public static void findUniqueBitManipulation(ArrayList<Integer> aList) {
-
-            int k = 0;
-
-            for(int i=0; i<aList.size(); i++) {
-                int j = 1;
-                j = j<<aList.get(i);
-                System.out.println("The j value is "+j);
-                int and = j & k;
-                if(and == 0) {
-                    k = k | j;
+            if(Math.abs(smallQueue.size() - bigQueue.size()) == 2) {
+                if(smallQueue.size() > bigQueue.size()) {
+                    int element = smallQueue.remove();
+                    bigQueue.add(element);
                 }
                 else {
-                    System.out.println("The given array is not unique");
-                    return;
+                    int element = bigQueue.remove();
+                    smallQueue.add(element);
                 }
             }
-            System.out.println("Unique");
-		
+            printMedian(smallQueue, bigQueue);
         }
-
-        //Problem 45.
-        //Print matrix diagonally
-        public static void printDiagonally(int[][] matrix) {
-
-            for(int i=0; i<matrix.length; i++) {
-                for(int j=0, k=i; j<=i; j++,k--) {
-                    if(j<0) {
-                        break;
-                    }
-                    System.out.print(matrix[k][j]);
-                }
-                System.out.println();
-            }
-            
-            for(int j=1; j<matrix[0].length; j++) {
-                for(int i=matrix.length-1, k=j; k<=matrix[0].length; i--,k++) {
-                    if(k>=matrix[0].length) {
-                        break;
-                    }
-                    System.out.print(matrix[i][k]);
-                }
-                System.out.println();
-            }
-                        
-        }
-
-        //Problem 46.
-        //return all unique pairs of integers that would add up to sum
-        //Adding a pair class to return result
-
-        public static ArrayList<Pair> findUniquePair(ArrayList<Integer> aList, int k) 
-        {
-            HashSet<Integer> hSet = new HashSet<>();
-            ArrayList<Pair> result = new ArrayList<>();
-
-            for(int i=0; i<aList.size(); i++) 
-            {
-                if(hSet.contains(k - aList.get(i)))
-                {	
-                    if(!hSet.contains(aList.get(i)))
-                    {
-                        result.add(new Pair(aList.get(i), k-aList.get(i)));
-                    }	
-                }
-                if(!hSet.contains(aList.get(i))) 
-                {
-                    hSet.add(aList.get(i));
-                }
-            }
-            return result;
-        }
-		
-		//Problem 47.
-		//Sudoku Solver
-
-		public static boolean checkSudoku(int[][] matrix, int stIndex, int eIndex) {
-	   
-			ArrayList<Integer> listOfPossible = new ArrayList<>();
-			for(int i=stIndex; i<matrix.length; i++){
-				for(int j=eIndex; j<matrix[0].length; j++){
-					if(matrix[i][j] == 0) {
-						listOfPossible = findListPossible(matrix, i, j);
-						if(listOfPossible.isEmpty()) {
-							return false;
-						}
-						
-						for(int k=0; k<listOfPossible.size(); k++) {
-							matrix[stIndex][eIndex] = listOfPossible.get(k);
-							return checkSudoku(matrix, i+1, j+1);
-						}	   
-					}
-				}
-			}
-			return true;
-		}
-
-		public static ArrayList<Integer> findListPossible(int[][] matrix, int i, int j) {
-	   
-			HashSet<Integer> numPresent = new HashSet<>();
-			ArrayList<Integer> result = new ArrayList<>();
-	   
-			for(int x=i, y=0; y<matrix.length; y++) {
-				if(matrix[x][y] != 0) {
-					//System.out.println("1.check"+x);
-					numPresent.add(matrix[x][y]);
-				}
-			}
-	   
-			for(int y=j, x=0; x<matrix.length; x++) {
-				if(matrix[x][y] != 0) {
-					//System.out.println("2.check"+y);
-					numPresent.add(matrix[x][y]);
-				}
-			}
-	   
-			int row = i - (i % 3);
-			int col = j - (j % 3);
-	   
-			for(int x=row; x<=row+2; x++) {
-				for(int y=col; y<=col+2; y++) {
-					if(matrix[x][y] != 0) {
-						//System.out.println("3.check"+x+""+y);
-						numPresent.add(matrix[x][y]);
-					}
-				}
-			}
-			for(int z=0; z<9; z++){
-				if(!numPresent.contains(i)) {
-					result.add(z);
-				}
-			}
-			/*for(int list : result) {
-				System.out.println(list);
-			}
-			*/
-			return result;
-		}
-
-        //Problem 48.
-		//Find the successor of the node, ---given the node---
-        public static int findSuccessor(TreeNode givenNode) {
-            
-            if(givenNode._right != null) {
-                return givenNode._right._data;
-            }
-            else {
-                return findParentSuccessor(givenNode._parent, givenNode._data);
-            }
-        }
-
-        public static int findParentSuccessor(TreeNode node, int targetData) {
-            
-            if(node != null) {
-                if(node._data > targetData) {
-                    return node._data;
-                }   
-            }
-            if(node._parent != null) {
-                findParentSuccessor(node._parent, targetData);
-            }
-            return -1;
-        }
-
-        //Problem 49.
-        //Find the subset of the array
-
-        static void printSubset(ArrayList<Integer> aList) {
-            
-            for(int i=0; i<Math.pow(2, aList.size()); i++) {
-                for(int j=0; j<Math.log(i)/Math.log(2)+1; j++) {
-                    int k = 1 << j;
-                    k = k & i;
-                    if(k != 0) {
-                        System.out.print(aList.get(j));
-                    }
-                }
-                System.out.println();
-            }
-        }
-
-        //Problem 50.
-        //Given two list, find the number that is not present in both the list
-        //Add code
-
-        //Problem 51.
-        //given an array and a number, find the first occurance of the number
-
-        static int findFirstOccurance(ArrayList<Integer> aList, int num) {
-            
-            if(aList == null || aList.isEmpty()) {
-                return -1;
-            }
-
-            int start = 0; 
-            int end = aList.size()-1;
-            
-            while(start <= end) {
-                int mid = start + (end - start)/2;
-                if(aList.get(mid) == num) {
-                    if(mid == 0 || aList.get(mid-1) != num) {
-                        return mid;
-                    }
-                    else {
-                        end = mid - 1;
-                    }
-                }   
-                else if(aList.get(mid) < num) {
-                    start = mid + 1;
-                }
-                else if(aList.get(mid) > num) {
-                    end = mid - 1;
-                }
-            }
-
-            return -1;
-        }   
-
-        //Problem 52.
-        //Given the phone number, print all the permutaion of string for the phone number
-        static void printPermutation(String phoneNumber) {
-            
-            if(phoneNumber == null || phoneNumber.length() == 0) {
-                return;
-            }
-            else {
-                ArrayList<Character> result = new ArrayList<>();
-                doPermutation(phoneNumber, 0, result);
-            }
-        }
-
-        static void doPermutation(String phoneNo, int position, ArrayList<Character> result) {
-            
-            if(phoneNo.length() == position) {
-                System.out.println(result.toString());
-                return;
-            }
-            
-            int digit = Character.getNumericValue(phoneNo.charAt(position));
-            PhoneNumber obj = new PhoneNumber();
-
-            for(int j=0; j<obj.phoneMap.get(digit).length(); j++) {
-                String value = obj.phoneMap.get(digit);
-                char c = value.charAt(j);
-                result.add(new Character(c));
-                doPermutation(phoneNo, position+1, result);
-                result.remove(result.size()-1);
-            }
-        }
-    
-        //Problem 53.
-        //Given the list of numbers, find the longest consecutive numbers 
-        static void findLongestConsecutive(int[] array) {
-
-            if(array.length == 0 || array.length == 1) {
-                return;
-            }
-
-            int permI = 0;
-            int permJ = 0;
-            int count = 0;
-            int tempI = 0;
-            int tempJ = 0;
-
-            for(int i=0, j=1; j<array.length; i++, j++) {
-                if(array[j]-array[i] == 1) {
-                    if(tempI == 0) {
-                        tempI = i;
-                        tempJ = j;
-                    }
-                    else {
-                        tempJ++;
-                    }
-                    count--;
-                }
-                else if(tempI != 0 && count <= 0) {
-                        permI = tempI;
-                        permJ = tempJ;
-                        count = permJ - permI;
-                        tempI = 0;
-                        tempJ = 0;
-                }
-            }
-
-            System.out.println("The starting index of consecutive numbers :"+permI);
-            System.out.println("The ending index of consecutive numbers :"+permJ);
     }
 
-
-        //Problem 54.
-        //Given the array of numbers, starting position and ending position, calculate and print the addition from the starting point to the ending point 
-        static void printSum(int[] arr, int start, int end) {
-            CreateSum obj = new CreateSum(arr);
-
-            int stValue = obj._arr[start-1];
-            int endValue = obj._arr[end];
-
-            int result = endValue - stValue;
-            System.out.println("The sum is "+result);
-        }    
-
-        //Problem 55.
-        //Given an array with unique numbers, print the wave form of the number
-        static void waveForm(int[] arr) {
-            
-            for(int i=0; i<arr.length-1; i++) {
-                if(arr[i] > arr[i+1]) {
-                    int temp = arr[i]; 
-                    arr[i] = arr[i+1];
-                    arr[i+1] = temp;
-                }
-                i++;
-                if(arr[i] < arr[i+1]) {
-                    int temp = arr[i]; 
-                    arr[i] = arr[i+1];
-                    arr[i+1] = temp;
-                }
+    public static void printMedian(PriorityQueue<Integer> smallQueue, PriorityQueue<Integer> bigQueue) {
+        
+        if(Math.abs(smallQueue.size() - bigQueue.size()) == 1) {
+            if(bigQueue.size() > smallQueue.size()) {
+                System.out.println(bigQueue.element());
             }
-            for(int i=0; i<arr.length; i++) {
-                System.out.print(arr[i]+" , ");
+            else {
+                System.out.println(smallQueue.element());
+            }
+        }
+        else if(smallQueue.size() == bigQueue.size()) {
+            int res = (smallQueue.element() + bigQueue.element() ) / 2;
+            System.out.println(res);
+        }
+        
+    }
+
+    //check if array is unique or not using Bit Manipulation
+    //Only 32 bits are in a integer, so this method works only for number upto 16
+    //We can use long, yet the number ranges from -32 to 32, and 1 bit for sign
+
+    public static void findUniqueBitManipulation(ArrayList<Integer> aList) {
+
+        int k = 0;
+
+        for(int i=0; i<aList.size(); i++) {
+            int j = 1;
+            j = j<<aList.get(i);
+            System.out.println("The j value is "+j);
+            int and = j & k;
+            if(and == 0) {
+                k = k | j;
+            }
+            else {
+                System.out.println("The given array is not unique");
+                return;
+            }
+        }
+        System.out.println("Unique");
+    
+    }
+
+    //Problem 45.
+    //Print matrix diagonally
+    public static void printDiagonally(int[][] matrix) {
+
+        for(int i=0; i<matrix.length; i++) {
+            for(int j=0, k=i; j<=i; j++,k--) {
+                if(j<0) {
+                    break;
+                }
+                System.out.print(matrix[k][j]);
             }
             System.out.println();
         }
         
-        //Problem 56. Given the sorted array, find just bigger to a element k, k can or cannot be present in the array
-        static int justBigger(int[] arr, int k) {
-            
-            if(arr.length == 0 || arr[end] <= k) {
-                return -1;
-            }
-            
-            int start = 0;
-            int end = arr.length - 1;
-            
-            while(start <= end) {
-                mid = start + (start-end) / 2;
-
-                if(arr[mid] > k) {
-                    if(arr[mid-1] <= k) {
-                        return mid;
-                    }
-                    end = mid - 1;
+        for(int j=1; j<matrix[0].length; j++) {
+            for(int i=matrix.length-1, k=j; k<=matrix[0].length; i--,k++) {
+                if(k>=matrix[0].length) {
+                    break;
                 }
-                else if(arr[mid] <= k) {
-                    if(arr[mid+1] > k) {
-                        return mid+1;
+                System.out.print(matrix[i][k]);
+            }
+            System.out.println();
+        }
+                    
+    }
+
+    //Problem 46.
+    //return all unique pairs of integers that would add up to sum
+    //Adding a pair class to return result
+
+    public static ArrayList<Pair> findUniquePair(ArrayList<Integer> aList, int k) 
+    {
+        HashSet<Integer> hSet = new HashSet<>();
+        ArrayList<Pair> result = new ArrayList<>();
+
+        for(int i=0; i<aList.size(); i++) 
+        {
+            if(hSet.contains(k - aList.get(i)))
+            {	
+                if(!hSet.contains(aList.get(i)))
+                {
+                    result.add(new Pair(aList.get(i), k-aList.get(i)));
+                }	
+            }
+            if(!hSet.contains(aList.get(i))) 
+            {
+                hSet.add(aList.get(i));
+            }
+        }
+        return result;
+    }
+    
+    //Problem 47.
+    //Sudoku Solver
+
+    public static boolean checkSudoku(int[][] matrix, int stIndex, int eIndex) {
+   
+        ArrayList<Integer> listOfPossible = new ArrayList<>();
+        for(int i=stIndex; i<matrix.length; i++){
+            for(int j=eIndex; j<matrix[0].length; j++){
+                if(matrix[i][j] == 0) {
+                    listOfPossible = findListPossible(matrix, i, j);
+                    if(listOfPossible.isEmpty()) {
+                        return false;
                     }
-                    start = mid + 1;
+                    
+                    for(int k=0; k<listOfPossible.size(); k++) {
+                        matrix[stIndex][eIndex] = listOfPossible.get(k);
+                        return checkSudoku(matrix, i+1, j+1);
+                    }	   
                 }
             }
         }
+        return true;
+    }
 
-        //Problem 57. Given two numbers, zip it. If it exceeds 100000000 return -1 
-        static int zipNumbers(int a, int b) {
-            
-            int result = 0;
-
-            while (a > 0 || b > 0) {
-
-                int digits;
-                int division;
-                int num;
-
-                if(a > 0) {
-                    digits = Math.log(a) / Math.log(10) + 1;
-                    division = 1;
-                    for(int i=0; i<digits; i++) {
-                        division = division * 10;
-                    }
-                    num = a / division;
-                    a = a - division;
-                    System.out.println("a: "+a);
-
-                    result = (result * 10) + num;
-                }
-
-                if (b > 0) {
-                    digits = Math.log(b) / Math.log(10) + 1;
-                    division = 1;
-                    for(int i=0; i<digits; i++) {
-                        division = division * 10;
-                    }
-                    num = b / division;
-                    b = b - division;
-                    System.out.println("b: "+b);
-
-                    result = (result * 10) + num;
- 
+    public static ArrayList<Integer> findListPossible(int[][] matrix, int i, int j) {
+   
+        HashSet<Integer> numPresent = new HashSet<>();
+        ArrayList<Integer> result = new ArrayList<>();
+   
+        for(int x=i, y=0; y<matrix.length; y++) {
+            if(matrix[x][y] != 0) {
+                //System.out.println("1.check"+x);
+                numPresent.add(matrix[x][y]);
+            }
+        }
+   
+        for(int y=j, x=0; x<matrix.length; x++) {
+            if(matrix[x][y] != 0) {
+                //System.out.println("2.check"+y);
+                numPresent.add(matrix[x][y]);
+            }
+        }
+   
+        int row = i - (i % 3);
+        int col = j - (j % 3);
+   
+        for(int x=row; x<=row+2; x++) {
+            for(int y=col; y<=col+2; y++) {
+                if(matrix[x][y] != 0) {
+                    //System.out.println("3.check"+x+""+y);
+                    numPresent.add(matrix[x][y]);
                 }
             }
+        }
+        for(int z=0; z<9; z++){
+            if(!numPresent.contains(i)) {
+                result.add(z);
+            }
+        }
+        /*for(int list : result) {
+            System.out.println(list);
+        }
+        */
+        return result;
+    }
 
-            return result;
-        }   
-
-        //Problem 58. Find minimum number of flights needed
-		/* 
-		class Codechef
-		{
-			public static void main (String[] args) throws java.lang.Exception
-			{
-				// your code goes here
-				int arr[] = new int[] {900, 940, 950, 1100, 1500, 1800};
-				int dep[] = new int[] {910, 1200, 1120, 1130, 1900, 2000};
-				int flights = 6;
-				int result = findMinGates(arr, dep, flights);
-				System.out.println(result);
-			}
-		*/
-		
-		static int findMinGates(int[] arrivals, int[] departures, int flights) {
+    //Problem 48.
+    //Find the successor of the node, ---given the node---
+    public static int findSuccessor(TreeNode givenNode) {
         
-			int entry = 0;
-			int exit = 0;
-			int result = 0;
-			int noOfGates = 0;
-			PriorityQueue<Integer> heap = new PriorityQueue<>(flights);
-			
-			for(int i=0; i<flights; i++) {
-				heap.add(departures[i]);
-			}
-			
-			while(entry < flights) {
-				
-				if(arrivals[entry] < heap.element()) {
-					System.out.println("arrivals: "+arrivals[entry]);
-					System.out.println("arrivals: "+heap.element());
-					noOfGates++;
-					entry++;
-					if(result < noOfGates) {
-						System.out.println("No of Gates: "+result);
-						result = noOfGates;
-					}
-				}
-				else {
-					heap.remove();
-					noOfGates--;
-				}
-			}
-			return result;
-		}
+        if(givenNode._right != null) {
+            return givenNode._right._data;
+        }
+        else {
+            return findParentSuccessor(givenNode._parent, givenNode._data);
+        }
+    }
+
+    public static int findParentSuccessor(TreeNode node, int targetData) {
+        
+        if(node != null) {
+            if(node._data > targetData) {
+                return node._data;
+            }   
+        }
+        if(node._parent != null) {
+            findParentSuccessor(node._parent, targetData);
+        }
+        return -1;
+    }
+
+    //Problem 49.
+    //Find the subset of the array
+
+    static void printSubset(ArrayList<Integer> aList) {
+        
+        for(int i=0; i<Math.pow(2, aList.size()); i++) {
+            for(int j=0; j<Math.log(i)/Math.log(2)+1; j++) {
+                int k = 1 << j;
+                k = k & i;
+                if(k != 0) {
+                    System.out.print(aList.get(j));
+                }
+            }
+            System.out.println();
+        }
+    }
+
+    //Problem 50.
+    //Given two list, find the number that is not present in both the list
+    //Add code
+
+    //Problem 51.
+    //given an array and a number, find the first occurance of the number
+
+    static int findFirstOccurance(ArrayList<Integer> aList, int num) {
+        
+        if(aList == null || aList.isEmpty()) {
+            return -1;
+        }
+
+        int start = 0; 
+        int end = aList.size()-1;
+        
+        while(start <= end) {
+            int mid = start + (end - start)/2;
+            if(aList.get(mid) == num) {
+                if(mid == 0 || aList.get(mid-1) != num) {
+                    return mid;
+                }
+                else {
+                    end = mid - 1;
+                }
+            }   
+            else if(aList.get(mid) < num) {
+                start = mid + 1;
+            }
+            else if(aList.get(mid) > num) {
+                end = mid - 1;
+            }
+        }
+
+        return -1;
+    }   
+
+    //Problem 52.
+    //Given the phone number, print all the permutaion of string for the phone number
+    static void printPermutation(String phoneNumber) {
+        
+        if(phoneNumber == null || phoneNumber.length() == 0) {
+            return;
+        }
+        else {
+            ArrayList<Character> result = new ArrayList<>();
+            doPermutation(phoneNumber, 0, result);
+        }
+    }
+
+    static void doPermutation(String phoneNo, int position, ArrayList<Character> result) {
+        
+        if(phoneNo.length() == position) {
+            System.out.println(result.toString());
+            return;
+        }
+        
+        int digit = Character.getNumericValue(phoneNo.charAt(position));
+        PhoneNumber obj = new PhoneNumber();
+
+        for(int j=0; j<obj.phoneMap.get(digit).length(); j++) {
+            String value = obj.phoneMap.get(digit);
+            char c = value.charAt(j);
+            result.add(new Character(c));
+            doPermutation(phoneNo, position+1, result);
+            result.remove(result.size()-1);
+        }
+    }
+
+    //Problem 53.
+    //Given the list of numbers, find the longest consecutive numbers 
+    static void findLongestConsecutive(int[] array) {
+
+        if(array.length == 0 || array.length == 1) {
+            return;
+        }
+
+        int permI = 0;
+        int permJ = 0;
+        int count = 0;
+        int tempI = 0;
+        int tempJ = 0;
+
+        for(int i=0, j=1; j<array.length; i++, j++) {
+            if(array[j]-array[i] == 1) {
+                if(tempI == 0) {
+                    tempI = i;
+                    tempJ = j;
+                }
+                else {
+                    tempJ++;
+                }
+                count--;
+            }
+            else if(tempI != 0 && count <= 0) {
+                    permI = tempI;
+                    permJ = tempJ;
+                    count = permJ - permI;
+                    tempI = 0;
+                    tempJ = 0;
+            }
+        }
+
+        System.out.println("The starting index of consecutive numbers :"+permI);
+        System.out.println("The ending index of consecutive numbers :"+permJ);
 }
 
+
+    //Problem 54.
+    //Given the array of numbers, starting position and ending position, calculate and print the addition from the starting point to the ending point 
+    static void printSum(int[] arr, int start, int end) {
+        CreateSum obj = new CreateSum(arr);
+
+        int stValue = obj._arr[start-1];
+        int endValue = obj._arr[end];
+
+        int result = endValue - stValue;
+        System.out.println("The sum is "+result);
+    }    
+
+    //Problem 55.
+    //Given an array with unique numbers, print the wave form of the number
+    static void waveForm(int[] arr) {
+        
+        for(int i=0; i<arr.length-1; i++) {
+            if(arr[i] > arr[i+1]) {
+                int temp = arr[i]; 
+                arr[i] = arr[i+1];
+                arr[i+1] = temp;
+            }
+            i++;
+            if(arr[i] < arr[i+1]) {
+                int temp = arr[i]; 
+                arr[i] = arr[i+1];
+                arr[i+1] = temp;
+            }
+        }
+        for(int i=0; i<arr.length; i++) {
+            System.out.print(arr[i]+" , ");
+        }
+        System.out.println();
+    }
+    
+    //Problem 56. Given the sorted array, find just bigger to a element k, k can or cannot be present in the array
+    static int justBigger(int[] arr, int k) {
+        
+        if(arr.length == 0 || arr[end] <= k) {
+            return -1;
+        }
+        
+        int start = 0;
+        int end = arr.length - 1;
+        
+        while(start <= end) {
+            mid = start + (start-end) / 2;
+
+            if(arr[mid] > k) {
+                if(arr[mid-1] <= k) {
+                    return mid;
+                }
+                end = mid - 1;
+            }
+            else if(arr[mid] <= k) {
+                if(arr[mid+1] > k) {
+                    return mid+1;
+                }
+                start = mid + 1;
+            }
+        }
+    }
+
+    //Problem 57. Given two numbers, zip it. If it exceeds 100000000 return -1 
+    static int zipNumbers(int a, int b) {
+        
+        int result = 0;
+
+        while (a > 0 || b > 0) {
+
+            int digits;
+            int division;
+            int num;
+
+            if(a > 0) {
+                digits = Math.log(a) / Math.log(10) + 1;
+                division = 1;
+                for(int i=0; i<digits; i++) {
+                    division = division * 10;
+                }
+                num = a / division;
+                a = a - division;
+                System.out.println("a: "+a);
+
+                result = (result * 10) + num;
+            }
+
+            if (b > 0) {
+                digits = Math.log(b) / Math.log(10) + 1;
+                division = 1;
+                for(int i=0; i<digits; i++) {
+                    division = division * 10;
+                }
+                num = b / division;
+                b = b - division;
+                System.out.println("b: "+b);
+
+                result = (result * 10) + num;
+
+            }
+        }
+
+        return result;
+    }   
+
+    //Problem 58. Find minimum number of flights needed
+    /* 
+    class Codechef
+    {
+        public static void main (String[] args) throws java.lang.Exception
+        {
+            // your code goes here
+            int arr[] = new int[] {900, 940, 950, 1100, 1500, 1800};
+            int dep[] = new int[] {910, 1200, 1120, 1130, 1900, 2000};
+            int flights = 6;
+            int result = findMinGates(arr, dep, flights);
+            System.out.println(result);
+        }
+    }
+    */
+    
+    static int findMinGates(int[] arrivals, int[] departures, int flights) {
+    
+        int entry = 0;
+        int exit = 0;
+        int result = 0;
+        int noOfGates = 0;
+        PriorityQueue<Integer> heap = new PriorityQueue<>(flights);
+        
+        for(int i=0; i<flights; i++) {
+            heap.add(departures[i]);
+        }
+        
+        while(entry < flights) {
+            
+            if(arrivals[entry] < heap.element()) {
+                System.out.println("arrivals: "+arrivals[entry]);
+                System.out.println("arrivals: "+heap.element());
+                noOfGates++;
+                entry++;
+                if(result < noOfGates) {
+                    System.out.println("No of Gates: "+result);
+                    result = noOfGates;
+                }
+            }
+            else {
+                heap.remove();
+                noOfGates--;
+            }
+        }
+        return result;
+    }
+
+    //Problem 59. Given Matrix, find biggest island 
+
+    static int bigIsland(int[][] matrix) {
+        
+        //Is it possible
+        if(martrix.length == 0) {
+            return 0;
+        }
+
+        int answer = 0;
+        
+        for(int i=0; i<martix.length; i++) {
+            for(int j=0; j<matrix[0].length; j++) {
+                if(matrix[i][j] == 1) {
+                    int res = findBigRecursion(matrix, i, j, 0);
+                    if(res > answer) {
+                        answer = res;
+                    }
+                }
+            }
+        }
+        return answer;
+    }
+
+    static int findBigRecursion(int[][] matrix, int i, int j, int count) {
+
+        count++;
+
+        if(i>0 && matrix[i-1][j] == 1) {
+            matrix[i-1][j] = 2;
+            count = findBigRecursion(matrix, i-1, j, count);
+        }
+        if(j>0 && matrix[i][j-1] == 1) {
+            matrix[i][j-1] = 2;
+            count = findBigRecursion(matrix, i, j-1, count);
+        }
+        if(i<matrix.length && matrix[i+1][j] == 1) {
+            matrix[i+1][j] = 2;
+            count = findBigRecursion(matrix, i+1, j, count);
+        }
+        if(j<matrix[0].length && matrix[i][j+1] == 1) {
+            matrix[i][j+1] = 2;
+            count = findBigRecursion(matrix, i, j+1, count);
+        }
+
+        return count;
+    }
+
+    //Problem 60. Given number, check if it is invertable.
+    static boolean invertableNumber(int num) {
+        
+        String strNumber = String.valueOf(num);
+
+        HashMap<Character, Character> hmap = new HashMap<>();
+        hmap.put('1','1');
+        hmap.put('2','5');
+        hmap.put('5','2');
+        hmap.put('6','9');
+        hmap.put('8','8');
+        hmap.put('9','6');
+
+        for(int i=0, j=strNumber.length()-1; i<strNumber.length()/2; i++, j--) {
+            if(hmap.containsKey(strNumber.charAt(i))) {
+               if(!(hmap.get(strNumber.charAt(i)) == strNumber.charAt(j))) {
+                    return false;
+               }
+            }
+            else {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    //Problem 61. Given array of unknown size and number, find number
+}
 
