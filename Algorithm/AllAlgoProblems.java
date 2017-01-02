@@ -2559,6 +2559,34 @@ public class AllAlgoProblems
         return true;
     }
 
-    //Problem 61. Given array of unknown size and number, find number
+    //Problem 61. Given array of unknown size and number, find number in array without using length function
+
+    //Problem 62. Given a string of numbers in words, return its number.
+    static int strWordsToNumber(String words) {
+        
+        HashMap<String, Integer> hmap = new HashMap<>();
+        hmap.put("one", 1);
+        hmap.put("two", 2);
+        hmap.put("three", 3);
+        hmap.put("four", 4);
+        hmap.put("five", 5);
+        hmap.put("six", 6);
+        hmap.put("seven", 7);
+        hmap.put("eight", 8);
+        hmap.put("nine", 9);
+        hmap.put("zero", 0);
+
+        String[] numWords = words.split(" ");
+        
+        int multiplier = 10;
+        int number = hmap.get(numWords[0]);
+
+        for(int i=1; i<numWords.length; i++) {
+            number = (number * multiplier) + hmap.get(numWords[i]);
+        }
+        return number;
+    }
+
+    //Problem 63. Multiply two very large numbers represented in the form of string
 }
 
