@@ -683,6 +683,7 @@ public class AllAlgoProblems
     public static int sum(int input)
     {
         // (int) Math.log10(input)+1 --- to find the number of digits in integer.
+        //Math.log() returns a double
         if((int) Math.log10(input) + 1 != 1)
         {
             return sum(input%10)+(input%10);
@@ -692,6 +693,9 @@ public class AllAlgoProblems
     }
     // -----------------------------------------------------------------------------------------
     // Problem 3. bubbleSort
+    // Every pass, bubble out the biggest element to the right by swapping. 
+    // Hence every pass we pass the one big elements to it right place. Stop when a element takes no swap.
+    // Time Complexity: O(N ^ 2)
     // -----------------------------------------------------------------------------------------
     private static void bubble(int[] arr)
     {
@@ -754,6 +758,8 @@ public class AllAlgoProblems
             System.out.println("The number is not in the list");
         }
     }
+
+    //Recursive function for finding element in sorted array
     public static boolean getElementRecursive(ArrayList<Integer> aList, int num, int start, int end) {
         
         int mid;
@@ -781,6 +787,8 @@ public class AllAlgoProblems
         }
         return false;
     }
+
+    //Recursive 2.
     public static boolean getElementRecursive2(ArrayList<Integer> aList, int num, int start, int end) {
         
         int mid;
@@ -800,8 +808,10 @@ public class AllAlgoProblems
         }
         return false;
     }
+
     // -----------------------------------------------------------------------------------------
-    // Problem 5. findRepeatingCharacter
+    // Problem 5. find repeating character in a string
+    // Can use HashMap or HashSet as lookup data structure
     // -----------------------------------------------------------------------------------------
     public static boolean findRepeatCharacter(String str) {
         HashMap<Character, Integer> ham = new HashMap<> ();
@@ -818,6 +828,7 @@ public class AllAlgoProblems
         }
         return false;
     }
+
     private static void printRepeat(Boolean bool) {
         
         if(bool == true) {
@@ -827,8 +838,10 @@ public class AllAlgoProblems
             System.out.println("All the characters in the word is unique");
         }
     }
+
     // -----------------------------------------------------------------------------------------
     // Problem 6. Find all repeated words in a string
+    // Get Word. Insert into HashMap if not present. If present print it.
     // -----------------------------------------------------------------------------------------
     public static void findRepeatedWords(String str) {
         
@@ -867,8 +880,10 @@ public class AllAlgoProblems
             }
         }
     }
+
     // -----------------------------------------------------------------------------------------
     // Problem 7. Filtering Delimiter from a String
+    // Add Delimiter to HashMap or HashSet. 
     // -----------------------------------------------------------------------------------------
     public static ArrayList<String> filterDelimiter(String str, String delim) {
         
@@ -894,8 +909,11 @@ public class AllAlgoProblems
         }
         return arrList;
     }
+
     // -----------------------------------------------------------------------------------------
     // Problem 8. Two-Sum pair, finding first pair
+    // Create a HashMap. Add item if difference of sum and current number is not in Map.
+    // If present return it.
     // -----------------------------------------------------------------------------------------
     public static void findaPair(ArrayList<Integer> aList, int num) {
         
@@ -910,10 +928,12 @@ public class AllAlgoProblems
                 hmap.put(aList.get(i), 1);
             }
         }
-        
     }
+
     // -----------------------------------------------------------------------------------------
     // Problem 9. Two-Sum pair, finding all pairs
+    // Same as previous problem. If element is present, add it to list and continue.
+    // Finally return it.
     // -----------------------------------------------------------------------------------------
     public static void findallPair(ArrayList<Integer> aList, int tot) {
         
@@ -941,6 +961,7 @@ public class AllAlgoProblems
             }
         }
     }
+
     // -----------------------------------------------------------------------------------------
     // Problem 10. Two-Sum pair, finding all possible pairs
     // -----------------------------------------------------------------------------------------
@@ -961,12 +982,12 @@ public class AllAlgoProblems
             }
         }
     }
-    //Problem 10. Sub Methods
+
     public static void add_Element_Twosumpair(int element, int index,  HashMap<Integer, ArrayList<Integer>> hmap) { 
         if(hmap.containsKey(element)) {
             //Learn:
             //Adding new index to the existing arraylist present inside hashmap
-            //Accessing the hashmap values directly
+            //Accessing the hashmap values directly. It is not a good approach as it anyways iterate internally.
             (hmap.get(element)).add(index);
         }
         else {
@@ -974,6 +995,7 @@ public class AllAlgoProblems
             hmap.put(element, a_list1);
         }
     }
+
     // -----------------------------------------------------------------------------------------
     // Problem 11. Merge two sorted arrays
     // -----------------------------------------------------------------------------------------
@@ -2588,5 +2610,120 @@ public class AllAlgoProblems
     }
 
     //Problem 63. Multiply two very large numbers represented in the form of string
+
+    //Problem 64. Generalized abbreviation of String Eg: word, O/p: word, 1ord, w1rd, wo1d, wor1, 2rd, w2d, wo2, 1o1d, 1or1, w1r1, 1o2, 2r1, 3d, w3, 4
+	static void printAbbreviation(String givenWord) {
+        
+        ArrayList<Integer> aList = new ArrayList<>();
+
+        abbreviationRecursion(givenWord, aList);
+    }
+
+    static void abbreviationRecursion(String theWord, ArrayList<Integer> aList) {
+        
+/*        if(aList != null && aList.size() == theWord.length()) {
+            System.out.println(theWord.length() + 1);
+            return;
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        if(aList.size() == 0) {
+           System.out.println(theWord); 
+           aList.add(0);
+           abbreviationRecursion(theWord, aList);
+        }
+        else {
+            String result = appendOne(theWord, arrayList);
+            result = addOne(result);
+            System.out.println(result);
+            if(aList.size() == 1) {
+                if(aList.get(0) < theWord.length()) {
+                    aList.add(aList.get(0) + 1);
+                }
+                else
+            }
+        }
+*/        
+    }
+
+    //Problem 65. Reverse the binary bits in the integer
+    static int reverseBits(int number) {
+        
+        if(number == 0) {
+            return 0;
+        }
+
+        int result = 0;
+
+        while(number != 1) {
+            if((number % 2) == 0) {
+                number /= 2;
+                result *= 2;
+            }
+            else if((number % 2) == 1) {
+                number /= 2;
+                result *= 2;
+                result += 1;
+            }
+        }
+        result = (result * 2) + 1;
+        return result;
+    }
+
+    //Problem 66. Given a string on 1s and 0s with ?s in between, replace all ?s with 1 or 0 and print all such combinations    
+    //yet to complete
+	static void printQuestionWithZeroOne(String numberStr) {
+		
+		if(numberStr == null) {
+            System.out.println("Not a valid String");
+            return;
+		}
+        
+        StringBuilder strBuilder = new StringBuilder();
+
+        for(int i=0; i<numberStr.length(); i++) {
+            strBuilder.append(numberStr.charAt(i));
+        }
+
+		printRecursionQuestionMark(strBuilder, 0);
+			
+    }
+
+    static void printRecursionQuestionMark(StringBuilder strBuilder, int position) {
+        
+        if(position >= strBuilder.length()) {
+            System.out.println(strBuilder.toString());
+            return;
+        }
+
+        for(int i=position; i<strBuilder.length(); i++) {
+            if(strBuilder.charAt(i) == '?') {
+
+                strBuilder = strBuilder.replace(i, i, 0);
+                printRecursionQuestionmark(strBuilder, i+1);
+
+                strBuilder = strBuilder.replace(i, i, 1);
+                printRecursionQuestionmark(strBuilder, i+1);
+            }
+        }
+    }
+
+    //Problem 67. find the element in the sorted matrix
+    static point findInSortedMatrix(int[][] matrix) {
+        
+        return recursiveSortedMatrix(matrix, matrix.length, matrix[0].length);
+    }
+
+    static point recursiveSortedMatrix(int[][] matrix, int row, int col) {
+        pair mid = new pair(row/2, col/2);
+
+        if(matrix[mid._a][mid._b] == number) {
+            return mid;
+        }
+        else if(
+
+
+    }
 }
 

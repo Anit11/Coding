@@ -343,6 +343,61 @@ public class binarySearchTreeNum {
             }
             return temp;
         }
+
+        //16. Find closest node to the given number, given the root, node may or may not be present
+        static node closestNode(node root, int number) {
+            
+            if(root == null) {
+                return null;
+            }
+
+            if(root.left == null && root.right == null) {
+                if(root.data == number) {
+                    return null;
+                }
+                return root;
+            }
+            
+
+            node justSmaller = findSmallerNode(root, number, new node());
+            node justBigger = findBiggerNode(root, number, new node());
+
+            if((number - justSmaller.data) < (justBigger.data - number)) {
+                return justSmaller;
+            }
+            else {
+                return justBigger;
+            }
+        }
+
+        static node findSmallerNode(node root, int number, node smallerSoFar) {
+            if(root == null) { 
+                return smallerSoFar;        
+            }
+
+            if(root.data < number && root.data > smallerSoFar) {
+                smallerSoFar = root.data;
+            }
+
+            findSmallerNode(root.left, number, smallerSoFar);
+        }
+
+        static node findBiggerNode(node root, int number, node bigSoFar) {
+            if(root == null) {
+                return bigSoFar;
+            }
+
+            if(root.data > number && root.data < bigSoFar) {
+                bigSoFar = root.data;
+            }
+
+            //have a doubt here.
+            findBiggerNode(root.right, number, bigSoFar);
+        }
+
+
+
+
         
 
 

@@ -429,6 +429,8 @@ Data Structure and its operations
     int to character                    - (char)integer;
     single digit int to some char       - (char) (int - '0');                        ---> convert the single digit int to appropriate character. Missing typecast would say lossy conversion
     String to char                      - string.charAt(index);
+
+	//STRING to CHAR ARRAY
     String to char Array                - string.toCharArray();
 
 
@@ -473,6 +475,14 @@ public static int sumEven(List<Integer> li) {
 }
 
 3.Difference between HashTable and HashMap?
+
+4. Is array an object in java?
+http://stackoverflow.com/questions/8781022/is-an-array-an-object-in-java
+Yes, array is an class. array instance is a object. array.length is not a method, it is a field in array class.
+
+5. Can a array be null?
+http://stackoverflow.com/questions/2369967/how-we-check-for-null-array-in-java
+Yes, it can be. 
 
 	
 
