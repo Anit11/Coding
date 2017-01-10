@@ -310,6 +310,14 @@ BASICS TECHNICAL KNOWLEDGE FOR INTERVIEW QUESTIONS
 
 16. Find right most set bit 
 	n & ~(n-1)
+
+//JAVA LOGARITHMS
+17. To find log number of 
+	base 2
+		log(number) / log(2);
+	base 10
+		log(number) / log(10);
+
 --------------------------------------------------------------------------------------------------------------
 UNDERSTANDING BASICS
 
