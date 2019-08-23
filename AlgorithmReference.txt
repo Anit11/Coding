@@ -1,0 +1,5 @@
+1. Dynamic Programming:
+     Two patterns for solving this problems are,
+      *Tabulation: Bottom Up
+      *Memoization: Top Down
+
