@@ -36,6 +36,7 @@ Data Structure and its Syntax
     hset.remove(value);
     hset.contains(value);
     hset.size();
+    hset.clear();                                                                     --->empties the HashSet object
 
 4. PriorityQueue: When to use: (If I know which element I want exactly in unsorted array, Use Heap. Quick sort is a competitor and proved to be better method, yet you can use heap)
     
@@ -143,6 +144,11 @@ Data Structure and its Syntax
     my_char.isDigit();                                                              ---> Whether the char is a digit
     my_char.toString();
 
+15. for loop:
+    for (char s: string.toCharArray()) {                                            ---> converting string to char array in for loop
+      for (char j: chararray) {                                                     ---> for each element in char array
+      }
+    }
 --------------------------------------------------------------------------------------------------------------
 BASICS TECHNICAL KNOWLEDGE FOR INTERVIEW QUESTIONS
 

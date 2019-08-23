@@ -1,0 +1,78 @@
+Variables:
+  Instance variable - non-static variable, all variables by default is non static
+  Class Variables - static variables, all instance of the class will have same value defined in the class
+                    'static' keyword is used.
+  Local variable - defined inside a method, local to it 
+
+8 Primitive data types: (do not use 'new' keyword)
+  byte - 8 bit or 1 byte - with values -128 to 127 - Default: 0
+  short - 16 bit or 2 byte - with values -32,768 to 32,767 - Default: 0
+  int - 32 bit or 4 byte - with values (-2)^31 to ((2)^31)-1 - Default: 0
+  long - 64 bit or 8 byte - with values (-2)^63 to ((2)^63)-1 - Default: 0L
+  float - 32 bit - Default: 0.0f
+          to save memory in large arrays, use java.math.BigDecimal
+          should never be used for precise value, currency
+  double - 64 bit - Default: 0.0d
+           for decimal number, this is a default choice
+           should never be used for precise value, currency
+  boolean - 1 bit used - true or false - Default: false
+  char - 16 but unicode character - with min value '\u0000' or 0 and max value '\uffff' or 65535 - Default: '\u0000'
+
+String or any object - Default: null
+Local variables are not assigned with default values. Assign it before you use.
+
+Array: 
+  single dimensional initialization: int[] anArray = new int[10]; or
+                                     int[] anArray = {100, 200, 300, 400, 500};
+  multi dimensional initialization: String[][] names = {{"name1", "name2"}, {"name3", "name4"}};
+  (the number of elements in the array has to be pre-defined)
+  ArrayCopy: void arraycopy(Object src, int srcPos, Object dest, int destPos, int length)
+             System.arraycopy
+
+Inheritance:
+  Each class can have only one super-class 
+  Each class can have multiple or unlimited sub-class
+  'extends' keyword used for inheritance - B has all the methods and variables from class A. It can have its unique features as well.
+  eg: class A{}
+      class B extends A{}
+
+Interface:
+  It defines the interaction to outside world through methods  
+  Interface is a group of methods with empty bodies
+  eg: interface C 
+      {
+        int add(int a, int b);
+        int substract(int a, int b);
+      }
+  'implements' keyword is used to implement interface methods. 
+  class implementing can have additional methods apart from all methods of interface class
+  class D should be public
+  eg: class D implements C 
+      {
+        int add(int a, int b)
+        {
+          return a+b;
+        }
+        int substract(int a, int b)
+        {
+          return a-b;
+        }
+      }
+    Using interface is more formal as it forms contract between class and outside world
+    Build time by the compiler. If class doesn't implement all methods in interface, it gives compiler error
+
+Package:
+  It is a namespace that organizes set of related classes and interfaces
+  class library is a set of packages. This library is known as API (application programming interface)
+
+Method Overriding:
+  methods with same name but different arguments
+
+Defining Constructor:
+  constructor should have the same name as the class name with public access modifier.
+  If there is no explicit constructor for the class, the compiler will provide an empty constructor.
+  This empty constructor will call the empty or no argument constructor of the super class. If there is no no argument constructor in super class, compiler complaints.
+  Check the super class constructor every time for the class with no argument constructor.
+
+
+
