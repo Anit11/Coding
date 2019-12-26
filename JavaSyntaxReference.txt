@@ -108,13 +108,32 @@ Data Structure and its Syntax
     Character.toLowerCase(str.charAt(i));                                            --->convert a character in a string to lowercase
     string.split("-");                                                               --->returns the string[] array
 
+10 a. Ways to create/represent a String
+    byte[] b_arr = {71, 101, 101, 107, 115};
+    Charset cs = Charset.defaultCharset();
+    StringBuilder s_builder = new StringBuilder("Geeks");
+    StringBuffer s_buffer = new StringBuffer("Geeks");
+    int[] uni_code = {71, 101, 101, 107, 115};
+    char char_arr[] = {'G', 'e', 'e', 'k', 's’};
+
+    String s_byte =new String(b_arr);                                                --->Geeks
+    String s_byte_char = new String(b_arr, cs);                                      --->Geeks
+    String s = new String(b_arr, "US-ASCII”);                                        --->Geeks
+    String s = new String(b_arr, 1, 3);                                              --->eek
+    String s = new String(b_arr, 1, 3, cs);                                          --->eek
+    String s = new String(b_arr, 1, 4, "US-ASCII”);                                  --->eeks
+    String s = new String(char_arr , 1, 3);                                          --->eek
+    String s = new String(uni_code, 1, 3);                                           --->eek
+    String s = new String(s_buffer);                                                 --->Geeks
+    String s = new String(s_builder);                                                --->Geeks
+
 11. Float   - java.lang.Float
     Float.compare(f1, f2)                                                            --->returns less than 0 if f1 is less than f2, greater than 0 if f1 is greater than f2, 0 if equal
     
 12. Array (for any primitive)
-	Arrays.sort(string or int)														 --->sort array of any primitive type
+	Arrays.sort(string or int)														           --->sort array of any primitive type
 	Arrays.equals(string1, string2)                 								 --->checks the equality of any two primitive in a array
-	Arrays.deepEquals(string1, string2)												 --->checks the equality of two 2d matrix of any two primitive
+	Arrays.deepEquals(string1, string2)												       --->checks the equality of two 2d matrix of any two primitive
 
 13. Conversions
     //TO INT
