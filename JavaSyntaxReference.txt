@@ -101,11 +101,29 @@ Data Structure and its Syntax
 	s.capacity();																	 --->returns the capacity of the stack, which grows in size of 10 when element is pushed
 
 10. String
-    string1.compareTo(string2);
-    string1.compareToIgnoreCase(string2);
+    "GeeksforGeeks".length();
+    "GeeksforGeeks".charAt(3);
+    "GeeksforGeeks".substring(3);    --->returns “ksforGeeks”
+    "GeeksforGeeks".substring(2, 5); // returns “eks”
+
+    String s = ”Learn Share Learn”;
+    int output = s.indexOf(“Share”);                                                 --->returns 6
+    int output = s.indexOf("ea",3);                                                  --->returns 13
+    int output = s.lastIndexOf("a");                                                 --->returns 14
+    
+    Boolean out = “Geeks”.equals(“Geeks”);                                           --->returns true
+    int out = string1.compareTo(string2);                                            --->Compares two string lexicographically, returns int(returns difference s1-s2) 
+                                                                                         < 0 string1 comes before string2
+                                                                                         = 0 string1 and string2 are equal
+                                                                                         > 0 string1 comes after string2
+    string1.compareToIgnoreCase(string2);                                            --->Compares two string like above ignoring the case
     string1.concat(string2);                                                         --->append second string to the end of first string
     string1.contains(CharSequence);
     Character.toLowerCase(str.charAt(i));                                            --->convert a character in a string to lowercase
+    String word2 = word1.toLowerCase();
+    String word2 = word1.toUpperCase();
+    String word2 = word1.trim();                                                     --->removes white spaces at both ends
+    String s2 = “feeksforfeeks”.replace(‘f’ ,’g’);                                   --->returns “geeksgorgeeks”
     string.split("-");                                                               --->returns the string[] array
 
 10 a. Ways to create/represent a String
