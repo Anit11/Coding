@@ -100,7 +100,27 @@ Data Structure and its Syntax
 	s.size(); 																		 --->returns the current size of the stack
 	s.capacity();																	 --->returns the capacity of the stack, which grows in size of 10 when element is pushed
 
-10. String
+10. Deque: (double ended queue)
+    Adds: 
+	    add(element) - add an element to the tail
+	    addFirst(element) - adds an element to the head
+	    addLast(element) - add an element to the tail
+	    offer(element) - adds an element to the tail and return boolean
+	    offerFirst(element) - adds an element to the head and return boolean
+	    push(element) - adds an element to the head
+    Removes:
+	    pop(element) - removes the element from the head and return it
+	    removeFirst() - removes the element at the head
+	    removeLast() - removes the element at the tail
+    Retrieves: 
+	    poll() - retrieves and removes the head of the queue, return null if the dequeue is empty
+	    pollFirst() - retrieves and removes the first element of this queue, returns null if the dequeue is empty
+	    pollLast() - retrieves and removes the last element of this dequeue, returns null if the dequeue is empty
+	    peek() - retreives but does not remove the head, returns null if the dequeue is empty
+	    peekFirst() - retreives but does not remove the first element, returns null if the dequeue is empty
+	    peekLast() -  retreives but does not remove the last element, returns null if the dequeue is empty
+
+11. String
     "GeeksforGeeks".length();
     "GeeksforGeeks".charAt(3);
     "GeeksforGeeks".substring(3);    --->returns “ksforGeeks”
@@ -126,7 +146,7 @@ Data Structure and its Syntax
     String s2 = “feeksforfeeks”.replace(‘f’ ,’g’);                                   --->returns “geeksgorgeeks”
     string.split("-");                                                               --->returns the string[] array
 
-10 a. Ways to create/represent a String
+11 a. Ways to create/represent a String
     byte[] b_arr = {71, 101, 101, 107, 115};
     Charset cs = Charset.defaultCharset();
     StringBuilder s_builder = new StringBuilder("Geeks");
@@ -145,15 +165,15 @@ Data Structure and its Syntax
     String s = new String(s_buffer);                                                 --->Geeks
     String s = new String(s_builder);                                                --->Geeks
 
-11. Float   - java.lang.Float
+12. Float   - java.lang.Float
     Float.compare(f1, f2)                                                            --->returns less than 0 if f1 is less than f2, greater than 0 if f1 is greater than f2, 0 if equal
     
-12. Array (for any primitive)
+13. Array (for any primitive)
 	Arrays.sort(string or int)														           --->sort array of any primitive type
 	Arrays.equals(string1, string2)                 								 --->checks the equality of any two primitive in a array
 	Arrays.deepEquals(string1, string2)												       --->checks the equality of two 2d matrix of any two primitive
 
-13. Conversions
+14. Conversions
     //TO INT
     character to int                    - (int)character;                            --->This returns ascii int value of character eg: (int)3; is 51
     character to int values             - Character.getNumericValue(char);           --->This returns integer char of char eg: Character.getNumericValue('3'); is 3
@@ -175,13 +195,13 @@ Data Structure and its Syntax
 	//STRING to CHAR ARRAY
     String to char Array                - string.toCharArray();
 
-14. Character: (Difference between char and character is that Charater is a object so many inbuilt operations can be made use of.)
+15. Character: (Difference between char and character is that Charater is a object so many inbuilt operations can be made use of.)
     my_char.toLowerCase();
     my_char.toUpperCase();
     my_char.isDigit();                                                              ---> Whether the char is a digit
     my_char.toString();
 
-15. for loop:
+16. for loop:
     for (char s: string.toCharArray()) {                                            ---> converting string to char array in for loop
       for (char j: chararray) {                                                     ---> for each element in char array
       }
