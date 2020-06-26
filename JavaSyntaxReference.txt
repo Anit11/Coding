@@ -1,5 +1,8 @@
 Data Structure and its Syntax
 
+0. Array
+    Arrays.fill(ith row, value);                                                   ---> fills the whole row with that value in 2Dmatrix
+
 1. ArrayList
 
     ArrayList<Integer> aList - new ArrayList<>();
@@ -91,7 +94,21 @@ Data Structure and its Syntax
     myQueue.isEmpty();
     myQueue.size();
 
-9. Stack (extends vector class so some of vector methods can be used here)
+8a. LinkedList
+    LinkedList<Character> list = new LinkedList<>();
+    list.add("B"); 
+    list.addLast("C"); 
+    list.addFirst("D"); 
+    list.add(2, "E"); 
+    list.remove("B"); 
+    list.remove(3); 
+    list.removeFirst(); 
+    list.removeLast(); 
+    boolean status = list.contains("E");
+    object.set(2, "Y"); 
+    toArray()                                                                
+
+9. Stack (extends vector class and implements Object, Iterable, Collections. Push and Pop uses type Object so need to typecast)
 	Stack s = new Stack();
 	s.push('a'); | s.push(2); | s.push("abc");										 --->push either a char, string or int(no need to specify the type
 	s.pop();																		 --->pop the top element
